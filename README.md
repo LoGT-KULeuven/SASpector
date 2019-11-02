@@ -87,7 +87,7 @@ It will parse the backbone file and extract the sequences which are not covered 
 
 ### check
 
-`check3.py` is composed by two commands: ** blast2Unmap ** which is going to align the unmapped regions with the contigs in order to detect is those regions are repeats already included in the contigs from the short reads assembly. Similar, ** blast2Conf ** will detect if regions from the short reads assembly that where not correctly mapped are already included in the reference genome.
+`check3.py` is composed by two commands: **blast2Unmap** which is going to align the unmapped regions with the contigs in order to detect is those regions are repeats already included in the contigs from the short reads assembly. Similar, **blast2Conf** will detect if regions from the short reads assembly that where not correctly mapped are already included in the reference genome.
 
 ```
 python3 check3.py {blast2Unmap,blast2Conf} prefix
