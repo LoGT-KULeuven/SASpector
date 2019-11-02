@@ -1,5 +1,4 @@
 from Bio import SeqIO
-from Bio.Blast.Applications import NcbiblastnCommandline
 import pandas as pd
 import argparse
 
@@ -60,7 +59,7 @@ def writeconflict(conflict, prefix):
             fasta.write('>' + key + '\n' + value + '\n')
 
 def main():
-    parser = argparse.ArgumentParser(prog = 'What the *** is wrong with my Illumina Assembly? - Extract')
+    parser = argparse.ArgumentParser(prog = 'What the *** is wrong with my Illumina Assembly? - Extract', description = 'Extraction of the missing regions with their locations in the reference genome for futher analysis. If some regions were not correctly mapped, they will be extracted as "conflictcontigs."')
     parser.add_argument('reference', help = 'Hybrid assembly FASTA file as format')
     parser.add_argument('backbone', help = 'Backbone file from progressiveMauve with alignment coordinates')
     parser.add_argument('prefix', help = 'Genome ID')
@@ -70,7 +69,6 @@ def main():
     conflictloc = backboneConflict(args.backbone)
     unmappeddict = unmapped(args.reference, unmappedloc, args.prefix)
     conflictdict = conflict(args.reference, conflictloc, args.prefix)
-    print(unmappeddict)
     writeunmapped(unmappeddict, args.prefix)
     writeconflict(conflictdict, args.prefix)
 

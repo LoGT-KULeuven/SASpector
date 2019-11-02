@@ -18,7 +18,7 @@ def mauve(reference, contigs, prefix):
 
 
 def main():
-    parser = argparse.ArgumentParser(prog = 'What the *** is wrong with my Illumina Assembly? -- Mapper', description = 'Genome mapper with progressiveMauve for Hybrid and De novo assemblies')
+    parser = argparse.ArgumentParser(prog = 'What the *** is wrong with my Illumina Assembly? -- Mapper', description = 'Genome mapper with progressiveMauve for Hybrid and De novo assemblies.')
     parser.add_argument('reference', type = str, help = 'Hybrid assembly FASTA file as reference genome')
     parser.add_argument('contigs', type = str, help = 'De novo assembly FASTA file as contigs/draft genome')
     parser.add_argument('prefix', type = str, help = 'Genome ID')

@@ -60,6 +60,54 @@ optional arguments:
 
 It wraps Mauve and performs an alignment of both genomes with progressiveMauve algorithm. It generates several alignment output files but most importantly the coordinates of the mapped and unmapped regions in the reference genome (the backbone file).
 
-## extract
+### extract
 
-`extract3`
+`extract3.py` takes the hybrid assembly genome (reference) as input FASTA file, the backbone file generated in `mapper3.py` and one prefix as identification for the output files.
+
+```
+python3 extract3.py reference backbone prefix
+
+usage: What the *** is wrong with my Illumina Assembly? - Extract
+       [-h] reference backbone prefix
+
+Extraction of the missing regions with their locations in the reference genome
+for futher analysis. If some regions were not correctly mapped, they will be
+extracted as "conflictcontigs."
+
+positional arguments:
+  reference   Hybrid assembly FASTA file as format
+  backbone    Backbone file from progressiveMauve with alignment coordinates
+  prefix      Genome ID
+
+optional arguments:
+  -h, --help  show this help message and exit
+
+```
+It will parse the backbone file and extract the sequences which are not covered in the short reads assembly from the reference genome and create at multi-fasta file with the coordinates. Additionally, if some regions were not mapped correctly due to gaps or indels, it will also extract them as 'conflict contigs' into multi-fasta file with their locations for further analysis.
+
+### check
+
+`check3.py` is composed by two commands: ** blast2Unmap ** which is going to align the unmapped regions with the contigs in order to detect is those regions are repeats already included in the contigs from the short reads assembly. Similar, ** blast2Conf ** will detect if regions from the short reads assembly that where not correctly mapped are already included in the reference genome.
+
+```
+python3 check3.py {blast2Unmap,blast2Conf} prefix
+
+usage: What the *** is wrong with my Illumina Assembly? - Checker
+       [-h] {blast2Unmap,blast2Conf} ... prefix
+
+Multiple alignment of unmapped regions and conflict contigs to detect false
+positives in the genome mapping
+
+positional arguments:
+  {blast2Unmap,blast2Conf}
+    blast2Unmap         Alignment of unmapped regions
+    blast2Conf          Alignment of conflict contigs
+  prefix
+
+optional arguments:
+  -h, --help            show this help message and exit
+
+```
+Both commands will generate a BLAST output alignment results in tab-delimited format.
+
+### analysis
