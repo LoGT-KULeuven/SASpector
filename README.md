@@ -14,10 +14,10 @@ What the *** is wrong with my Illumina Assembly? is a tool that compares a Hybri
 
 The tool takes as global inputs the hybrid assembly as reference genome and short reads assembly as contigs/draft genome, both in FASTA format. What the *** is wrong with my Illumina Assembly? is composed with four modules:
 
-- mapper: mapping of the short reads assembly with the hybrid assembly using progressiveMauve.
-- extraction: extraction of the unmapped regions and the regions with ordering problems with the reference genome (Explain this).
-- checker: alignment of the unmapped regions and conflicted regions with reference and contigs to detect false positives in the mapping.
-- analysis: in progress 
+- **mapper**: mapping of the short reads assembly with the hybrid assembly using progressiveMauve.
+- **extraction**: extraction of the unmapped regions and the regions with ordering problems with the reference genome (Explain this).
+- **checker**: alignment of the unmapped regions and conflicted regions with reference and contigs to detect false positives in the mapping.
+- **analysis**: in progress 
 
 ## Getting Started
 
