@@ -1,0 +1,6 @@
+wd: "../"
+
+threads: 16
+
+samples: /ddn1/vol1/site_scratch/leuven/325/vsc32567/IBP/Snakemake/samples.tsv
+
