@@ -62,7 +62,7 @@ def refextract(reference, mappedlocations, unmappedlocations, conflictlocations,
     for i in range(0, mappedlocations.shape[0]):
         start = mappedlocations.iloc[i,0]
         end = mappedlocations.iloc[i,1]
-        header = (str(prefix), str(start), ':', str(end))
+        header = (str(prefix),'_', str(start), ':', str(end))
         idmap.append(''.join(header))
     
     for i in range(0, len(mappeddict)):
@@ -80,7 +80,7 @@ def refextract(reference, mappedlocations, unmappedlocations, conflictlocations,
     for i in range(0, unmappedlocations.shape[0]):
         start = unmappedlocations.iloc[i,0]
         end = unmappedlocations.iloc[i,1]
-        header = (str(prefix), str(start-flanking), ':', str(end+flanking))
+        header = (str(prefix),'_', str(start-flanking), ':', str(end+flanking))
         idunmap.append(''.join(header))
 
     for i in range(0, len(unmappeddict)):
@@ -98,7 +98,7 @@ def refextract(reference, mappedlocations, unmappedlocations, conflictlocations,
     for i in range(0, conflictlocations.shape[0]):
         start = conflictlocations.iloc[i,0]
         end = conflictlocations.iloc[i,1]
-        header = (str(prefix), str(start), ':', str(end))
+        header = (str(prefix),'_', str(start), ':', str(end))
         idconflict.append(''.join(header))
 
     for i in range(0, len(conflictdict)):
@@ -189,7 +189,7 @@ def unmapsum(unmappeddict, idunmap):
                           'R':R*100,
                           'V':V*100}, ignore_index = True)
     
-    # Create unmapped region summary dataframe: Region, GC content, lenght and total amino acid frequency for all six reading frames 
+    # Create unmapped region summary dataframe: Region, GC content, length and total amino acid frequency for all six reading frames 
     unmap_stats = pd.DataFrame(list(zip(idunmap, gc_unmap, len_unmap)), columns = ['Region', 'GCContent', 'Length'])
     unmap_stats = pd.concat([unmap_stats, amino], axis = 1)
     unmap_stats.reset_index(drop = True, inplace = True)
@@ -199,7 +199,7 @@ def unmapsum(unmappeddict, idunmap):
 
 def refstats(reference, mappeddict, unmappeddict):
     
-    # Calculate genome fraction
+    # Calculate fraction of genome that is (un)mapped
     length_map = 0
     for key, values in mappeddict.items():
         length_map = length_map + len(values)
