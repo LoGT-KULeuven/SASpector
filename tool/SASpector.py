@@ -21,7 +21,8 @@ def main():
     parser.add_argument('-f', '--flanking', nargs = '?', const = 'flanking', type = int, help = 'Add flanking regions to the extracted sequences [Default = 0 bp]', default = 0)
     args = parser.parse_args()
 
-    os.makedirs(args.outdir)
+    if not os.path.exists(args.outdir):
+        os.makedirs(args.outdir)
     mauve(args.reference, args.contigs, args.prefix, args.outdir)
     print('Alignment Complete')
     extract_main(args.reference, args.prefix, args.flanking, args.outdir)
