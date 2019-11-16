@@ -13,12 +13,12 @@ import os
 
 
 def main():
-    parser = argparse.ArgumentParser(prog = 'What the *** is wrong with my Illumina Assembly?', description = '')
-    parser.add_argument('reference', type = str, help = 'Hybrid assembly FASTA file as reference genome')
-    parser.add_argument('contigs', type = str, help = 'Illumina FASTA file as contigs/draft genome')
+    parser = argparse.ArgumentParser(prog = 'SASpector', description = '')
+    parser.add_argument('reference', type = str, help = 'Reference genome FASTA file')
+    parser.add_argument('contigs', type = str, help = 'Short-read assembly (draft genome) FASTA file')
     parser.add_argument('-p', '--prefix', type = str, help = 'Genome ID')
     parser.add_argument('-dir', '--outdir', help = 'Output directory')
-    parser.add_argument('-f', '--flanking', nargs = '?' ,const = 'flanking', type = int, help = 'Add flanking regions [Default = 0]', default = 0)
+    parser.add_argument('-f', '--flanking', nargs = '?', const = 'flanking', type = int, help = 'Add flanking regions to the extracted sequences [Default = 0 bp]', default = 0)
     args = parser.parse_args()
 
     os.makedirs(args.outdir)
