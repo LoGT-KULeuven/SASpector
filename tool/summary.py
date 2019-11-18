@@ -34,7 +34,17 @@ def regions(reference, prefix, out):
     conflictlocations = coordinates[(coordinates.seq0_leftend == 0) & (coordinates.seq0_rightend == 0)]
     conflictlocations = conflictlocations[['seq1_leftend', 'seq1_rightend']]
     
-    return mappedlocations, unmappedlocations, conflictlocations
+    # Extract mapped regions coordinates
+    mappedlocations = coordinates[(coordinates.seq1_leftend > 0) & (coordinates.seq1_rightend > 0)]
+    mappedlocations = mappedlocations[['seq0_leftend','seq0_rightend']]
+    mappedlocations = mappedlocations[(mappedlocations.seq0_leftend > 0) & (mappedlocations.seq0_rightend > 0)]
+    
+    # Extract reverse coordinates
+    reverselocations = coordinates[(coordinates.seq1_leftend > 0) & (coordinates.seq1_rightend > 0)]
+    reverselocations = reverselocations[['seq0_leftend','seq0_rightend']]
+    reverselocations = reverselocations[(reverselocations.seq0_leftend < 0) & (reverselocations.seq0_rightend < 0)]
+    
+    return mappedlocations, unmappedlocations, conflictlocations, reverselocations
     
 # Function to extract the regions from the reference and store them in dictionaries
 
@@ -62,7 +72,7 @@ def refextract(reference, mappedlocations, unmappedlocations, conflictlocations,
     for i in range(0, mappedlocations.shape[0]):
         start = mappedlocations.iloc[i,0]
         end = mappedlocations.iloc[i,1]
-        header = (str(prefix),'_', str(start), ':', str(end))
+        header = (str(prefix), '_',str(start), ':', str(end))
         idmap.append(''.join(header))
     
     for i in range(0, len(mappeddict)):
@@ -98,7 +108,7 @@ def refextract(reference, mappedlocations, unmappedlocations, conflictlocations,
     for i in range(0, conflictlocations.shape[0]):
         start = conflictlocations.iloc[i,0]
         end = conflictlocations.iloc[i,1]
-        header = (str(prefix),'_', str(start), ':', str(end))
+        header = (str(prefix), '_', str(start), ':', str(end))
         idconflict.append(''.join(header))
 
     for i in range(0, len(conflictdict)):
@@ -118,8 +128,13 @@ def unmapsum(unmappeddict, idunmap):
         gc_unmap.append(SeqUtils.GC(str(seq)))
         len_unmap.append(len(seq))
         dna = Seq(seq)
-        
-        # Count number of residues for all six frames in the unmapped region sequence
+        dna_seq = [dna, dna.reverse_complement()]
+        codes = list()
+        for s in dna_seq:
+            for frame in range(3):
+                pro = s[frame:].translate(table = 11)
+                codes.append(pro._data)
+                
         A = 0
         D = 0
         E = 0
@@ -140,33 +155,56 @@ def unmapsum(unmappeddict, idunmap):
         K = 0
         R = 0
         V = 0
-        
-        dna_seqs = [dna, dna.reverse_complement()]
-        for s in dna_seqs:
-            for i in range(3):
-                
-                aa_seq = s[i:].translate(table = 11)
+        Stop = 0
+        len_seq = 0
             
-                A = (str(aa_seq).count('A'))/len(str(aa_seq)) + A
-                D = (str(aa_seq).count('D')/len(str(aa_seq))) + D
-                E = (str(aa_seq).count('E'))/len(str(aa_seq)) + E
-                G = (str(aa_seq).count('G'))/len(str(aa_seq)) + G
-                F = (str(aa_seq).count('F'))/len(str(aa_seq)) + F
-                L = (str(aa_seq).count('L'))/len(str(aa_seq)) + L
-                Y = (str(aa_seq).count('Y'))/len(str(aa_seq)) + Y
-                C = (str(aa_seq).count('C'))/len(str(aa_seq)) + C
-                W = (str(aa_seq).count('W'))/len(str(aa_seq)) + W
-                P = (str(aa_seq).count('P'))/len(str(aa_seq)) + P
-                H = (str(aa_seq).count('H'))/len(str(aa_seq)) + H
-                Q = (str(aa_seq).count('Q'))/len(str(aa_seq)) + Q
-                I = (str(aa_seq).count('I'))/len(str(aa_seq)) + I
-                M = (str(aa_seq).count('M'))/len(str(aa_seq)) + M
-                T = (str(aa_seq).count('T'))/len(str(aa_seq)) + T
-                N = (str(aa_seq).count('N'))/len(str(aa_seq)) + N
-                S = (str(aa_seq).count('S'))/len(str(aa_seq)) + S
-                K = (str(aa_seq).count('K'))/len(str(aa_seq)) + K
-                R = (str(aa_seq).count('R'))/len(str(aa_seq)) + R
-                V = (str(aa_seq).count('V'))/len(str(aa_seq)) + V
+        for pro_seq in codes:
+                
+            # Counts
+            A = (str(pro_seq).count('A')) + A
+            D = (str(pro_seq).count('D')) + D
+            E = (str(pro_seq).count('E')) + E
+            G = (str(pro_seq).count('G')) + G
+            F = (str(pro_seq).count('F')) + F
+            L = (str(pro_seq).count('L')) + L
+            Y = (str(pro_seq).count('Y')) + Y
+            C = (str(pro_seq).count('C')) + C
+            W = (str(pro_seq).count('W')) + W
+            P = (str(pro_seq).count('P')) + P
+            H = (str(pro_seq).count('H')) + H
+            Q = (str(pro_seq).count('Q')) + Q
+            I = (str(pro_seq).count('I')) + I
+            M = (str(pro_seq).count('M')) + M
+            T = (str(pro_seq).count('T')) + T
+            N = (str(pro_seq).count('N')) + N
+            S = (str(pro_seq).count('S')) + S
+            K = (str(pro_seq).count('K')) + K
+            R = (str(pro_seq).count('R')) + R
+            V = (str(pro_seq).count('V')) + V
+            Stop = (str(pro_seq).count('*')) + Stop
+            len_seq = len(pro_seq) + len_seq
+        
+        A = A/len_seq
+        D = D/len_seq
+        E = E/len_seq
+        G = G/len_seq
+        F = F/len_seq
+        L = L/len_seq
+        Y = Y/len_seq
+        C = C/len_seq
+        W = W/len_seq
+        P = P/len_seq
+        H = H/len_seq
+        Q = Q/len_seq
+        I = I/len_seq
+        M = M/len_seq
+        T = T/len_seq
+        N = N/len_seq
+        S = S/len_seq
+        K = K/len_seq
+        R = R/len_seq
+        V = V/len_seq
+        Stop = Stop/len_seq
         
         amino = amino.append({'A':A*100,
                           'D':D*100,
@@ -187,9 +225,12 @@ def unmapsum(unmappeddict, idunmap):
                           'S':S*100,
                           'K':K*100,
                           'R':R*100,
-                          'V':V*100}, ignore_index = True)
+                          'V':V*100,
+                          'Stop':Stop*100}, ignore_index = True)
+    codes.clear()
+                
     
-    # Create unmapped region summary dataframe: Region, GC content, length and total amino acid frequency for all six reading frames 
+    # Create unmapped region summary dataframe: Region, GC content, lenght and total amino acid frequency for all six reading frames 
     unmap_stats = pd.DataFrame(list(zip(idunmap, gc_unmap, len_unmap)), columns = ['Region', 'GCContent', 'Length'])
     unmap_stats = pd.concat([unmap_stats, amino], axis = 1)
     unmap_stats.reset_index(drop = True, inplace = True)
@@ -197,25 +238,34 @@ def unmapsum(unmappeddict, idunmap):
     
     return unmap_stats
 
-def refstats(reference, mappeddict, unmappeddict):
+def refstats(reference, mappedlocations, unmappedlocations, conflictlocations, reverselocations):
     
-    # Calculate fraction of genome that is (un)mapped
-    length_map = 0
-    for key, values in mappeddict.items():
-        length_map = length_map + len(values)
+    # Calculate genome fraction
+    sum_map = 0
+    for i in range(0, mappedlocations.shape[0]):
+        sum_map = sum_map + abs(mappedlocations.iloc[i,1] - mappedlocations.iloc[i,0])
     
-    length_un = 0
-    for key, values in unmappeddict.items():
-        length_un = length_un + len(values)
+    sum_confl = 0
+    for i in range(0, conflictlocations.shape[0]):
+        sum_confl = sum_confl + abs(conflictlocations.iloc[i,1] - conflictlocations.iloc[i,0])
+        
+    sum_rev = 0
+    for i in range(0, reverselocations.shape[0]):
+        sum_rev = sum_rev + abs(reverselocations.iloc[i,1] - reverselocations.iloc[i,0])
+        
+    total_map = sum_map + sum_confl + sum_rev
+    sum_unmap = 0
+    for i in range(0, unmappedlocations.shape[0]):
+        sum_unmap = sum_unmap + abs(unmappedlocations.iloc[i,1] - unmappedlocations.iloc[i,0])
     
     read = SeqIO.read(reference, format = 'fasta')
     refstats_dict = dict()
     refstats_dict = [{'GCContent': SeqUtils.GC(read.seq),
                      'Length': len(str(read.seq)),
-                     '#MappedRegions': len(mappeddict),
-                     '#UnmappedRegions': len(unmappeddict),
-                     'FractionMapped': (length_map/len(str(read.seq)))*100,
-                     'FractionUnmapped': (length_un/len(str(read.seq)))*100}]
+                     'NumberMappedRegions': mappedlocations.shape[0] + reverselocations.shape[0] + conflictlocations.shape[0],
+                     'NumberUnmappedRegions': unmappedlocations.shape[0],
+                     'FractionMapped': (total_map/len(str(read.seq)))*100,
+                     'FractionUnmapped': (sum_unmap/len(str(read.seq)))*100}]
     
     # Create reference summary dataframe
     refstats_t = pd.DataFrame.from_dict(refstats_dict)
@@ -259,13 +309,11 @@ def output(mappeddict, unmappeddict, conflictdict, refstats, unmap_stats, prefix
 
 def extract_main(reference, prefix, flanking, out):
     
-    mappedlocations, unmappedlocations, conflictlocations = regions(reference, prefix, out)
+    mappedlocations, unmappedlocations, conflictlocations, reverselocations = regions(reference, prefix, out)
     mappeddict, unmappeddict, idunmap, conflictdict = refextract(reference, mappedlocations, unmappedlocations, conflictlocations, prefix, flanking)
     unmap_stats = unmapsum(unmappeddict, idunmap)
-    refstats_t = refstats(reference, mappeddict, unmappeddict)
+    refstats_t = refstats(reference, mappedlocations, unmappedlocations, conflictlocations, reverselocations)
     output(mappeddict, unmappeddict, conflictdict, refstats_t, unmap_stats, prefix, out)
 
 
 
-    
-    
