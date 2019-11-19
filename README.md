@@ -36,7 +36,7 @@ Optionally, some scripts for analysis of the unmapped regions can be run:
 - BLAST+
 - BioPython
 - Pandas 
-- KAT (optional)
+- progressbar 
 - QUAST (optional)
 
 ### Installation
