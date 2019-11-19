@@ -11,6 +11,9 @@ from Bio.Seq import Seq
 import pandas as pd
 import seaborn as sns
 import os
+import progressbar 
+import warnings
+from Bio import BiopythonWarning
 
 # Function to extract the coordinates from the backbone file
 
@@ -19,7 +22,7 @@ def regions(reference, prefix, out):
     coordinates = '{out}/alignment/{genome_id}.backbone'.format(genome_id = prefix, out = out)
     
     # Parse backbone file 
-    coordinates = pd.read_table(coordinates, sep = '\t')
+    coordinates = pd.read_csv(coordinates, sep = '\t')
 
     # Extract mapped regions coordinates
     mappedlocations = coordinates[(coordinates.seq1_leftend > 0) & (coordinates.seq1_rightend > 0)]
@@ -52,14 +55,7 @@ def refextract(reference, mappedlocations, unmappedlocations, conflictlocations,
     
     # Parse reference FASTA file
     read = SeqIO.read(reference, format = 'fasta')
-    
-    # Create reference summary dictionary: GC content, length, number of mapped and unmapped regions
-    #refstats_dict = dict()
-    #refstats_dict = [{'GCContent': SeqUtils.GC(read.seq),
-    #             'Length': len(str(read.seq)),
-    #             'Unmapped': unmappedlocations.shape[0],
-    #             'Mapped': mappedlocations.shape[0]}]
-    
+        
     # Extract mapped regions and store in a dictionary
     mappeddict = dict()
     idmap = list()
@@ -85,13 +81,16 @@ def refextract(reference, mappedlocations, unmappedlocations, conflictlocations,
     for i in range(0, unmappedlocations.shape[0]):
         start = unmappedlocations.iloc[i,0]
         end = unmappedlocations.iloc[i,1]
-        unmappeddict[i] = str(read.seq[start-flanking:end+flanking])
+        if len(str(read.seq[start-flanking:end+flanking])) > 100:
+            unmappeddict[i] = str(read.seq[start-flanking:end+flanking])
+    unmappeddict = {i: v for i, v in enumerate(unmappeddict.values())}
     
     for i in range(0, unmappedlocations.shape[0]):
         start = unmappedlocations.iloc[i,0]
         end = unmappedlocations.iloc[i,1]
-        header = (str(prefix),'_', str(start-flanking), ':', str(end+flanking))
-        idunmap.append(''.join(header))
+        if len(str(read.seq[start-flanking:end+flanking])) > 100:
+            header = (str(prefix),'_', str(start-flanking), ':', str(end+flanking))
+            idunmap.append(''.join(header))
 
     for i in range(0, len(unmappeddict)):
         unmappeddict[idunmap[i]] = unmappeddict.pop(i)
@@ -238,7 +237,7 @@ def unmapsum(unmappeddict, idunmap):
     
     return unmap_stats
 
-def refstats(reference, mappedlocations, unmappedlocations, conflictlocations, reverselocations):
+def refstats(reference, mappedlocations, unmappedlocations, conflictlocations, reverselocations, unmappeddict):
     
     # Calculate genome fraction
     sum_map = 0
@@ -264,6 +263,7 @@ def refstats(reference, mappedlocations, unmappedlocations, conflictlocations, r
                      'Length': len(str(read.seq)),
                      'NumberMappedRegions': mappedlocations.shape[0] + reverselocations.shape[0] + conflictlocations.shape[0],
                      'NumberUnmappedRegions': unmappedlocations.shape[0],
+                     'ExtractedUnmappedRegions': len(unmappeddict),
                      'FractionMapped': (total_map/len(str(read.seq)))*100,
                      'FractionUnmapped': (sum_unmap/len(str(read.seq)))*100}]
     
@@ -272,20 +272,14 @@ def refstats(reference, mappedlocations, unmappedlocations, conflictlocations, r
     refstats_t.reset_index(drop = True, inplace = True)
     refstats_t.sort_index(inplace = True)
     
-    # Create reference summary dictionary: GC content, length, number of mapped and unmapped regions
-    #refstats_dict = dict()
-    #refstats_dict = [{'GCContent': SeqUtils.GC(read.seq),
-    #             'Length': len(str(read.seq)),
-    #             'Unmapped': unmappedlocations.shape[0],
-    #             'Mapped': mappedlocations.shape[0]}]
     return refstats_t
         
 def output(mappeddict, unmappeddict, conflictdict, refstats, unmap_stats, prefix, out):
     
     # Write summary tables
-    newpath = 'summary'
-    os.makedirs(os.path.join(out,newpath))
-    path_sum = '{out}/summary'.format(out = out)
+    #newpath = 'summary'
+    #os.makedirs(os.path.join(out,newpath))
+    path_sum = '{out}'.format(out = out)
     refstats.to_csv(os.path.join(path_sum,'{genome_id}_referencesummary.tsv'.format(genome_id = prefix)), sep = '\t', index = False)
     unmap_stats.to_csv(os.path.join(path_sum,'{genome_id}_unmapsummary.tsv'.format(genome_id = prefix)), sep = '\t', index = False)
     
@@ -308,12 +302,12 @@ def output(mappeddict, unmappeddict, conflictdict, refstats, unmap_stats, prefix
 
 
 def extract_main(reference, prefix, flanking, out):
-    
-    mappedlocations, unmappedlocations, conflictlocations, reverselocations = regions(reference, prefix, out)
-    mappeddict, unmappeddict, idunmap, conflictdict = refextract(reference, mappedlocations, unmappedlocations, conflictlocations, prefix, flanking)
-    unmap_stats = unmapsum(unmappeddict, idunmap)
-    refstats_t = refstats(reference, mappedlocations, unmappedlocations, conflictlocations, reverselocations)
+    warnings.simplefilter('ignore', BiopythonWarning)
+    bar = progressbar.ProgressBar(widgets = ['Extracting: ', progressbar.Bar(), '(', progressbar.ETA(),')'])
+    for i in bar(range(1)):
+        mappedlocations, unmappedlocations, conflictlocations, reverselocations = regions(reference, prefix, out)
+        mappeddict, unmappeddict, idunmap, conflictdict = refextract(reference, mappedlocations, unmappedlocations, conflictlocations, prefix, flanking)
+        unmap_stats = unmapsum(unmappeddict, idunmap)
+        refstats_t = refstats(reference, mappedlocations, unmappedlocations, conflictlocations, reverselocations, unmappeddict)
     output(mappeddict, unmappeddict, conflictdict, refstats_t, unmap_stats, prefix, out)
-
-
 
