@@ -35,8 +35,9 @@ Optionally, some scripts for analysis of the unmapped regions can be run:
 - Mauve or progressiveMauve (See Bioconda)
 - BLAST+
 - BioPython
+- Prokka
 - Pandas 
-- progressbar 
+- progressbar2 
 - QUAST (optional)
 
 ### Installation
