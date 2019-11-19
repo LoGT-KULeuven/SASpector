@@ -48,11 +48,14 @@ Optionally, some scripts for analysis of the unmapped regions can be run:
 
 For basic functionalities, run `SASpector.py` with Python3. This wraps the mapping and extraction steps (`mapper.py` and `summary.py`)
 ```
-usage: SASpector [-h] [-p PREFIX] [-dir OUTDIR] [-f [FLANKING]] reference contigs
+usage: SASpector - Short-read Assembly inSpector [-h] [-p PREFIX]
+                                                 [-dir OUTDIR] [-f [FLANKING]]
+                                                 [-k [KMERS]]
+                                                 reference contigs
 
 positional arguments:
-  reference             Reference genome FASTA file
-  contigs               Short-read assembly (draft genome) FASTA file
+  reference             Hybrid assembly FASTA file as reference genome
+  contigs               Illumina FASTA file as contigs/draft genome
 
 optional arguments:
   -h, --help            show this help message and exit
@@ -61,9 +64,10 @@ optional arguments:
   -dir OUTDIR, --outdir OUTDIR
                         Output directory
   -f [FLANKING], --flanking [FLANKING]
-                        Add flanking regions to the extracted sequences
-                        [Default = 0 bp]
-                        
+                        Add flanking regions [Default = 0]
+  -k [KMERS], --kmers [KMERS]
+                        Calculate kmer frequencies
+
   ```
 
 First, Mauve performs an alignment of both genomes with the progressiveMauve algorithm. It will generate a subdirectory prefix.alignment with several output files but most importantly the backbone file with coordinates of the mapped and unmapped regions in the reference genome. 
