@@ -10,6 +10,8 @@ from mapper import mauve
 from summary import extract_main
 from gene_predict import prokka
 from kmer import kmer
+from quastunmap import quast
+
 import argparse
 import os
 
@@ -22,18 +24,24 @@ def main():
     parser.add_argument('-p', '--prefix', type = str, help = 'Genome ID')
     parser.add_argument('-dir', '--outdir', help = 'Output directory')
     parser.add_argument('-f', '--flanking', nargs = '?' ,const = 'flanking', type = int, help = 'Add flanking regions [Default = 0]', default = 0)
-    parser.add_argument('-k', '--kmers', nargs = '?' ,const = 'flanking', type = int, help = 'Calculate kmer frequencies', default = 0)
+    parser.add_argument('-k', '--kmers', nargs = '?' ,const = 'kmers', type = int, help = 'Calculate kmer frequencies', default = 0)
+    parser.add_argument('-q','--quast', help = 'Run QUAST for unmapped regions against reference assembly', action = 'store_true')
 
     args = parser.parse_args()
-
+    
     if not os.path.exists(args.outdir):
         os.makedirs(args.outdir)
     
     mauve(args.reference, args.contigs, args.prefix, args.outdir)
     extract_main(args.reference, args.prefix, args.flanking, args.outdir)
     prokka(args.prefix, args.outdir)
-    kmer(args.kmers, args.prefix, args.outdir)
+    if args.kmers:
+        kmer(args.kmers, args.prefix, args.outdir)
+    if args.quast is True:
+         quast(args.reference, args.outdir, args.prefix)
+    
     print('Done!')
 
 if __name__ == '__main__':
     main()
+
