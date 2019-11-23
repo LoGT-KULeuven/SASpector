@@ -8,8 +8,6 @@ Created on Thu Nov 14 13:46:34 2019
 
 import subprocess
 import shlex
-import os
-import shutil
 import progressbar 
 import time
 
