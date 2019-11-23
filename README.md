@@ -1,23 +1,29 @@
 # Integrated Bioinformatics Project 19-20
 
 "Analysis of missing regions in short-read assemblies of bacterial genomes" Emma Verkinderen, Deniz Sinar, Alejandro Correa Rojo.
-Advisor: Cédric Loord
-Master of Bioinformatics - KU Leuven
 
-## Tool: What the *** is wrong with my Illumina Assembly? (To change)
+Advisor: Cédric Lood
 
-A bioinformatics tool to extract and analyze unmapped regions from a hybrid genome assembly which were not covered by De novo assembly with Illumina short reads.
+Master of Bioinformatics - KU Leuven, Belgium
+
+## Tool: SASpector (Short-read Assembly inSpector)
+
+A bioinformatics tool to extract and analyze missing regions of short-read assemblies by mapping the contigs to a reference genome.
 
 ## Introduction
 
-What the *** is wrong with my Illumina Assembly? is a tool that compares a Hybrid assembly with a De novo assembly of bacterial genomes by extracting (if apply) unmapped regions from De novo assembly in the hybrid assembly and analyze them to see functional and compositional pattern to explain why these regions are not covered in Illumina sequencing.
+SASpector is a tool that compares a short-read assembly with a reference bacterial genome (for example obtained via hybrid assembly) by extracting missing (unmapped) regions from the reference and analyzing them to see functional and compositional pattern. The aim of the analysis is to explain why these regions are missed by the short-read assembly and if important parts of the genome are missed when a resolved genome is lacking.
 
-The tool takes as global inputs the hybrid assembly as reference genome and short reads assembly as contigs/draft genome, both in FASTA format. What the *** is wrong with my Illumina Assembly? is composed with four modules:
+The tool takes as global inputs the reference genome and a short-read assembly as contigs/draft genome, both in FASTA format. This repository contains a main script `SASpector.py` to obtain missing regions and several other python scripts that can be run separately by the user for evaluation and analysis.
 
-- **mapper**: mapping of the short reads assembly with the hybrid assembly using progressiveMauve.
-- **extraction**: extraction of the unmapped regions and the regions with ordering problems with the reference genome (Explain this).
-- **checker**: alignment of the unmapped regions and conflicted regions with reference and contigs to detect false positives in the mapping.
-- **analysis**: in progress 
+- `mapper.py`: mapping of the short-read assembly against the reference assembly using progressiveMauve. 
+- `summary.py`: extraction of the mapped, unmapped (missing) and conflict regions to fasta files. Also creates summary statistics for the unmapped regions and reference which are written to separate csv files.
+- `check.py`: running BLAST alignment of the missing regions to the contigs and the conflict regions to the reference to detect false positives in the mapping. 
+
+Optionally, some scripts for analysis of the unmapped regions can be run: 
+- `quastunmap.py`: summary statistics using QUAST.
+- `kmer.py`: k-mer analysis using KAT.
+
 
 ## Getting Started
 
@@ -25,74 +31,59 @@ The tool takes as global inputs the hybrid assembly as reference genome and shor
 
 - Python 3.4 or later
 - Java
+- Seaborn
 - Mauve or progressiveMauve (See Bioconda)
 - BLAST+
 - BioPython
-- Pandas
+- Prokka
+- Pandas 
+- progressbar2 
+- QUAST (optional)
 
 ### Installation
 
-in progress
+`git clone` this repository
 
 ## Usage
 
-### mapper
-
-`mapper3.py` takes the two genomes as input files and one prefix as identification for the output files which will serve as inputs for the other module:
-
+For basic functionalities, run `SASpector.py` with Python3. This wraps the mapping and extraction steps (`mapper.py` and `summary.py`)
 ```
-python3 mapper3.py reference contigs prefix
-
-usage: What the *** is wrong with my Illumina Assembly? -- Mapper
-       [-h] reference contigs prefix
-
-Genome mapper with progressiveMauve for Hybrid and De novo assemblies
+usage: SASpector - Short-read Assembly inSpector [-h] [-p PREFIX]
+                                                 [-dir OUTDIR] [-f [FLANKING]]
+                                                 [-k [KMERS]]
+                                                 reference contigs
 
 positional arguments:
-  reference   Hybrid assembly FASTA file as reference genome
-  contigs     De novo assembly FASTA file as contigs/draft genome
-  prefix      Genome ID
+  reference             Hybrid assembly FASTA file as reference genome
+  contigs               Illumina FASTA file as contigs/draft genome
 
 optional arguments:
-  -h, --help  show this help message and exit
+  -h, --help            show this help message and exit
+  -p PREFIX, --prefix PREFIX
+                        Genome ID
+  -dir OUTDIR, --outdir OUTDIR
+                        Output directory
+  -f [FLANKING], --flanking [FLANKING]
+                        Add flanking regions [Default = 0]
+  -k [KMERS], --kmers [KMERS]
+                        Calculate kmer frequencies
+
+  ```
+
+First, Mauve performs an alignment of both genomes with the progressiveMauve algorithm. It will generate a subdirectory prefix.alignment with several output files but most importantly the backbone file with coordinates of the mapped and unmapped regions in the reference genome. 
+
+Afterwards, this script will parse the backbone file and extract the sequences that are not covered in the short-read assembly from the reference genome. They are written to a multi-fasta file with the prefix and coordinates in the headers, which is done equally for the mapped and conflict regions (regions that didn't map correctly due to gaps or indels). 
+
+Finally, two tab-delimited summary files are generated in a subdirectory called summary. One for the reference, with the amount of gapped and ungapped regions, the fraction of the reference genome that they represent, the GC content and the length. The other one for the unmapped regions, with for each region the GC content and length and then for each amino acid the occurence frequency averaged over all 6 reading frames.
+
+### Checker - in progress (blast settings tuning)
+
+`check.py` consists of two functions: blast2Unmap and blast2Conf, both using blastn. **blast2Unmap** aligns the unmapped regions to the contigs in order to check if those regions are included in the contigs from the short-read assembly. If yes, they could be repeats. Similarly, **blast2Conf** will detect if the conflict regions are included in the reference genome.
 
 ```
+python3 check.py {blast2Unmap,blast2Conf} prefix
 
-It wraps Mauve and performs an alignment of both genomes with progressiveMauve algorithm. It generates several alignment output files but most importantly the coordinates of the mapped and unmapped regions in the reference genome (the backbone file).
-
-### extract
-
-`extract3.py` takes the hybrid assembly genome (reference) as input FASTA file, the backbone file generated in `mapper3.py` and one prefix as identification for the output files.
-
-```
-python3 extract3.py reference backbone prefix
-
-usage: What the *** is wrong with my Illumina Assembly? - Extract
-       [-h] reference backbone prefix
-
-Extraction of the missing regions with their locations in the reference genome
-for futher analysis. If some regions were not correctly mapped, they will be
-extracted as "conflictcontigs."
-
-positional arguments:
-  reference   Hybrid assembly FASTA file as format
-  backbone    Backbone file from progressiveMauve with alignment coordinates
-  prefix      Genome ID
-
-optional arguments:
-  -h, --help  show this help message and exit
-
-```
-It will parse the backbone file and extract the sequences which are not covered in the short reads assembly from the reference genome and create at multi-fasta file with the coordinates. Additionally, if some regions were not mapped correctly due to gaps or indels, it will also extract them as 'conflict contigs' into multi-fasta file with their locations for further analysis.
-
-### check
-
-`check3.py` is composed by two commands: **blast2Unmap** which is going to align the unmapped regions with the contigs in order to detect is those regions are repeats already included in the contigs from the short reads assembly. Similar, **blast2Conf** will detect if regions from the short reads assembly that where not correctly mapped are already included in the reference genome.
-
-```
-python3 check3.py {blast2Unmap,blast2Conf} prefix
-
-usage: What the *** is wrong with my Illumina Assembly? - Checker
+usage: SASpector - Checker
        [-h] {blast2Unmap,blast2Conf} ... prefix
 
 Multiple alignment of unmapped regions and conflict contigs to detect false
@@ -108,6 +99,20 @@ optional arguments:
   -h, --help            show this help message and exit
 
 ```
-Both commands will generate a BLAST output alignment results in tab-delimited format.
+Both commands will generate a BLAST result file in tab-delimited format.
 
-### analysis
+### Analysis
+
+The following python scripts are provided for analysis of missing regions. 
+- `quastunmap.py`
+- `kmer.py`
+- ... (also add some explanations)
+
+They are not (yet) implemented as command-line tools, anyone is free to use them at will. For the IBP project, they are used in a Snakemake file for automation and high-throughput goals.
+
+### References
+- Altschul, S. F., Gish, W., Miller, W., Myers, E. W., & Lipman, D. J. (1990). Basic local alignment search tool. Journal of Molecular Biology, 215(3), 403–410.
+- Darling, A. C. E. (2004). Mauve: Multiple Alignment of Conserved Genomic Sequence With Rearrangements. Genome Research, 14(7), 1394–1403. 
+- Mapleson, D., Garcia Accinelli, G., Kettleborough, G., Wright, J., & Clavijo, B. J. (2016). KAT: a K-mer analysis toolkit to quality control NGS datasets and genome assemblies. Bioinformatics, 33(4).
+- Gurevich, A., Saveliev, V., Vyahhi, N., & Tesler, G. (2013). QUAST: Quality assessment tool for genome assemblies. Bioinformatics, 29(8), 1072–1075. 
+- Sth else?
