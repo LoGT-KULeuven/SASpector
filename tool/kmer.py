@@ -24,12 +24,12 @@ def kmer(k, prefix, outdir):
     for i in bar(range(1)):
         unmap = '{outdir}/{prefix}_unmappedregions.fasta'.format(outdir = outdir, prefix = prefix)
     
-        for reads in SeqIO.parse(unmap, format = 'fasta'):
+        for region in SeqIO.parse(unmap, format = 'fasta'):
         
         # Create kmers and stores them in a dictionary
             kmers = dict()
-            for i in range(len(str(reads.seq)) - k+1):
-                kmer = str(reads.seq[i:i+k])
+            for i in range(len(str(region.seq)) - k+1):
+                kmer = str(region.seq[i:i+k])
                 if kmer in kmers:
                     kmers[kmer] += 1
                 else:
@@ -37,7 +37,7 @@ def kmer(k, prefix, outdir):
         
         # Write kmers, kmers count and plots
             path = '{outdir}/kmer'.format(outdir = outdir)
-            with open(os.path.join(path, '{id}_kmer.tsv'.format(id = reads.id)), 'w+') as out:
+            with open(os.path.join(path, '{id}_kmer.tsv'.format(id = region.id)), 'w+') as out:
                 for key, value in kmers.items():
                     out.write(key + '\t' + str(value) + '\n')
         
@@ -50,7 +50,7 @@ def kmer(k, prefix, outdir):
             plt.ylabel('Counts')
             plt.xticks(rotation = 90)
             save = fig.get_figure()
-            save.savefig(os.path.join(path, '{id}_kmer.jpg'.format(id = reads.id)))
+            save.savefig(os.path.join(path, '{id}_kmer.jpg'.format(id = region.id)))
             plt.cla()
             plt.close(save)
             kmers.clear()
