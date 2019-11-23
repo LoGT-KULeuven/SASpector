@@ -8,7 +8,7 @@ Created on Thu Nov 14 06:02:38 2019
 
 from mapper import mauve
 from summary import extract_main
-from gene_predict import prokka
+from gene_predict import prokka, blast
 from kmer import kmer
 from quastunmap import quast
 
@@ -35,6 +35,7 @@ def main():
     mauve(args.reference, args.contigs, args.prefix, args.outdir)
     extract_main(args.reference, args.prefix, args.flanking, args.outdir)
     prokka(args.prefix, args.outdir)
+    blast(args.outdir, args.prefix)
     if args.kmers:
         kmer(args.kmers, args.prefix, args.outdir)
     if args.quast is True:

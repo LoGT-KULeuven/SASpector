@@ -6,14 +6,15 @@ Created on Thu Nov 14 07:50:22 2019
 @author: alerojo
 """
 
-from Bio import SeqUtils, SeqIO
+from Bio import SeqUtils, SeqIO, BiopythonWarning
 from Bio.Seq import Seq
 import pandas as pd
 import seaborn as sns
+import matplotlib.pyplot as plt
 import os
 import progressbar 
+import time
 import warnings
-from Bio import BiopythonWarning
 
 # Function to extract the coordinates from the backbone file
 
@@ -298,7 +299,46 @@ def output(mappeddict, unmappeddict, conflictdict, refstats, unmap_stats, prefix
         for key, value in conflictdict.items():
             fasta.write('>' + key + '\n' + value + '\n')
 
-#def plot()
+def plot(unmappeddict, unmap_stats, out):
+    
+    gc_content = list()
+    regions_length = list()
+    for key, values in unmappeddict.items():
+        gc_content.append(SeqUtils.GC(values))
+        regions_length.append(len(values))
+    
+    plt.figure(figsize = (10,10))
+    sns.set(style = 'white', font_scale = 2)
+    fig_joint = sns.jointplot(regions_length, gc_content, kind = 'hex', height = 7)
+    fig_joint.set_axis_labels(xlabel = 'Length', ylabel = 'GC Content')
+    fig_joint.savefig(os.path.join(out, 'gc_length_joint_missing.jpg'))
+
+    plt.figure(figsize = (15,10))
+    sns.set(style = 'white', font_scale = 1.3)
+    fig_gc = sns.distplot(gc_content, hist = True, rug = False, color = 'red')
+    fig_gc.set(xlabel = 'GC Content')
+    fig_gc.set_title('Distribution of GC Content')
+    sns.despine()
+    save = fig_gc.get_figure()
+    save.savefig(os.path.join(out, 'gc_content_missing.jpg'))
+
+    plt.figure(figsize = (15,10))
+    sns.set(style = 'white', font_scale = 1.3)
+    fig_length = sns.distplot(regions_length, hist = True, rug = False, color = 'green')
+    fig_length.set(xlabel = 'Length')
+    fig_length.set_title('Distribution of Length')
+    sns.despine()
+    save = fig_length.get_figure()
+    save.savefig(os.path.join(out, 'length_missing.jpg'))
+    
+    plt.figure(figsize = (15, 10))
+    sns.set(style = 'white', font_scale = 1.2)
+    ax = sns.boxplot(data = unmap_stats.iloc[:, 3:24], palette = 'Spectral')
+    ax.set_xlabel('Translated Codons')
+    ax.set_ylabel('Mean Percentage per Frame (%)')
+    sns.despine()
+    save = ax.get_figure()
+    save.savefig(os.path.join(out, 'codons_missing.jpg'))
 
 
 def extract_main(reference, prefix, flanking, out):
@@ -309,5 +349,7 @@ def extract_main(reference, prefix, flanking, out):
         mappeddict, unmappeddict, idunmap, conflictdict = refextract(reference, mappedlocations, unmappedlocations, conflictlocations, prefix, flanking)
         unmap_stats = unmapsum(unmappeddict, idunmap)
         refstats_t = refstats(reference, mappedlocations, unmappedlocations, conflictlocations, reverselocations, unmappeddict)
+        plot(unmappeddict, unmap_stats, out)
+        time.sleep(0.02)
     output(mappeddict, unmappeddict, conflictdict, refstats_t, unmap_stats, prefix, out)
 
