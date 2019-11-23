@@ -12,7 +12,7 @@ import progressbar
 from Bio.Blast.Applications import NcbiblastxCommandline as blastx
 
 def prokka(prefix, outdir):
-    bar = progressbar.ProgressBar(widgets = ['Predicting genes: ', progressbar.Bar(), '(', progressbar.ETA(),')'])
+    bar = progressbar.ProgressBar(widgets = ['Predicting genes (Prokka): ', progressbar.Bar(), '(', progressbar.ETA(),')'])
     for i in bar(range(1)):
         cmd = 'prokka --outdir {outdir}/genesprediction --prefix {prefix}.predictedgenes {outdir}/{prefix}_unmappedregions.fasta'.format(prefix = prefix, outdir = outdir)
         process = subprocess.Popen(shlex.split(cmd), stdout = subprocess.PIPE, stderr = subprocess.STDOUT)
@@ -24,7 +24,7 @@ def blast(outdir, prefix):
     bar = progressbar.ProgressBar(widgets = ['BLAST genes: ', progressbar.Bar(), '(', progressbar.ETA(),')'])
     for i in bar(range(1)):
         cline = blastx(cmd = 'blastx', out = '{outdir}/{prefix}_blastxresults.tsv'.format(prefix = prefix, outdir = outdir), evalue = 0.001, 
-                   outfmt = '6 qseqid qstart qend sseqid sstartstdout, stderr = cline()stdout, stderr = cline() send pident evalue qcovs', query = '{outdir}/genesprediction/{prefix}.predictedgenes.fsa'.format(outdir = outdir, prefix = prefix), subject = 'saspector_proteindb.fasta')
+                   outfmt = '6 qseqid qstart qend sseqid sstart send pident evalue qcovs', query = '{outdir}/genesprediction/{prefix}.predictedgenes.fsa'.format(outdir = outdir, prefix = prefix), subject = 'saspector_proteindb.fasta')
         stdout, stderr = cline()
 
     
