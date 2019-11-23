@@ -1,0 +1,472 @@
+>Feature Aba1_17812:23446
+330	1862	rRNA
+			locus_tag	MAKOMOPK_00001
+			product	16S ribosomal RNA
+			score	0
+1923	1999	tRNA
+			inference	COORDINATES:profile:Aragorn:001002
+			locus_tag	MAKOMOPK_00002
+			product	tRNA-Ile(gat)
+2055	2130	tRNA
+			inference	COORDINATES:profile:Aragorn:001002
+			locus_tag	MAKOMOPK_00003
+			product	tRNA-Ala(tgc)
+2473	5361	rRNA
+			locus_tag	MAKOMOPK_00004
+			product	23S ribosomal RNA
+			score	0
+5549	5628	rRNA
+			locus_tag	MAKOMOPK_00005
+			note	aligned only 67 percent of the 5S ribosomal RNA
+			product	5S ribosomal RNA (partial)
+			score	1.4e-13
+>Feature Aba1_34275:35216
+>Feature Aba1_131048:131986
+>Feature Aba1_211273:212211
+>Feature Aba1_461301:461420
+40	116	tRNA
+			inference	COORDINATES:profile:Aragorn:001002
+			locus_tag	MAKOMOPK_00006
+			product	tRNA-Arg(acg)
+>Feature Aba1_464857:465791
+37	468	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	MAKOMOPK_00007
+			product	hypothetical protein
+602	811	CDS
+			db_xref	COG:COG2826
+			inference	ab initio prediction:Prodigal:002006
+			inference	similar to AA sequence:ISfinder:ISAba125
+			locus_tag	MAKOMOPK_00008
+			product	IS30 family transposase ISAba125
+>Feature Aba1_488032:493712
+300	1832	rRNA
+			locus_tag	MAKOMOPK_00009
+			product	16S ribosomal RNA
+			score	0
+1893	1969	tRNA
+			inference	COORDINATES:profile:Aragorn:001002
+			locus_tag	MAKOMOPK_00010
+			product	tRNA-Ile(gat)
+2025	2100	tRNA
+			inference	COORDINATES:profile:Aragorn:001002
+			locus_tag	MAKOMOPK_00011
+			product	tRNA-Ala(tgc)
+2443	5331	rRNA
+			locus_tag	MAKOMOPK_00012
+			product	23S ribosomal RNA
+			score	0
+5520	5630	rRNA
+			locus_tag	MAKOMOPK_00013
+			product	5S ribosomal RNA
+			score	1.1e-15
+>Feature Aba1_522903:528541
+330	1862	rRNA
+			locus_tag	MAKOMOPK_00014
+			product	16S ribosomal RNA
+			score	0
+1923	1999	tRNA
+			inference	COORDINATES:profile:Aragorn:001002
+			locus_tag	MAKOMOPK_00015
+			product	tRNA-Ile(gat)
+2055	2130	tRNA
+			inference	COORDINATES:profile:Aragorn:001002
+			locus_tag	MAKOMOPK_00016
+			product	tRNA-Ala(tgc)
+2473	5361	rRNA
+			locus_tag	MAKOMOPK_00017
+			product	23S ribosomal RNA
+			score	0
+5550	5630	rRNA
+			locus_tag	MAKOMOPK_00018
+			note	aligned only 68 percent of the 5S ribosomal RNA
+			product	5S ribosomal RNA (partial)
+			score	8e-14
+>Feature Aba1_700899:701838
+>Feature Aba1_704329:705576
+>Feature Aba1_711428:711552
+>Feature Aba1_711696:711917
+40	116	tRNA
+			inference	COORDINATES:profile:Aragorn:001002
+			locus_tag	MAKOMOPK_00019
+			product	tRNA-Asp(gtc)
+>Feature Aba1_831025:843507
+>Feature Aba1_883334:884506
+>Feature Aba1_914715:915844
+106	294	CDS
+			inference	ab initio prediction:Prodigal:002006
+			inference	similar to AA sequence:ISfinder:ISAba22
+			locus_tag	MAKOMOPK_00020
+			product	IS3 family transposase ISAba22
+>Feature Aba1_954745:966592
+33	791	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	MAKOMOPK_00021
+			product	hypothetical protein
+792	2702	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	MAKOMOPK_00022
+			product	hypothetical protein
+2707	3627	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	MAKOMOPK_00023
+			product	hypothetical protein
+3762	4772	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	MAKOMOPK_00024
+			product	hypothetical protein
+5123	5284	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	MAKOMOPK_00025
+			product	hypothetical protein
+5281	6195	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	MAKOMOPK_00026
+			product	hypothetical protein
+6941	6570	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	MAKOMOPK_00027
+			product	hypothetical protein
+7313	7014	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	MAKOMOPK_00028
+			product	hypothetical protein
+8232	7381	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	MAKOMOPK_00029
+			product	hypothetical protein
+9732	8245	CDS
+			db_xref	COG:COG0659
+			gene	bicA_1
+			inference	ab initio prediction:Prodigal:002006
+			inference	similar to AA sequence:UniProtKB:Q14SY0
+			locus_tag	MAKOMOPK_00030
+			product	Bicarbonate transporter BicA
+11823	10027	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	MAKOMOPK_00031
+			product	hypothetical protein
+>Feature Aba1_984274:985212
+>Feature Aba1_1040079:1041018
+>Feature Aba1_1067298:1068240
+>Feature Aba1_1193832:1194772
+>Feature Aba1_1196979:1197921
+>Feature Aba1_1272651:1273163
+13	222	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	MAKOMOPK_00032
+			product	hypothetical protein
+>Feature Aba1_1449269:1450436
+>Feature Aba1_1470214:1471161
+>Feature Aba1_1506873:1507812
+>Feature Aba1_1558839:1560012
+>Feature Aba1_1698739:1701068
+2024	1170	CDS
+			inference	ab initio prediction:Prodigal:002006
+			inference	similar to AA sequence:ISfinder:ISAba22
+			locus_tag	MAKOMOPK_00033
+			product	IS3 family transposase ISAba22
+2224	2036	CDS
+			inference	ab initio prediction:Prodigal:002006
+			inference	similar to AA sequence:ISfinder:ISAba22
+			locus_tag	MAKOMOPK_00034
+			product	IS3 family transposase ISAba22
+>Feature Aba1_1739369:1740304
+332	123	CDS
+			db_xref	COG:COG2826
+			inference	ab initio prediction:Prodigal:002006
+			inference	similar to AA sequence:ISfinder:ISAba125
+			locus_tag	MAKOMOPK_00035
+			product	IS30 family transposase ISAba125
+897	466	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	MAKOMOPK_00036
+			product	hypothetical protein
+>Feature Aba1_1919734:1920574
+>Feature Aba1_1932679:1933801
+1020	832	CDS
+			inference	ab initio prediction:Prodigal:002006
+			inference	similar to AA sequence:ISfinder:ISAba22
+			locus_tag	MAKOMOPK_00037
+			product	IS3 family transposase ISAba22
+>Feature Aba1_1948678:1949619
+>Feature Aba1_1996957:2000682
+1465	248	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	MAKOMOPK_00038
+			product	hypothetical protein
+1587	1781	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	MAKOMOPK_00039
+			product	hypothetical protein
+2259	1987	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	MAKOMOPK_00040
+			product	hypothetical protein
+3479	2262	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	MAKOMOPK_00041
+			product	hypothetical protein
+>Feature Aba1_2056612:2057243
+>Feature Aba1_2267858:2268700
+>Feature Aba1_2362374:2363312
+>Feature Aba1_2450795:2451731
+>Feature Aba1_2519872:2520810
+>Feature Aba1_2528425:2529362
+>Feature Aba1_2560170:2561114
+>Feature Aba1_2575179:2576121
+>Feature Aba1_2737792:2738790
+986	777	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	MAKOMOPK_00042
+			product	hypothetical protein
+>Feature Aba1_2757731:2758167
+102	311	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	MAKOMOPK_00043
+			product	hypothetical protein
+>Feature Aba1_2815156:2827005
+34	792	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	MAKOMOPK_00044
+			product	hypothetical protein
+793	2703	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	MAKOMOPK_00045
+			product	hypothetical protein
+2708	3628	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	MAKOMOPK_00046
+			product	hypothetical protein
+3763	4773	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	MAKOMOPK_00047
+			product	hypothetical protein
+5124	5285	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	MAKOMOPK_00048
+			product	hypothetical protein
+5282	6196	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	MAKOMOPK_00049
+			product	hypothetical protein
+6942	6571	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	MAKOMOPK_00050
+			product	hypothetical protein
+7314	7015	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	MAKOMOPK_00051
+			product	hypothetical protein
+8233	7382	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	MAKOMOPK_00052
+			product	hypothetical protein
+9733	8246	CDS
+			db_xref	COG:COG0659
+			gene	bicA_2
+			inference	ab initio prediction:Prodigal:002006
+			inference	similar to AA sequence:UniProtKB:Q14SY0
+			locus_tag	MAKOMOPK_00053
+			product	Bicarbonate transporter BicA
+11824	10028	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	MAKOMOPK_00054
+			product	hypothetical protein
+>Feature Aba1_2847836:2848773
+>Feature Aba1_2850127:2850597
+>Feature Aba1_2851018:2851954
+>Feature Aba1_3032234:3044081
+26	1822	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	MAKOMOPK_00055
+			product	hypothetical protein
+2117	3604	CDS
+			db_xref	COG:COG0659
+			gene	bicA_3
+			inference	ab initio prediction:Prodigal:002006
+			inference	similar to AA sequence:UniProtKB:Q14SY0
+			locus_tag	MAKOMOPK_00056
+			product	Bicarbonate transporter BicA
+3617	4468	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	MAKOMOPK_00057
+			product	hypothetical protein
+4536	4835	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	MAKOMOPK_00058
+			product	hypothetical protein
+4908	5279	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	MAKOMOPK_00059
+			product	hypothetical protein
+6568	5654	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	MAKOMOPK_00060
+			product	hypothetical protein
+6726	6565	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	MAKOMOPK_00061
+			product	hypothetical protein
+8087	7077	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	MAKOMOPK_00062
+			product	hypothetical protein
+9142	8222	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	MAKOMOPK_00063
+			product	hypothetical protein
+11057	9147	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	MAKOMOPK_00064
+			product	hypothetical protein
+11816	11058	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	MAKOMOPK_00065
+			product	hypothetical protein
+>Feature Aba1_3125017:3125320
+>Feature Aba1_3174198:3175250
+>Feature Aba1_3209473:3209641
+>Feature Aba1_3384613:3390021
+87	8	rRNA
+			locus_tag	MAKOMOPK_00066
+			note	aligned only 67 percent of the 5S ribosomal RNA
+			product	5S ribosomal RNA (partial)
+			score	1.3e-13
+3163	275	rRNA
+			locus_tag	MAKOMOPK_00067
+			product	23S ribosomal RNA
+			score	0
+3581	3506	tRNA
+			inference	COORDINATES:profile:Aragorn:001002
+			locus_tag	MAKOMOPK_00068
+			product	tRNA-Ala(tgc)
+3713	3637	tRNA
+			inference	COORDINATES:profile:Aragorn:001002
+			locus_tag	MAKOMOPK_00069
+			product	tRNA-Ile(gat)
+5306	3774	rRNA
+			locus_tag	MAKOMOPK_00070
+			product	16S ribosomal RNA
+			score	0
+>Feature Aba1_3475104:3475225
+>Feature Aba1_3780687:3781572
+>Feature Aba1_3838649:3850497
+26	1822	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	MAKOMOPK_00071
+			product	hypothetical protein
+2117	3604	CDS
+			db_xref	COG:COG0659
+			gene	bicA_4
+			inference	ab initio prediction:Prodigal:002006
+			inference	similar to AA sequence:UniProtKB:Q14SY0
+			locus_tag	MAKOMOPK_00072
+			product	Bicarbonate transporter BicA
+3617	4468	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	MAKOMOPK_00073
+			product	hypothetical protein
+4536	4835	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	MAKOMOPK_00074
+			product	hypothetical protein
+4908	5279	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	MAKOMOPK_00075
+			product	hypothetical protein
+6568	5654	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	MAKOMOPK_00076
+			product	hypothetical protein
+6726	6565	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	MAKOMOPK_00077
+			product	hypothetical protein
+8087	7077	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	MAKOMOPK_00078
+			product	hypothetical protein
+9142	8222	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	MAKOMOPK_00079
+			product	hypothetical protein
+11057	9147	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	MAKOMOPK_00080
+			product	hypothetical protein
+11816	11058	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	MAKOMOPK_00081
+			product	hypothetical protein
+>Feature Aba1_3882334:3888002
+117	7	rRNA
+			locus_tag	MAKOMOPK_00082
+			product	5S ribosomal RNA
+			score	1.1e-15
+3194	306	rRNA
+			locus_tag	MAKOMOPK_00083
+			product	23S ribosomal RNA
+			score	0
+3612	3537	tRNA
+			inference	COORDINATES:profile:Aragorn:001002
+			locus_tag	MAKOMOPK_00084
+			product	tRNA-Ala(tgc)
+3744	3668	tRNA
+			inference	COORDINATES:profile:Aragorn:001002
+			locus_tag	MAKOMOPK_00085
+			product	tRNA-Ile(gat)
+5337	3805	rRNA
+			locus_tag	MAKOMOPK_00086
+			product	16S ribosomal RNA
+			score	0
+>Feature Aba1_4051734:4057153
+98	4	rRNA
+			locus_tag	MAKOMOPK_00087
+			product	5S ribosomal RNA
+			score	2.3e-14
+3174	286	rRNA
+			locus_tag	MAKOMOPK_00088
+			product	23S ribosomal RNA
+			score	0
+3592	3517	tRNA
+			inference	COORDINATES:profile:Aragorn:001002
+			locus_tag	MAKOMOPK_00089
+			product	tRNA-Ala(tgc)
+3724	3648	tRNA
+			inference	COORDINATES:profile:Aragorn:001002
+			locus_tag	MAKOMOPK_00090
+			product	tRNA-Ile(gat)
+5317	3785	rRNA
+			locus_tag	MAKOMOPK_00091
+			product	16S ribosomal RNA
+			score	0
+>Feature Aba1_4059861:4061020
+>Feature Aba1_4116660:4117832
+>Feature Aba1_4142794:4143960
+>Feature Aba1_4159433:4160285
+105	293	CDS
+			inference	ab initio prediction:Prodigal:002006
+			inference	similar to AA sequence:ISfinder:ISAba22
+			locus_tag	MAKOMOPK_00092
+			product	IS3 family transposase ISAba22
+>Feature Aba1_4160420:4160558
+>Feature Aba1_4161756:4162643
+>Feature Aba1_4183086:4184710
+895	1485	CDS
+			db_xref	COG:COG1309
+			inference	ab initio prediction:Prodigal:002006
+			inference	similar to AA sequence:UniProtKB:P9WME1
+			locus_tag	MAKOMOPK_00093
+			product	putative HTH-type transcriptional regulator
+>Feature Aba1_4190690:4192392
+729	139	CDS
+			db_xref	COG:COG1309
+			inference	ab initio prediction:Prodigal:002006
+			inference	similar to AA sequence:UniProtKB:P9WME1
+			locus_tag	MAKOMOPK_00094
+			product	putative HTH-type transcriptional regulator
+822	1661	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	MAKOMOPK_00095
+			product	hypothetical protein

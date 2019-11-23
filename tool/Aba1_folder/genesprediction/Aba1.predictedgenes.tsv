@@ -1,0 +1,96 @@
+locus_tag	ftype	length_bp	gene	EC_number	COG	product
+MAKOMOPK_00001	rRNA	1533				16S ribosomal RNA
+MAKOMOPK_00002	tRNA	77				tRNA-Ile(gat)
+MAKOMOPK_00003	tRNA	76				tRNA-Ala(tgc)
+MAKOMOPK_00004	rRNA	2889				23S ribosomal RNA
+MAKOMOPK_00005	rRNA	80				5S ribosomal RNA (partial)
+MAKOMOPK_00006	tRNA	77				tRNA-Arg(acg)
+MAKOMOPK_00007	CDS	432				hypothetical protein
+MAKOMOPK_00008	CDS	210			COG2826	IS30 family transposase ISAba125
+MAKOMOPK_00009	rRNA	1533				16S ribosomal RNA
+MAKOMOPK_00010	tRNA	77				tRNA-Ile(gat)
+MAKOMOPK_00011	tRNA	76				tRNA-Ala(tgc)
+MAKOMOPK_00012	rRNA	2889				23S ribosomal RNA
+MAKOMOPK_00013	rRNA	111				5S ribosomal RNA
+MAKOMOPK_00014	rRNA	1533				16S ribosomal RNA
+MAKOMOPK_00015	tRNA	77				tRNA-Ile(gat)
+MAKOMOPK_00016	tRNA	76				tRNA-Ala(tgc)
+MAKOMOPK_00017	rRNA	2889				23S ribosomal RNA
+MAKOMOPK_00018	rRNA	81				5S ribosomal RNA (partial)
+MAKOMOPK_00019	tRNA	77				tRNA-Asp(gtc)
+MAKOMOPK_00020	CDS	189				IS3 family transposase ISAba22
+MAKOMOPK_00021	CDS	759				hypothetical protein
+MAKOMOPK_00022	CDS	1911				hypothetical protein
+MAKOMOPK_00023	CDS	921				hypothetical protein
+MAKOMOPK_00024	CDS	1011				hypothetical protein
+MAKOMOPK_00025	CDS	162				hypothetical protein
+MAKOMOPK_00026	CDS	915				hypothetical protein
+MAKOMOPK_00027	CDS	372				hypothetical protein
+MAKOMOPK_00028	CDS	300				hypothetical protein
+MAKOMOPK_00029	CDS	852				hypothetical protein
+MAKOMOPK_00030	CDS	1488	bicA_1		COG0659	Bicarbonate transporter BicA
+MAKOMOPK_00031	CDS	1797				hypothetical protein
+MAKOMOPK_00032	CDS	210				hypothetical protein
+MAKOMOPK_00033	CDS	855				IS3 family transposase ISAba22
+MAKOMOPK_00034	CDS	189				IS3 family transposase ISAba22
+MAKOMOPK_00035	CDS	210			COG2826	IS30 family transposase ISAba125
+MAKOMOPK_00036	CDS	432				hypothetical protein
+MAKOMOPK_00037	CDS	189				IS3 family transposase ISAba22
+MAKOMOPK_00038	CDS	1218				hypothetical protein
+MAKOMOPK_00039	CDS	195				hypothetical protein
+MAKOMOPK_00040	CDS	273				hypothetical protein
+MAKOMOPK_00041	CDS	1218				hypothetical protein
+MAKOMOPK_00042	CDS	210				hypothetical protein
+MAKOMOPK_00043	CDS	210				hypothetical protein
+MAKOMOPK_00044	CDS	759				hypothetical protein
+MAKOMOPK_00045	CDS	1911				hypothetical protein
+MAKOMOPK_00046	CDS	921				hypothetical protein
+MAKOMOPK_00047	CDS	1011				hypothetical protein
+MAKOMOPK_00048	CDS	162				hypothetical protein
+MAKOMOPK_00049	CDS	915				hypothetical protein
+MAKOMOPK_00050	CDS	372				hypothetical protein
+MAKOMOPK_00051	CDS	300				hypothetical protein
+MAKOMOPK_00052	CDS	852				hypothetical protein
+MAKOMOPK_00053	CDS	1488	bicA_2		COG0659	Bicarbonate transporter BicA
+MAKOMOPK_00054	CDS	1797				hypothetical protein
+MAKOMOPK_00055	CDS	1797				hypothetical protein
+MAKOMOPK_00056	CDS	1488	bicA_3		COG0659	Bicarbonate transporter BicA
+MAKOMOPK_00057	CDS	852				hypothetical protein
+MAKOMOPK_00058	CDS	300				hypothetical protein
+MAKOMOPK_00059	CDS	372				hypothetical protein
+MAKOMOPK_00060	CDS	915				hypothetical protein
+MAKOMOPK_00061	CDS	162				hypothetical protein
+MAKOMOPK_00062	CDS	1011				hypothetical protein
+MAKOMOPK_00063	CDS	921				hypothetical protein
+MAKOMOPK_00064	CDS	1911				hypothetical protein
+MAKOMOPK_00065	CDS	759				hypothetical protein
+MAKOMOPK_00066	rRNA	80				5S ribosomal RNA (partial)
+MAKOMOPK_00067	rRNA	2889				23S ribosomal RNA
+MAKOMOPK_00068	tRNA	76				tRNA-Ala(tgc)
+MAKOMOPK_00069	tRNA	77				tRNA-Ile(gat)
+MAKOMOPK_00070	rRNA	1533				16S ribosomal RNA
+MAKOMOPK_00071	CDS	1797				hypothetical protein
+MAKOMOPK_00072	CDS	1488	bicA_4		COG0659	Bicarbonate transporter BicA
+MAKOMOPK_00073	CDS	852				hypothetical protein
+MAKOMOPK_00074	CDS	300				hypothetical protein
+MAKOMOPK_00075	CDS	372				hypothetical protein
+MAKOMOPK_00076	CDS	915				hypothetical protein
+MAKOMOPK_00077	CDS	162				hypothetical protein
+MAKOMOPK_00078	CDS	1011				hypothetical protein
+MAKOMOPK_00079	CDS	921				hypothetical protein
+MAKOMOPK_00080	CDS	1911				hypothetical protein
+MAKOMOPK_00081	CDS	759				hypothetical protein
+MAKOMOPK_00082	rRNA	111				5S ribosomal RNA
+MAKOMOPK_00083	rRNA	2889				23S ribosomal RNA
+MAKOMOPK_00084	tRNA	76				tRNA-Ala(tgc)
+MAKOMOPK_00085	tRNA	77				tRNA-Ile(gat)
+MAKOMOPK_00086	rRNA	1533				16S ribosomal RNA
+MAKOMOPK_00087	rRNA	95				5S ribosomal RNA
+MAKOMOPK_00088	rRNA	2889				23S ribosomal RNA
+MAKOMOPK_00089	tRNA	76				tRNA-Ala(tgc)
+MAKOMOPK_00090	tRNA	77				tRNA-Ile(gat)
+MAKOMOPK_00091	rRNA	1533				16S ribosomal RNA
+MAKOMOPK_00092	CDS	189				IS3 family transposase ISAba22
+MAKOMOPK_00093	CDS	591			COG1309	putative HTH-type transcriptional regulator
+MAKOMOPK_00094	CDS	591			COG1309	putative HTH-type transcriptional regulator
+MAKOMOPK_00095	CDS	840				hypothetical protein

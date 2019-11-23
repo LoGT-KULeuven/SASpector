@@ -1,0 +1,206 @@
+[19:53:36] This is prokka 1.14.5
+[19:53:36] Written by Torsten Seemann <torsten.seemann@gmail.com>
+[19:53:36] Homepage is https://github.com/tseemann/prokka
+[19:53:36] Local time is Sat Nov 23 19:53:36 2019
+[19:53:36] You are alerojo
+[19:53:36] Operating system is linux
+[19:53:36] You have BioPerl 1.007002
+[19:53:36] System has 4 cores.
+[19:53:36] Option --cpu asked for 8 cores, but system only has 4
+[19:53:36] Will use maximum of 4 cores.
+[19:53:36] Annotating as >>> Bacteria <<<
+[19:53:36] Generating locus_tag from 'Aba1_folder/Aba1_unmappedregions.fasta' contents.
+[19:53:36] Setting --locustag MAKOMOPK from MD5 6a486894eb3e4baabe418b50d0557894
+[19:53:36] Creating new output folder: Aba1_folder/genesprediction
+[19:53:36] Running: mkdir -p Aba1_folder\/genesprediction
+[19:53:36] Using filename prefix: Aba1.predictedgenes.XXX
+[19:53:36] Setting HMMER_NCPU=1
+[19:53:36] Writing log to: Aba1_folder/genesprediction/Aba1.predictedgenes.log
+[19:53:36] Command: /home/alerojo/anaconda2/envs/Rojo_py37/bin/prokka --outdir Aba1_folder/genesprediction --prefix Aba1.predictedgenes Aba1_folder/Aba1_unmappedregions.fasta
+[19:53:36] Appending to PATH: /home/alerojo/anaconda2/envs/Rojo_py37/bin
+[19:53:36] Looking for 'aragorn' - found /home/alerojo/anaconda2/envs/Rojo_py37/bin/aragorn
+[19:53:36] Determined aragorn version is 001002 from 'ARAGORN v1.2.38 Dean Laslett'
+[19:53:36] Looking for 'barrnap' - found /home/alerojo/anaconda2/envs/Rojo_py37/bin/barrnap
+[19:53:36] Determined barrnap version is 000008 from 'barrnap 0.8'
+[19:53:36] Looking for 'blastp' - found /home/alerojo/anaconda2/envs/Rojo_py37/bin/blastp
+[19:53:36] Determined blastp version is 002009 from 'blastp: 2.9.0+'
+[19:53:36] Looking for 'cmpress' - found /home/alerojo/anaconda2/envs/Rojo_py37/bin/cmpress
+[19:53:36] Determined cmpress version is 001001 from '# INFERNAL 1.1.2 (July 2016)'
+[19:53:36] Looking for 'cmscan' - found /home/alerojo/anaconda2/envs/Rojo_py37/bin/cmscan
+[19:53:36] Determined cmscan version is 001001 from '# INFERNAL 1.1.2 (July 2016)'
+[19:53:36] Looking for 'egrep' - found /bin/egrep
+[19:53:36] Looking for 'find' - found /usr/bin/find
+[19:53:36] Looking for 'grep' - found /bin/grep
+[19:53:36] Looking for 'hmmpress' - found /home/alerojo/anaconda2/envs/Rojo_py37/bin/hmmpress
+[19:53:36] Determined hmmpress version is 003002 from '# HMMER 3.2.1 (June 2018); http://hmmer.org/'
+[19:53:36] Looking for 'hmmscan' - found /home/alerojo/anaconda2/envs/Rojo_py37/bin/hmmscan
+[19:53:36] Determined hmmscan version is 003002 from '# HMMER 3.2.1 (June 2018); http://hmmer.org/'
+[19:53:36] Looking for 'java' - found /home/alerojo/anaconda2/envs/Rojo_py37/bin/java
+[19:53:36] Looking for 'makeblastdb' - found /home/alerojo/anaconda2/envs/Rojo_py37/bin/makeblastdb
+[19:53:36] Determined makeblastdb version is 002009 from 'makeblastdb: 2.9.0+'
+[19:53:36] Looking for 'minced' - found /home/alerojo/anaconda2/envs/Rojo_py37/bin/minced
+[19:53:37] Determined minced version is 004002 from 'minced 0.4.2'
+[19:53:37] Looking for 'parallel' - found /home/alerojo/anaconda2/envs/Rojo_py37/bin/parallel
+[19:53:37] Determined parallel version is 20190922 from 'GNU parallel 20190922'
+[19:53:37] Looking for 'prodigal' - found /home/alerojo/anaconda2/envs/Rojo_py37/bin/prodigal
+[19:53:37] Determined prodigal version is 002006 from 'Prodigal V2.6.3: February, 2016'
+[19:53:37] Looking for 'prokka-genbank_to_fasta_db' - found /home/alerojo/anaconda2/envs/Rojo_py37/bin/prokka-genbank_to_fasta_db
+[19:53:37] Looking for 'sed' - found /bin/sed
+[19:53:37] Looking for 'tbl2asn' - found /home/alerojo/anaconda2/envs/Rojo_py37/bin/tbl2asn
+[19:53:37] Determined tbl2asn version is 025007 from 'tbl2asn 25.7   arguments:'
+[19:53:37] Using genetic code table 11.
+[19:53:37] Loading and checking input file: Aba1_folder/Aba1_unmappedregions.fasta
+[19:53:37] Wrote 64 contigs totalling 143467 bp.
+[19:53:37] Predicting tRNAs and tmRNAs
+[19:53:37] Running: aragorn -l -gc11  -w Aba1_folder\/genesprediction\/Aba1\.predictedgenes\.fna
+[19:53:37] 1 tRNA-Ile [1923,1999] 35 (gat)
+[19:53:37] 2 tRNA-Ala [2055,2130] 34 (tgc)
+[19:53:37] 1 tRNA-Arg [40,116] 35 (acg)
+[19:53:37] 1 tRNA-Ile [1893,1969] 35 (gat)
+[19:53:37] 2 tRNA-Ala [2025,2100] 34 (tgc)
+[19:53:37] 1 tRNA-Ile [1923,1999] 35 (gat)
+[19:53:37] 2 tRNA-Ala [2055,2130] 34 (tgc)
+[19:53:37] 1 tRNA-Asp [40,116] 35 (gtc)
+[19:53:37] 1 tRNA-Ala c[3506,3581] 34 (tgc)
+[19:53:37] 2 tRNA-Ile c[3637,3713] 35 (gat)
+[19:53:37] 1 tRNA-Ala c[3537,3612] 34 (tgc)
+[19:53:37] 2 tRNA-Ile c[3668,3744] 35 (gat)
+[19:53:37] 1 tRNA-Ala c[3517,3592] 34 (tgc)
+[19:53:37] 2 tRNA-Ile c[3648,3724] 35 (gat)
+[19:53:37] Found 14 tRNAs
+[19:53:37] Predicting Ribosomal RNAs
+[19:53:37] Running Barrnap with 4 threads
+[19:53:39] 1 Aba1_17812:23446 330 16S ribosomal RNA
+[19:53:39] 2 Aba1_17812:23446 2473 23S ribosomal RNA
+[19:53:39] 3 Aba1_17812:23446 5549 5S ribosomal RNA (partial)
+[19:53:39] 4 Aba1_3384613:3390021 8 5S ribosomal RNA (partial)
+[19:53:39] 5 Aba1_3384613:3390021 275 23S ribosomal RNA
+[19:53:39] 6 Aba1_3384613:3390021 3774 16S ribosomal RNA
+[19:53:39] 7 Aba1_3882334:3888002 7 5S ribosomal RNA
+[19:53:39] 8 Aba1_3882334:3888002 306 23S ribosomal RNA
+[19:53:39] 9 Aba1_3882334:3888002 3805 16S ribosomal RNA
+[19:53:39] 10 Aba1_4051734:4057153 4 5S ribosomal RNA
+[19:53:39] 11 Aba1_4051734:4057153 286 23S ribosomal RNA
+[19:53:39] 12 Aba1_4051734:4057153 3785 16S ribosomal RNA
+[19:53:39] 13 Aba1_488032:493712 300 16S ribosomal RNA
+[19:53:39] 14 Aba1_488032:493712 2443 23S ribosomal RNA
+[19:53:39] 15 Aba1_488032:493712 5520 5S ribosomal RNA
+[19:53:39] 16 Aba1_522903:528541 330 16S ribosomal RNA
+[19:53:39] 17 Aba1_522903:528541 2473 23S ribosomal RNA
+[19:53:39] 18 Aba1_522903:528541 5550 5S ribosomal RNA (partial)
+[19:53:39] Found 18 rRNAs
+[19:53:39] Skipping ncRNA search, enable with --rfam if desired.
+[19:53:39] Total of 32 tRNA + rRNA features
+[19:53:39] Searching for CRISPR repeats
+[19:53:39] Found 0 CRISPRs
+[19:53:39] Predicting coding sequences
+[19:53:39] Contigs total 143467 bp, so using single mode
+[19:53:39] Running: prodigal -i Aba1_folder\/genesprediction\/Aba1\.predictedgenes\.fna -c -m -g 11 -p single -f sco -q
+[19:53:39] Excluding CDS which overlaps existing RNA (rRNA) at Aba1_17812:23446:440..544 on + strand
+[19:53:39] Excluding CDS which overlaps existing RNA (rRNA) at Aba1_17812:23446:1225..1377 on - strand
+[19:53:39] Excluding CDS which overlaps existing RNA (tRNA) at Aba1_17812:23446:1665..2000 on - strand
+[19:53:39] Excluding CDS which overlaps existing RNA (tRNA) at Aba1_17812:23446:2036..2143 on + strand
+[19:53:39] Excluding CDS which overlaps existing RNA (rRNA) at Aba1_17812:23446:3967..4110 on + strand
+[19:53:39] Excluding CDS which overlaps existing RNA (rRNA) at Aba1_17812:23446:4844..5170 on - strand
+[19:53:39] Excluding CDS which overlaps existing RNA (rRNA) at Aba1_17812:23446:5110..5313 on - strand
+[19:53:39] Excluding CDS which overlaps existing RNA (rRNA) at Aba1_488032:493712:410..514 on + strand
+[19:53:39] Excluding CDS which overlaps existing RNA (rRNA) at Aba1_488032:493712:1195..1347 on - strand
+[19:53:39] Excluding CDS which overlaps existing RNA (tRNA) at Aba1_488032:493712:1635..1970 on - strand
+[19:53:39] Excluding CDS which overlaps existing RNA (tRNA) at Aba1_488032:493712:2006..2113 on + strand
+[19:53:39] Excluding CDS which overlaps existing RNA (rRNA) at Aba1_488032:493712:3937..4080 on + strand
+[19:53:39] Excluding CDS which overlaps existing RNA (rRNA) at Aba1_488032:493712:4814..5140 on - strand
+[19:53:39] Excluding CDS which overlaps existing RNA (rRNA) at Aba1_488032:493712:5080..5283 on - strand
+[19:53:39] Excluding CDS which overlaps existing RNA (rRNA) at Aba1_522903:528541:440..544 on + strand
+[19:53:39] Excluding CDS which overlaps existing RNA (rRNA) at Aba1_522903:528541:1225..1377 on - strand
+[19:53:39] Excluding CDS which overlaps existing RNA (tRNA) at Aba1_522903:528541:1665..2000 on - strand
+[19:53:39] Excluding CDS which overlaps existing RNA (tRNA) at Aba1_522903:528541:2036..2143 on + strand
+[19:53:39] Excluding CDS which overlaps existing RNA (rRNA) at Aba1_522903:528541:3967..4110 on + strand
+[19:53:39] Excluding CDS which overlaps existing RNA (rRNA) at Aba1_522903:528541:4844..5170 on - strand
+[19:53:39] Excluding CDS which overlaps existing RNA (rRNA) at Aba1_522903:528541:5110..5313 on - strand
+[19:53:39] Excluding CDS which overlaps existing RNA (rRNA) at Aba1_3384613:3390021:323..526 on + strand
+[19:53:39] Excluding CDS which overlaps existing RNA (rRNA) at Aba1_3384613:3390021:466..792 on + strand
+[19:53:39] Excluding CDS which overlaps existing RNA (rRNA) at Aba1_3384613:3390021:1526..1669 on - strand
+[19:53:39] Excluding CDS which overlaps existing RNA (tRNA) at Aba1_3384613:3390021:3493..3600 on - strand
+[19:53:39] Excluding CDS which overlaps existing RNA (tRNA) at Aba1_3384613:3390021:3636..3971 on + strand
+[19:53:39] Excluding CDS which overlaps existing RNA (rRNA) at Aba1_3384613:3390021:4259..4411 on + strand
+[19:53:39] Excluding CDS which overlaps existing RNA (rRNA) at Aba1_3384613:3390021:5092..5196 on - strand
+[19:53:39] Excluding CDS which overlaps existing RNA (rRNA) at Aba1_3882334:3888002:354..557 on + strand
+[19:53:39] Excluding CDS which overlaps existing RNA (rRNA) at Aba1_3882334:3888002:497..823 on + strand
+[19:53:39] Excluding CDS which overlaps existing RNA (rRNA) at Aba1_3882334:3888002:1557..1700 on - strand
+[19:53:39] Excluding CDS which overlaps existing RNA (tRNA) at Aba1_3882334:3888002:3524..3631 on - strand
+[19:53:39] Excluding CDS which overlaps existing RNA (tRNA) at Aba1_3882334:3888002:3667..4002 on + strand
+[19:53:39] Excluding CDS which overlaps existing RNA (rRNA) at Aba1_3882334:3888002:4290..4442 on + strand
+[19:53:39] Excluding CDS which overlaps existing RNA (rRNA) at Aba1_3882334:3888002:5123..5227 on - strand
+[19:53:39] Excluding CDS which overlaps existing RNA (rRNA) at Aba1_4051734:4057153:334..537 on + strand
+[19:53:39] Excluding CDS which overlaps existing RNA (rRNA) at Aba1_4051734:4057153:477..803 on + strand
+[19:53:39] Excluding CDS which overlaps existing RNA (rRNA) at Aba1_4051734:4057153:1537..1680 on - strand
+[19:53:39] Excluding CDS which overlaps existing RNA (tRNA) at Aba1_4051734:4057153:3504..3611 on - strand
+[19:53:39] Excluding CDS which overlaps existing RNA (tRNA) at Aba1_4051734:4057153:3647..3982 on + strand
+[19:53:39] Excluding CDS which overlaps existing RNA (rRNA) at Aba1_4051734:4057153:4270..4422 on + strand
+[19:53:39] Excluding CDS which overlaps existing RNA (rRNA) at Aba1_4051734:4057153:5103..5207 on - strand
+[19:53:39] Found 63 CDS
+[19:53:39] Connecting features back to sequences
+[19:53:39] Not using genus-specific database. Try --usegenus to enable it.
+[19:53:39] Annotating CDS, please be patient.
+[19:53:39] Will use 4 CPUs for similarity searching.
+[19:53:39] There are still 63 unannotated CDS left (started with 63)
+[19:53:39] Will use blast to search against /home/alerojo/anaconda2/envs/Rojo_py37/db/kingdom/Bacteria/IS with 4 CPUs
+[19:53:39] Running: cat Aba1_folder\/genesprediction\/Aba1\.predictedgenes\.IS\.tmp\.26800\.faa | parallel --gnu --plain -j 4 --block 2130 --recstart '>' --pipe blastp -query - -db /home/alerojo/anaconda2/envs/Rojo_py37/db/kingdom/Bacteria/IS -evalue 1e-30 -qcov_hsp_perc 90 -num_threads 1 -num_descriptions 1 -num_alignments 1 -seg no > Aba1_folder\/genesprediction\/Aba1\.predictedgenes\.IS\.tmp\.26800\.blast 2> /dev/null
+[19:53:40] Deleting unwanted file: Aba1_folder/genesprediction/Aba1.predictedgenes.IS.tmp.26800.faa
+[19:53:40] Deleting unwanted file: Aba1_folder/genesprediction/Aba1.predictedgenes.IS.tmp.26800.blast
+[19:53:40] There are still 56 unannotated CDS left (started with 63)
+[19:53:40] Will use blast to search against /home/alerojo/anaconda2/envs/Rojo_py37/db/kingdom/Bacteria/AMR with 4 CPUs
+[19:53:40] Running: cat Aba1_folder\/genesprediction\/Aba1\.predictedgenes\.AMR\.tmp\.26800\.faa | parallel --gnu --plain -j 4 --block 2042 --recstart '>' --pipe blastp -query - -db /home/alerojo/anaconda2/envs/Rojo_py37/db/kingdom/Bacteria/AMR -evalue 9.99999999999999e-301 -qcov_hsp_perc 90 -num_threads 1 -num_descriptions 1 -num_alignments 1 -seg no > Aba1_folder\/genesprediction\/Aba1\.predictedgenes\.AMR\.tmp\.26800\.blast 2> /dev/null
+[19:53:41] Deleting unwanted file: Aba1_folder/genesprediction/Aba1.predictedgenes.AMR.tmp.26800.faa
+[19:53:41] Deleting unwanted file: Aba1_folder/genesprediction/Aba1.predictedgenes.AMR.tmp.26800.blast
+[19:53:41] There are still 56 unannotated CDS left (started with 63)
+[19:53:41] Will use blast to search against /home/alerojo/anaconda2/envs/Rojo_py37/db/kingdom/Bacteria/sprot with 4 CPUs
+[19:53:41] Running: cat Aba1_folder\/genesprediction\/Aba1\.predictedgenes\.sprot\.tmp\.26800\.faa | parallel --gnu --plain -j 4 --block 2042 --recstart '>' --pipe blastp -query - -db /home/alerojo/anaconda2/envs/Rojo_py37/db/kingdom/Bacteria/sprot -evalue 1e-09 -qcov_hsp_perc 80 -num_threads 1 -num_descriptions 1 -num_alignments 1 -seg no > Aba1_folder\/genesprediction\/Aba1\.predictedgenes\.sprot\.tmp\.26800\.blast 2> /dev/null
+[19:53:43] Modify product: Uncharacterized HTH-type transcriptional regulator Rv0196 => putative HTH-type transcriptional regulator
+[19:53:43] Modify product: Uncharacterized HTH-type transcriptional regulator Rv0196 => putative HTH-type transcriptional regulator
+[19:53:43] Cleaned 2 /product names
+[19:53:43] Deleting unwanted file: Aba1_folder/genesprediction/Aba1.predictedgenes.sprot.tmp.26800.faa
+[19:53:43] Deleting unwanted file: Aba1_folder/genesprediction/Aba1.predictedgenes.sprot.tmp.26800.blast
+[19:53:43] There are still 50 unannotated CDS left (started with 63)
+[19:53:43] Will use hmmer3 to search against /home/alerojo/anaconda2/envs/Rojo_py37/db/hmm/HAMAP.hmm with 4 CPUs
+[19:53:43] Running: cat Aba1_folder\/genesprediction\/Aba1\.predictedgenes\.HAMAP\.hmm\.tmp\.26800\.faa | parallel --gnu --plain -j 4 --block 1742 --recstart '>' --pipe hmmscan --noali --notextw --acc -E 1e-09 --cpu 1 /home/alerojo/anaconda2/envs/Rojo_py37/db/hmm/HAMAP.hmm /dev/stdin > Aba1_folder\/genesprediction\/Aba1\.predictedgenes\.HAMAP\.hmm\.tmp\.26800\.hmmer3 2> /dev/null
+[19:53:44] Deleting unwanted file: Aba1_folder/genesprediction/Aba1.predictedgenes.HAMAP.hmm.tmp.26800.faa
+[19:53:44] Deleting unwanted file: Aba1_folder/genesprediction/Aba1.predictedgenes.HAMAP.hmm.tmp.26800.hmmer3
+[19:53:44] Labelling remaining 50 proteins as 'hypothetical protein'
+[19:53:44] Possible /pseudo 'IS3 family transposase ISAba22' at Aba1_1698739:1701068 position 2036
+[19:53:44] Found 1 unique /gene codes.
+[19:53:44] Fixed 4 duplicate /gene - bicA_1 bicA_2 bicA_3 bicA_4
+[19:53:44] Fixed 1 colliding /gene names.
+[19:53:44] Adding /locus_tag identifiers
+[19:53:44] Assigned 95 locus_tags to CDS and RNA features.
+[19:53:44] Writing outputs to Aba1_folder/genesprediction/
+[19:53:44] Generating annotation statistics file
+[19:53:44] Generating Genbank and Sequin files
+[19:53:44] Running: tbl2asn -V b -a r10k -l paired-ends -M n -N 1 -y 'Annotated using prokka 1.14.5 from https://github.com/tseemann/prokka' -Z Aba1_folder\/genesprediction\/Aba1\.predictedgenes\.err -i Aba1_folder\/genesprediction\/Aba1\.predictedgenes\.fsa 2> /dev/null
+[19:53:44] Deleting unwanted file: Aba1_folder/genesprediction/errorsummary.val
+[19:53:44] Deleting unwanted file: Aba1_folder/genesprediction/Aba1.predictedgenes.dr
+[19:53:44] Deleting unwanted file: Aba1_folder/genesprediction/Aba1.predictedgenes.fixedproducts
+[19:53:44] Deleting unwanted file: Aba1_folder/genesprediction/Aba1.predictedgenes.ecn
+[19:53:44] Deleting unwanted file: Aba1_folder/genesprediction/Aba1.predictedgenes.val
+[19:53:44] Repairing broken .GBK output that tbl2asn produces...
+[19:53:44] Running: sed 's/COORDINATES: profile/COORDINATES:profile/' < Aba1_folder\/genesprediction\/Aba1\.predictedgenes\.gbf > Aba1_folder\/genesprediction\/Aba1\.predictedgenes\.gbk
+[19:53:44] Deleting unwanted file: Aba1_folder/genesprediction/Aba1.predictedgenes.gbf
+[19:53:44] Output files:
+[19:53:44] Aba1_folder/genesprediction/Aba1.predictedgenes.tsv
+[19:53:44] Aba1_folder/genesprediction/Aba1.predictedgenes.err
+[19:53:44] Aba1_folder/genesprediction/Aba1.predictedgenes.faa
+[19:53:44] Aba1_folder/genesprediction/Aba1.predictedgenes.gbk
+[19:53:44] Aba1_folder/genesprediction/Aba1.predictedgenes.txt
+[19:53:44] Aba1_folder/genesprediction/Aba1.predictedgenes.ffn
+[19:53:44] Aba1_folder/genesprediction/Aba1.predictedgenes.fna
+[19:53:44] Aba1_folder/genesprediction/Aba1.predictedgenes.tbl
+[19:53:44] Aba1_folder/genesprediction/Aba1.predictedgenes.fsa
+[19:53:44] Aba1_folder/genesprediction/Aba1.predictedgenes.sqn
+[19:53:44] Aba1_folder/genesprediction/Aba1.predictedgenes.log
+[19:53:44] Aba1_folder/genesprediction/Aba1.predictedgenes.gff
+[19:53:44] Annotation finished successfully.
+[19:53:44] Walltime used: 0.13 minutes
+[19:53:44] If you use this result please cite the Prokka paper:
+[19:53:44] Seemann T (2014) Prokka: rapid prokaryotic genome annotation. Bioinformatics. 30(14):2068-9.
+[19:53:44] Type 'prokka --citation' for more details.
+[19:53:44] Thank you, come again.
