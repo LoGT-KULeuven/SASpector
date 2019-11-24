@@ -352,4 +352,5 @@ def extract_main(reference, prefix, flanking, out):
         plot(unmappeddict, unmap_stats, out)
         time.sleep(0.02)
     output(mappeddict, unmappeddict, conflictdict, refstats_t, unmap_stats, prefix, out)
+    return mappedlocations, unmappedlocations, conflictlocations, reverselocations
 
