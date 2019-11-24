@@ -24,10 +24,10 @@ def main():
     parser.add_argument('contigs', type = str, help = 'Contigs FASTA file from short-read assembly')
     parser.add_argument('-p', '--prefix', type = str, help = 'Genome ID')
     parser.add_argument('-dir', '--outdir', help = 'Output directory')
-    parser.add_argument('-f', '--flanking', nargs = '?' ,const = 'flanking', type = int, help = 'Add flanking regions [Default = 0 bp]', default = 0)
-    parser.add_argument('-k', '--kmers', nargs = '?' ,const = 'kmers', type = int, help = 'Calculate kmer frequencies (provide k)', default = 0)
+    parser.add_argument('-f', '--flanking', nargs = '?', const = 'flanking', type = int, help = 'Add flanking regions [Default = 0 bp]', default = 0)
+    parser.add_argument('-k', '--kmers', nargs = '?', const = 'kmers', type = int, help = 'Calculate kmer frequencies (provide k)', default = 0)
     parser.add_argument('-q','--quast', help = 'Run QUAST for unmapped regions against reference assembly', action = 'store_true')
-    parser.add_argument('-c', '--coverage', nargs='?', const='coverage', metavar='bamfile', type = str, help = 'Run SAMtools bedcov to look at short-read coverage in the missing regions. Needs alignment of reads to the reference genome in bam format')
+    parser.add_argument('-c', '--coverage', nargs='?', const='coverage', metavar='BAMFILE', type = str, help = 'Run SAMtools bedcov to look at short-read coverage in the missing regions. Needs alignment of reads to the reference genome in bam format')
 
     args = parser.parse_args()
     
