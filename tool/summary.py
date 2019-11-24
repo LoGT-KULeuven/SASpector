@@ -18,7 +18,7 @@ import warnings
 
 # Function to extract the coordinates from the backbone file
 
-def regions(reference, prefix, out):
+def regions(prefix, out):
     
     coordinates = '{out}/alignment/{genome_id}.backbone'.format(genome_id = prefix, out = out)
     
