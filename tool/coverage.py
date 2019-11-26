@@ -51,7 +51,7 @@ def make_bed(mappedlocations, conflictlocations, reference, outdir, prefix):
             writerunmap.writerow(region)
 
 
-def sam(bamfile, outdir, prefix, ref):
+def sam(bamfile, outdir, prefix):
     sort = 'samtools sort -o {outdir}/coverage/{prefix}.sorted.bam {bam} &&'.format(outdir = outdir, prefix = prefix, bam = bamfile)
     index = 'samtools index {outdir}/coverage/{prefix}.sorted.bam &&'.format(outdir = outdir, prefix = prefix)
     bedcovu = 'samtools bedcov {outdir}/coverage/{prefix}_unmappedregions.bed {outdir}/coverage/{prefix}.sorted.bam > {outdir}/coverage/{prefix}_unmapcvg.tsv &&'.format(outdir = outdir, prefix = prefix)
@@ -91,6 +91,6 @@ def cvg_main(mappedlocations, conflictlocations, bamfile, reference, outdir, pre
 
     bar = progressbar.ProgressBar(widgets = ['Running SAMtools: ', progressbar.Bar(), '(', progressbar.ETA(),')'])
     for i in bar(range(1)):
-        sam(bamfile, outdir, prefix, ref)
+        sam(bamfile, outdir, prefix)
         make_bed(mappedlocations, conflictlocations, reference, outdir, prefix)
         output(prefix, outdir)
