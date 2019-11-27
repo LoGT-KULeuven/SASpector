@@ -46,27 +46,36 @@ Optionally, some scripts for analysis of the unmapped regions can be run:
 
 ## Usage
 
-For basic functionalities, run `SASpector.py` with Python3. This wraps the mapping and extraction steps (`mapper.py` and `summary.py`)
+For basic functionalities, run `SASpector` with Python3. This wraps the mapping and extraction steps (`mapper.py` and `summary.py`)
 ```
-usage: SASpector - Short-read Assembly inSpector [-h] [-p PREFIX]
-                                                 [-dir OUTDIR] [-f [FLANKING]]
-                                                 [-k [KMERS]]
-                                                 reference contigs
+usage: SASpector - Short-read Assembly inSpector [-h] [-p Prefix]
+                                                 [-dir Output path]
+                                                 [-f [Length]] [-k [k size]]
+                                                 [-q] [-c [BAM file]]
+                                                 Reference FASTA file Contigs
+                                                 FASTA file
 
 positional arguments:
-  reference             Hybrid assembly FASTA file as reference genome
-  contigs               Illumina FASTA file as contigs/draft genome
+  Reference FASTA file  Hybrid assembly FASTA file as reference genome
+  Contigs FASTA file    Illumina FASTA file as contigs/draft genome
 
 optional arguments:
   -h, --help            show this help message and exit
-  -p PREFIX, --prefix PREFIX
+  -p Prefix, --prefix Prefix
                         Genome ID
-  -dir OUTDIR, --outdir OUTDIR
+  -dir Output path, --outdir Output path
                         Output directory
-  -f [FLANKING], --flanking [FLANKING]
+  -f [Length], --flanking [Length]
                         Add flanking regions [Default = 0]
-  -k [KMERS], --kmers [KMERS]
+  -k [k size], --kmers [k size]
                         Calculate kmer frequencies
+  -q, --quast           Run QUAST for unmapped regions against reference
+                        assembly
+  -c [BAM file], --coverage [BAM file]
+                        Run SAMtools bedcov to look at short-read coverage in
+                        the missing regions. Needs alignment of reads to the
+                        reference genome in BAM format
+
 
   ```
 
