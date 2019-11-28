@@ -38,7 +38,7 @@ def prokka(prefix, outdir):
         while process.poll() is None:
             l = process.stdout.readline() 
             
-def blast(outdir, prefix):
+def blast(outdir, prefix, proteindb):
     """ Wraps BLAST+ and performs blastx with output Prokka nucleotide FASTA file and SASpector protein FASTA file
     
     Parameters
@@ -47,12 +47,14 @@ def blast(outdir, prefix):
         Name of the genome
     outdir: str
         Output directory
+    proteindb: str
+        The file location of the protein database FASTA file
     
     """
     bar = progressbar.ProgressBar(widgets = ['BLAST genes: ', progressbar.Bar(), '(', progressbar.ETA(),')'])
     for i in bar(range(1)):
         cline = blastx(cmd = 'blastx', out = '{outdir}/{prefix}_blastxresults.tsv'.format(prefix = prefix, outdir = outdir), evalue = 0.001, 
-                   outfmt = '6 qseqid qstart qend sseqid sstartstdout, stderr = cline()stdout, stderr = cline() send pident evalue qcovs', query = '{outdir}/genesprediction/{prefix}.predictedgenes.fsa'.format(outdir = outdir, prefix = prefix), subject = 'saspector_proteindb.fasta')
+                   outfmt = '6 qseqid qstart qend sseqid sstartstdout, stderr = cline()stdout, stderr = cline() send pident evalue qcovs', query = '{outdir}/genesprediction/{prefix}.predictedgenes.fsa'.format(outdir = outdir, prefix = prefix), subject = proteindb)
         stdout, stderr = cline()
 
     
