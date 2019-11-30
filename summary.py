@@ -19,17 +19,17 @@ import warnings
 
 """ summary
 
-This script takes the output of progressiveMauve alignment and extracts the mapped regions, conflict regions from the alignmnet and the missing regions from
-the reference hybrid assembly. It parses the backbone file from the alignment and generate FASTA files for the extracted regions. Additionally, it generates
-basic sequence statistics such as length, GC content and amino acid residues frequency percentage. 
+This script takes the output of progressiveMauve alignment (the backbone file) and extracts the mapped regions, conflict regions and missing regions from
+the reference genome. It parses the backbone file and generates a FASTA file with the extracted regions. Additionally, it generates basic 
+sequence statistics such as length, GC content and amino acid residues frequency percentages for both mapped and unmapped regions. 
 
 """
-
 
 # Function to extract the coordinates from the backbone file
 
 def regions(prefix, out):
-    """ Parses the backbone file and extracts the coordinates of the mapped regions, missing regions and conflict regions
+    """ Parses the backbone file and extracts the coordinates of the mapped regions, missing regions and conflict regions.
+        Conflict regions are regions that don't map perfectly to the reference due to gaps or indels.
     
     Parameters
     ----------
@@ -41,13 +41,13 @@ def regions(prefix, out):
     Returns
     -------
     mappedlocations: dataframe
-        Coordinates of the mapped regions
+        Coordinates of the mapped regions in the reference sequence
     unmappedlocations: dataframe
-        Coordinates of the unmapped regions
+        Coordinates of the unmapped regions in the reference sequence
     conflictlocations: dataframe
-        Coordinates of the conflict regions
+        Coordinates of the conflict regions in the reference sequence
     reverselocations: dataframe
-        Coordinates of the mapped reverse complementary regions
+        Coordinates of the mapped reverse complementary regions in the reference sequence
         
     """
     coordinates = '{out}/alignment/{genome_id}.backbone'.format(genome_id = prefix, out = out)
@@ -92,15 +92,15 @@ def refextract(reference, mappedlocations, unmappedlocations, conflictlocations,
     prefix: str
         Name of the genome
     flanking: int
-        Length of flanking regions [Default = 0]
+        Length of flanking regions [Default = 0 bp]
     mappedlocations: dataframe
-        Coordinates of the mapped regions
+        Coordinates of the mapped regions in the reference sequence
     unmappedlocations: dataframe
-        Coordinates of the unmapped regions
+        Coordinates of the unmapped regions in the reference sequence
     conflictlocations: dataframe
-        Coordinates of the conflict regions
+        Coordinates of the conflict regions in the reference sequence
     reverselocations: dataframe
-        Coordinates of the mapped reverse complement regions
+        Coordinates of the mapped reverse complement regions in the reference sequence
     
     Returns
     -------
@@ -109,7 +109,7 @@ def refextract(reference, mappedlocations, unmappedlocations, conflictlocations,
     unmappeddict: dict
         Dictionary of the coordinates and sequences of the unmapped regions
     idunmap: list
-        List of the coordinates for each unmapped regions as strings
+        List of the coordinates of all unmapped regions as strings
     conflictdict: dict
         Dictionary of the coordinates and sequences of the conflict regions
     
@@ -174,6 +174,7 @@ def refextract(reference, mappedlocations, unmappedlocations, conflictlocations,
     for i in range(0, len(conflictdict)):
         conflictdict[idconflict[i]] = conflictdict.pop(i)
     
+
     return mappeddict, unmappeddict, idunmap, conflictdict
 
 def unmapsum(unmappeddict, idunmap):
@@ -184,12 +185,12 @@ def unmapsum(unmappeddict, idunmap):
     unmappeddict: dict
         Dictionary of the coordinates and sequences of the unmapped regions
     idunmap: list
-        List of the coordinates for each unmapped regions as strings
+        List of the coordinates for all unmapped regions as strings
     
     Returns
     -------
     unmap_stats: dataframe
-        Table containing the coordinates, GC content, length and amino acid residues frequence percentage for each missing regions
+        Table containing the coordinates, GC content, length and amino acid residues frequency percentages for each missing region
     
     """
     
@@ -305,7 +306,7 @@ def unmapsum(unmappeddict, idunmap):
     codes.clear()
                 
     
-    # Create unmapped region summary dataframe: Region, GC content, lenght and total amino acid frequency for all six reading frames 
+    # Create unmapped region summary dataframe: Region, GC content, length and total amino acid frequency for all six reading frames 
     unmap_stats = pd.DataFrame(list(zip(idunmap, gc_unmap, len_unmap)), columns = ['Region', 'GCContent', 'Length'])
     unmap_stats = pd.concat([unmap_stats, amino], axis = 1)
     unmap_stats.reset_index(drop = True, inplace = True)
@@ -314,20 +315,20 @@ def unmapsum(unmappeddict, idunmap):
     return unmap_stats
 
 def refstats(reference, mappedlocations, unmappedlocations, conflictlocations, reverselocations, unmappeddict):
-    """Generates summary statistics for reference genome based on the mapped, unmapped and the conflict regions
+    """Generates summary statistics for reference genome based on the mapped, unmapped and conflict regions
     
     Parameters
     ----------
     reference: str
         The file location of the reference FASTA file
     mappedlocations: dataframe
-        Coordinates of the mapped regions
+        Coordinates of the mapped regions in the reference sequence
     unmappedlocations: dataframe
-         Coordinates of the unmapped regions
+         Coordinates of the unmapped regions in the reference sequence
     conflictlocations: dataframe
-        Coordinates of the conflict regions
+        Coordinates of the conflict regions in the reference sequence
     reverselocations: dataframe
-        Coordinates of the mapped reverse complement regions
+        Coordinates of the mapped reverse complement regions in the reference sequence
     unmappeddict: dataframe
         Dictionary of the coordinates and sequences of the unmapped regions
     
@@ -336,8 +337,7 @@ def refstats(reference, mappedlocations, unmappedlocations, conflictlocations, r
     refstats_t: dataframe
         Table containing the reference summary statistics
     
-    
-    
+        
     """
     # Calculate genome fraction
     sum_map = 0
@@ -353,6 +353,7 @@ def refstats(reference, mappedlocations, unmappedlocations, conflictlocations, r
         sum_rev = sum_rev + abs(reverselocations.iloc[i,1] - reverselocations.iloc[i,0])
         
     total_map = sum_map + sum_confl + sum_rev
+    
     sum_unmap = 0
     for i in range(0, unmappedlocations.shape[0]):
         sum_unmap = sum_unmap + abs(unmappedlocations.iloc[i,1] - unmappedlocations.iloc[i,0])
@@ -375,7 +376,7 @@ def refstats(reference, mappedlocations, unmappedlocations, conflictlocations, r
     return refstats_t
         
 def output(mappeddict, unmappeddict, conflictdict, refstats, unmap_stats, prefix, out):
-    """Generates the FASTA files and summary tables for the mapped regions, missing regions and conflict regions
+    """Generates the FASTA files and summary tables (csv files) for the mapped regions, missing regions and conflict regions
     
     Parameters
     ----------
@@ -384,11 +385,11 @@ def output(mappeddict, unmappeddict, conflictdict, refstats, unmap_stats, prefix
     conflictddict: dict
         Dictionary of the coordinates and sequences of the conflict regions
     unmappeddict: dict
-        Dictionary of the coordinates and sequences of the unmapped region
+        Dictionary of the coordinates and sequences of the unmapped regions
     refstats: dataframe
         Table containing the summary statistics of the reference
     unmap_stats: dataframe
-        Table containing the summary statistics of each missing regions
+        Table containing the summary statistics of each missing region
     prefix: str
         Name of genome
     out: str
@@ -416,7 +417,8 @@ def output(mappeddict, unmappeddict, conflictdict, refstats, unmap_stats, prefix
             fasta.write('>' + key + '\n' + value + '\n')
 
 def plot(unmappeddict, unmap_stats, out):
-    """ Generates boxplot, distribution plots and join plots from the missing regions summary statistics
+    """ Generates boxplot, distribution plots and join plots from the missing regions summary statistics.
+        They are saved in the output directory as jpg images.
     
     Parameters
     ----------
@@ -479,7 +481,7 @@ def extract_main(reference, prefix, flanking, out):
     prefix: str
         Name of genome
     flanking: int
-        Length of the flanking regions [Default = 0]
+        Length of the flanking regions [Default = 0 bp]
     out: str
         Output directory
     
