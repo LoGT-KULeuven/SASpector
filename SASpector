@@ -18,7 +18,7 @@ import os
 
 """ SASpector
 
-SASpector is a tool that compares a short-read assembly with a reference bacterial genome (for example obtained via hybrid assembly) by extracting missing (unmapped) regions from the reference and analyzing them to see functional and compositional pattern. 
+SASpector is a tool that compares a short-read assembly with a reference bacterial genome (for example obtained via hybrid assembly) by extracting missing (unmapped) regions from the reference and analyzing them to see functional and compositional patterns. 
 The aim of the analysis is to explain why these regions are missed by the short-read assembly and if important parts of the genome are missed when a resolved genome is lacking.
 
 The tool takes as global inputs the reference genome and a short-read assembly as contigs/draft genome, both in FASTA format. 
@@ -31,15 +31,15 @@ def main():
     
     """
     parser = argparse.ArgumentParser(prog = 'SASpector - Short-read Assembly inSpector', description = '')
-    parser.add_argument('reference', type = str, metavar = 'Reference FASTA file', help = 'Hybrid assembly FASTA file as reference genome')
-    parser.add_argument('contigs', type = str, metavar = 'Contigs FASTA file', help = 'Illumina FASTA file as contigs/draft genome')
-    parser.add_argument('-p', '--prefix', metavar = 'Prefix', type = str, help = 'Genome ID')
-    parser.add_argument('-dir', '--outdir', metavar = 'Output path', help = 'Output directory')
-    parser.add_argument('-f', '--flanking', nargs = '?' , metavar = 'Length', const = 'flanking', type = int, help = 'Add flanking regions [Default = 0]', default = 0)
-    parser.add_argument('-db', '--proteindb', nargs = '?', metavar = 'Protein FASTA file', const = 'proteindb', type = str, help = 'BLAST protein database FASTA file')
-    parser.add_argument('-k', '--kmers', nargs = '?' ,const = 'kmers', metavar = 'k size', type = int, help = 'Calculate kmer frequencies', default = 0)
-    parser.add_argument('-q','--quast', help = 'Run QUAST for unmapped regions against reference assembly', action = 'store_true')
-    parser.add_argument('-c', '--coverage', nargs='?', const='coverage', metavar='BAM file', type = str, help = 'Run SAMtools bedcov to look at short-read coverage in the missing regions. Needs alignment of reads to the reference genome in BAM format')
+    parser.add_argument('reference', type = str, metavar = 'reference', help = 'Hybrid assembly FASTA file as reference genome')
+    parser.add_argument('contigs', type = str, metavar = 'contigs', help = 'Reference genome FASTA file, e.g. from hybrid assembly.\n If the file contains multiple seqences, only the first one is used, so make sure to concatenate if needed.')
+    parser.add_argument('-p', '--prefix', metavar = 'PREFIX', type = str, help = 'Genome ID')
+    parser.add_argument('-dir', '--outdir', metavar = 'OUTDIR', help = 'Output directory')
+    parser.add_argument('-f', '--flanking', nargs = '?' , metavar = 'LENGTH', const = 'flanking', type = int, help = 'Add flanking regions to the extracted missing regions [Default = 0 bp]', default = 0)
+    parser.add_argument('-db', '--proteindb', nargs = '?', metavar = 'PROTEIN-DB', const = 'proteindb', type = str, help = 'BLAST protein database FASTA file to use for checking the Prokka gene prediction')
+    parser.add_argument('-k', '--kmers', nargs = '?' ,const = 'kmers', metavar = 'K', type = int, help = 'Choose k to calculate kmer frequencies', default = 0)
+    parser.add_argument('-q','--quast', help = 'Run QUAST with unmapped regions against reference assembly', action = 'store_true')
+    parser.add_argument('-c', '--coverage', nargs='?', const='coverage', metavar='BAMFILE', type = str, help = 'Run SAMtools bedcov to look at short-read coverage in the missing regions. Needs alignment of reads to the reference genome in BAM format')
         
     args = parser.parse_args()
     
