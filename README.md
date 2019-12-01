@@ -57,11 +57,11 @@ usage: SASpector - Short-read Assembly inSpector [-h] [-p PREFIX]
                                                  reference contigs
 
 positional arguments:
-  reference             Hybrid assembly FASTA file as reference genome
-  contigs               Reference genome FASTA file, e.g. from hybrid
+  reference             Reference genome FASTA file, e.g. from hybrid
                         assembly. If the file contains multiple seqences, only
                         the first one is used, so make sure to concatenate if
                         needed.
+  contigs               Short-read assembly FASTA file as contigs/draft genome.
 
 optional arguments:
   -h, --help            show this help message and exit
