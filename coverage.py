@@ -16,17 +16,17 @@ import matplotlib.pyplot as plt
 
 """ coverage
 
-This script calculate the average coverage of the mapped and unmapped regions. Using SAMtools, it calculates
-the coverage for both regions and generates a summary table including the coordinates for each region, total base-pair length
-and average depth. Additionally, it generates a barplot of the coverage for each mapped and unmapped region. The input file is
-a BAM file from the reference and the Illumina reads.
+This script calculates the average coverage of the mapped and unmapped regions. Using SAMtools bedcov, it calculates
+the coverage for both regions and generates a summary table including the coordinates for each region, total read base count
+and coverage defined as average per base depth. Additionally, it generates a barplot of the average per base depth for each mapped and unmapped region.
+The input file is a provided alignment (BAM file) of the short reads against the reference genome.
 
 """
 
 # bwa mem {inputRef} {input.R1} {input.R2} | samtools view -b -o -- | bwa index-a bwtsw {inputREF}
 
 def make_bed(mappedlocations, conflictlocations, reference, outdir, prefix):
-    """ Generates a bed file from the mapped locations, unmapped locations and conflic locations
+    """ Generates bed files for the mapped locations, unmapped locations and conflict locations
     
     Parameters
     ----------
@@ -45,7 +45,7 @@ def make_bed(mappedlocations, conflictlocations, reference, outdir, prefix):
     for seq in SeqIO.parse(reference, "fasta"):
         ID = seq.id.split(' ')[0]
 
-    #Only the filtered unmapped regions from summary file
+    #Include only the filtered (> 100 bp) unmapped regions from summary file
     unmap = []
     unmapsum = '{outdir}/{prefix}_unmapsummary.tsv'.format(outdir = outdir, prefix = prefix)
     regions = pd.read_csv(unmapsum, sep = '\t')
@@ -56,7 +56,7 @@ def make_bed(mappedlocations, conflictlocations, reference, outdir, prefix):
         dictunmap = {'id': ID, 'start': start, 'end': end}
         unmap.append(dictunmap)
 
-    #Mapped regions: from df generated in summary script
+    #Mapped regions: from dataframes generated in summary script
     mapped = []
     mappedlocations.columns = ['start', 'end']
     conflictlocations.columns = ['start', 'end']
@@ -79,7 +79,8 @@ def make_bed(mappedlocations, conflictlocations, reference, outdir, prefix):
 
 
 def sam(bamfile, outdir, prefix): 
-    """Wraps SAMtools to generate a sorted BAM file and the coverage for both mapped and unmapped regions
+    """Wraps SAMtools to sort and index the BAM file, then determine the coverage for both mapped and unmapped regions with samtools bedcov.
+       It calculates the total read base count (sum of per base depth) per region. The result tsv files are saved in new subdirectory 'coverage'.
     
     Parameters
     ----------
@@ -106,7 +107,8 @@ def sam(bamfile, outdir, prefix):
     pipe4.wait()
     
 def output(outdir, prefix): 
-    """Writes the coverage statistics for each mapped and unmapped regions, and generates a barplot of the coverage for each region
+    """Writes the coverage statistics for each mapped and unmapped region to a result tsv file, and generates a barplot (jpg) of the coverage for each region.
+       Coverage is defined as average per base depth over the region.
     
     Parameters
     ----------
@@ -131,7 +133,7 @@ def output(outdir, prefix):
     cvg.columns=['seq','start', 'end', 'total_perbase_depth', 'avg_perbase_depth', 'flag']
    
     id_region = list()
-    for i in range(0,cvg.shape[0]):
+    for i in range(0, cvg.shape[0]):
         start = str(cvg.iloc[i,1])
         end = str(cvg.iloc[i,2])
         string = (start, ':', end)
@@ -163,9 +165,9 @@ def cvg_main(mappedlocations, conflictlocations, bamfile, reference, outdir, pre
     Parameters
     ----------
     mappedlocations: dataframe
-        Coordinates of the mapped regions
+        Coordinates of the mapped regions in the reference genome
     conflictlocations: dataframe
-        Coordinates of the conflict regions
+        Coordinates of the conflict regions in the reference genome
     bamfile: str
         The file location of the BAM file
     reference: str

@@ -14,13 +14,12 @@ import progressbar
 
 """ kmer
 
-This script calculates the kmers for each missing regions defined by a kmer size and generate abundances table and barplot
-for the kmers.
+This script calculates the kmers (defined by a provided kmer size) for each missing region, and generates the corresponding abundancy tables and barplots.
 
 """
 
 def kmer(k, prefix, outdir):
-    """ Wraps Prokka and generates the predicted genes per missing region with their annotation
+    """ Calculates kmers, generates abundancy table (tsv) and barplot (jpg) which are saved in new subdirectory 'kmer' for every missing region
     
     Parameters
     ----------
@@ -34,7 +33,7 @@ def kmer(k, prefix, outdir):
     """
     
     newpath = 'kmer'
-    os.makedirs(os.path.join(outdir,newpath))
+    os.makedirs(os.path.join(outdir, newpath))
     
     # Define the unmapped regions FASTA file
     bar = progressbar.ProgressBar(widgets = ['Calculating kmers: ', progressbar.Bar(), '(', progressbar.ETA(),')'])
@@ -53,8 +52,8 @@ def kmer(k, prefix, outdir):
                     kmers[kmer] = 1
         
         # Write kmers, kmers count and plots
-            path = '{outdir}/kmer'.format(outdir = outdir)
-            with open(os.path.join(path, '{id}_kmer.tsv'.format(id = reads.id)), 'w+') as out:
+            path = '{outdir}/{k}mer'.format(outdir = outdir, k = str(k))
+            with open(os.path.join(path, '{id}_{k}mer.tsv'.format(id = reads.id, k = str(k))), 'w+') as out:
                 for key, value in kmers.items():
                     out.write(key + '\t' + str(value) + '\n')
         
@@ -67,14 +66,7 @@ def kmer(k, prefix, outdir):
             plt.ylabel('Counts')
             plt.xticks(rotation = 90)
             save = fig.get_figure()
-            save.savefig(os.path.join(path, '{id}_kmer.jpg'.format(id = reads.id)))
+            save.savefig(os.path.join(path, '{id}_{k}mer.jpg'.format(id = reads.id, k = str(k))))
             plt.cla()
             plt.close(save)
             kmers.clear()
-    
-        
-
-
-
-
-    

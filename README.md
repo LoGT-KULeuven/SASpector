@@ -1,4 +1,5 @@
-# Integrated Bioinformatics Project 19-20
+(README to be adapted)
+# Integrated Bioinformatics Project 19-20 
 
 "Analysis of missing regions in short-read assemblies of bacterial genomes" Emma Verkinderen, Deniz Sinar, Alejandro Correa Rojo.
 
@@ -47,35 +48,40 @@ Optionally, some scripts for analysis of the unmapped regions can be run:
 ## Usage
 
 For basic functionalities, run `SASpector` with Python3. This wraps the mapping and extraction steps (`mapper.py` and `summary.py`)
+python3 SASpector -h
 ```
-usage: SASpector - Short-read Assembly inSpector [-h] [-p Prefix]
-                                                 [-dir Output path]
-                                                 [-f [Length]] [-k [k size]]
-                                                 [-q] [-c [BAM file]]
-                                                 Reference FASTA file Contigs
-                                                 FASTA file
+usage: SASpector - Short-read Assembly inSpector [-h] [-p PREFIX]
+                                                 [-dir OUTDIR] [-f [LENGTH]]
+                                                 [-db [PROTEIN-DB]] [-k [K]]
+                                                 [-q] [-c [BAMFILE]]
+                                                 reference contigs
 
 positional arguments:
-  Reference FASTA file  Hybrid assembly FASTA file as reference genome
-  Contigs FASTA file    Illumina FASTA file as contigs/draft genome
+  reference             Reference genome FASTA file, e.g. from hybrid
+                        assembly. If the file contains multiple seqences, only
+                        the first one is used, so make sure to concatenate if
+                        needed.
+  contigs               Short-read assembly FASTA file as contigs/draft genome.
 
 optional arguments:
   -h, --help            show this help message and exit
-  -p Prefix, --prefix Prefix
+  -p PREFIX, --prefix PREFIX
                         Genome ID
-  -dir Output path, --outdir Output path
+  -dir OUTDIR, --outdir OUTDIR
                         Output directory
-  -f [Length], --flanking [Length]
-                        Add flanking regions [Default = 0]
-  -k [k size], --kmers [k size]
-                        Calculate kmer frequencies
-  -q, --quast           Run QUAST for unmapped regions against reference
+  -f [LENGTH], --flanking [LENGTH]
+                        Add flanking regions to the extracted missing regions
+                        [Default = 0 bp]
+  -db [PROTEIN-DB], --proteindb [PROTEIN-DB]
+                        BLAST protein database FASTA file to use for checking
+                        the Prokka gene prediction
+  -k [K], --kmers [K]   Choose k to calculate kmer frequencies
+  -q, --quast           Run QUAST with unmapped regions against reference
                         assembly
-  -c [BAM file], --coverage [BAM file]
+  -c [BAMFILE], --coverage [BAMFILE]
                         Run SAMtools bedcov to look at short-read coverage in
                         the missing regions. Needs alignment of reads to the
                         reference genome in BAM format
-
 
   ```
 

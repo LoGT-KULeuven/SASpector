@@ -11,13 +11,13 @@ import subprocess
 
 """ SASpectorcheck
 
-This script call all command-line tools for SASpector and checks if are installed in the system
+This script calls all command-line tools for SASpector and checks if they are installed in the system
 
 """
 
 
 def main():
-    """Calls each command-line tool and catch an exception if the tool is not installed
+    """Calls each command-line tool and catches the exception if the tool is not installed
     
     """
 
@@ -38,8 +38,9 @@ def main():
         pass
     except OSError:
         print('Prokka command not found!' + '\n' +
-        'Please install Prokka from or check the environment path variable' + '\n')
+        'Please install Prokka or check the environment path variable' + '\n')
     print('\n')
+    
     #BLAST+
     try:
         subprocess.check_call(['blastx'])
@@ -49,6 +50,7 @@ def main():
         print('BLAST+ command not found!' + '\n' +
         'Please install BLAST+ or check the environment path variable' + '\n')
     print('\n')
+    
     #QUAST
     try:
         subprocess.check_call(['quast.py'])
@@ -56,8 +58,9 @@ def main():
         pass
     except OSError:
         print('Quast command not found!' + '\n' +
-        'Please install Quast from bioconda or check environment path variable' + '\n')
+        'Please install Quast or check the environment path variable' + '\n')
     print('\n')
+    
     #SAMtools
     try:
         subprocess.check_call(['samtools'])
@@ -65,7 +68,7 @@ def main():
         pass
     except OSError:
         print('SAMtools command not found!' + '\n' +
-        'Please install SAMtools from bioconda or check environment path variable' + '\n')
+        'Please install SAMtools or check the environment path variable' + '\n')
     print('\n')
 
 if __name__ == '__main__':

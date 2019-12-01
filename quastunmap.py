@@ -13,13 +13,13 @@ import time
 
 """ quastunmap
 
-This script allows to run QUAST to perform a genome quality assessment of the missing regions with the reference Hybrid assembly.
+This script allows to run QUAST to perform a genome quality assessment of the missing regions with respect to the reference genome.
 The input files are the missing regions FASTA file and the reference FASTA file.
 
 """
 
 def quast(reference, outdir, prefix):
-    """ Wraps QUAST and generates a genome assessment report, including a genome viewer
+    """ Wraps QUAST and generates a genome assessment report, including a genome viewer, saved in a new subdirectory 'quast'.
     
     Parameters
     ----------
@@ -39,6 +39,3 @@ def quast(reference, outdir, prefix):
         while process.poll() is None:
             l = process.stdout.readline()
     time.sleep(0.02)
-    
-
-    

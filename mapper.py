@@ -6,22 +6,22 @@ import progressbar
 
 """ mapper
 
-This script allows to align the reference and the Illumina contigs sequences using
+This script allows to align the reference and the contig sequences using the
 progressiveMauve algorithm from Mauve command. The first input file is the reference FASTA file and the
-second input file is the Illumina contigs FASTA file.
+second input file is the short-read assembly contigs FASTA file.
 
 """
 
 
 def mauve(reference, contigs, prefix, out):
-    """ Wraps progressiveMauve command line and generates the alignment outputs with the backbone file in alignment subdirectory
+    """ Wraps progressiveMauve command line and generates the alignment outputs in new subdirectory 'alignment'.
     
     Parameters
     ----------
     reference : str
         The file location of the reference FASTA file
     contigs : str
-        The file location of the Illumina contigs FASTA file
+        The file location of the contigs FASTA file
     prefix : str
         Name of the genome
     out : str

@@ -13,15 +13,16 @@ from Bio.Blast.Applications import NcbiblastxCommandline as blastx
 
 """ gene_predict
 
-This script predicts genes that are in the missing regions of the reference FASTA file using Prokka and performs
-a blastx to search hits across several bacterial species from an in-house protein database using BLAST+. The input file for Prokka
-is the missing regions FASTA file generated in the summary script. The input files for blastx are the predicted genes DNA sequences FASTA file
-and the bacterial protein sequences in FASTA file.
+This script predicts genes that are in the missing regions using Prokka and performs a blastx to search hits against a provided protein database using BLAST+. 
+The repository contains a default protein database FASTA file with sequences of several bacterial species.
+The input file for Prokka is the missing regions FASTA file generated in the summary script. The input files for blastx are the predicted genes DNA sequences FASTA file
+and the protein database FASTA file.
 
 """
 
 def prokka(prefix, outdir):
-    """ Wraps Prokka and generates the predicted genes per missing region with their annotation
+    """ Wraps Prokka and generates the predicted genes per missing region with their annotation.
+        The Prokka output files are in a new subdirectory 'genesprediction'.
     
     Parameters
     ----------
@@ -39,7 +40,7 @@ def prokka(prefix, outdir):
             l = process.stdout.readline() 
             
 def blast(outdir, prefix, proteindb):
-    """ Wraps BLAST+ and performs blastx with output Prokka nucleotide FASTA file and SASpector protein FASTA file
+    """ Wraps BLAST+ and performs a blastx search for the Prokka nucleotide FASTA file (.fsa) against the provided protein database
     
     Parameters
     ----------
@@ -54,7 +55,7 @@ def blast(outdir, prefix, proteindb):
     bar = progressbar.ProgressBar(widgets = ['BLAST genes: ', progressbar.Bar(), '(', progressbar.ETA(),')'])
     for i in bar(range(1)):
         cline = blastx(cmd = 'blastx', out = '{outdir}/{prefix}_blastxresults.tsv'.format(prefix = prefix, outdir = outdir), evalue = 0.001, 
-                   outfmt = '6 qseqid qstart qend sseqid sstartstdout, stderr = cline()stdout, stderr = cline() send pident evalue qcovs', query = '{outdir}/genesprediction/{prefix}.predictedgenes.fsa'.format(outdir = outdir, prefix = prefix), subject = proteindb)
+                   outfmt = '6 qseqid qstart qend sseqid sstartstdout send pident evalue qcovs', query = '{outdir}/genesprediction/{prefix}.predictedgenes.fsa'.format(outdir = outdir, prefix = prefix), subject = proteindb)
         stdout, stderr = cline()
 
     
