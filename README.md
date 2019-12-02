@@ -131,3 +131,19 @@ They are not (yet) implemented as command-line tools, anyone is free to use them
 - Mapleson, D., Garcia Accinelli, G., Kettleborough, G., Wright, J., & Clavijo, B. J. (2016). KAT: a K-mer analysis toolkit to quality control NGS datasets and genome assemblies. Bioinformatics, 33(4).
 - Gurevich, A., Saveliev, V., Vyahhi, N., & Tesler, G. (2013). QUAST: Quality assessment tool for genome assemblies. Bioinformatics, 29(8), 1072–1075. 
 - Sth else?
+
+```
+SASpector Pae21_assembly.fasta Pae21_contigs.fasta -p Pae21 -dir Results -k 3 -db saspector_proteindb.fasta -q
+
+Aligning: |########################################################################################################################################|(Time: 0:01:11)
+Extracting: |######################################################################################################################################|(Time: 0:00:03)
+Predicting genes: |################################################################################################################################|(Time: 0:00:18)
+BLAST genes: |#####################################################################################################################################|(Time: 0:00:45)
+Calculating kmers: |###############################################################################################################################|(Time: 0:00:39)
+Running QUAST: |###################################################################################################################################|(Time: 0:00:07)
+Done!
+
+```
+
+
+
