@@ -8,6 +8,7 @@ Advisor: Cédric Lood
 Master of Bioinformatics - KU Leuven, Belgium
 
 ## Tool: SASpector (Short-read Assembly inSpector)
+![alt text](https://raw.githubusercontent.com/alejocrojo09/IBP19-20/master/SASPector-final.png)
 
 A bioinformatics tool to extract and analyze missing regions of short-read assemblies by mapping the contigs to a reference genome.
 
