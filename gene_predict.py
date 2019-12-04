@@ -54,7 +54,7 @@ def blast(outdir, prefix, proteindb):
     """
     bar = progressbar.ProgressBar(widgets = ['BLAST genes: ', progressbar.Bar(), '(', progressbar.ETA(),')'])
     for i in bar(range(1)):
-        cline = blastx(cmd = 'blastx', out = '{outdir}/{prefix}_blastxresults.tsv'.format(prefix = prefix, outdir = outdir), evalue = 0.001, 
+        cline = blastx(cmd = 'blastx', out = '{outdir}/genesprediction/{prefix}_blastxresults.tsv'.format(prefix = prefix, outdir = outdir), evalue = 0.001, 
                    outfmt = '6 qseqid qstart qend sseqid sstartstdout send pident evalue qcovs', query = '{outdir}/genesprediction/{prefix}.predictedgenes.fsa'.format(outdir = outdir, prefix = prefix), subject = proteindb)
         stdout, stderr = cline()
 
