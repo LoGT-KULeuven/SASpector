@@ -364,7 +364,7 @@ def refstats(reference, mappedlocations, unmappedlocations, conflictlocations, r
                      'Length': len(str(read.seq)),
                      'NumberMappedRegions': mappedlocations.shape[0] + reverselocations.shape[0] + conflictlocations.shape[0],
                      'NumberUnmappedRegions': unmappedlocations.shape[0],
-                     'ExtractedUnmappedRegions': len(unmappeddict),
+                     'FilteredUnmappedRegions': len(unmappeddict),
                      'FractionMapped': (total_map/len(str(read.seq)))*100,
                      'FractionUnmapped': (sum_unmap/len(str(read.seq)))*100}]
     
