@@ -1,0 +1,530 @@
+>Feature Pae21_19331:19467
+>Feature Pae21_21080:21868
+743	492	CDS
+			inference	ab initio prediction:Prodigal:002006
+			inference	similar to AA sequence:ISfinder:IS222
+			locus_tag	OMDBFACO_00001
+			product	IS3 family transposase IS222
+>Feature Pae21_57719:62530
+34	405	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	OMDBFACO_00002
+			product	hypothetical protein
+4632	1456	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	OMDBFACO_00003
+			product	hypothetical protein
+>Feature Pae21_237993:240960
+11	1909	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	OMDBFACO_00004
+			product	hypothetical protein
+2594	2355	CDS
+			db_xref	COG:COG3157
+			gene	hcpA
+			inference	ab initio prediction:Prodigal:002006
+			inference	similar to AA sequence:UniProtKB:Q9HI36
+			locus_tag	OMDBFACO_00005
+			product	Major exported protein
+2944	2618	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	OMDBFACO_00006
+			product	hypothetical protein
+>Feature Pae21_262617:264073
+1454	84	CDS
+			inference	ab initio prediction:Prodigal:002006
+			inference	similar to AA sequence:ISfinder:ISCfr1
+			locus_tag	OMDBFACO_00007
+			product	IS1182 family transposase ISCfr1
+>Feature Pae21_297900:299356
+2	1372	CDS
+			inference	ab initio prediction:Prodigal:002006
+			inference	similar to AA sequence:ISfinder:ISCfr1
+			locus_tag	OMDBFACO_00008
+			product	IS1182 family transposase ISCfr1
+>Feature Pae21_387777:389233
+1454	84	CDS
+			inference	ab initio prediction:Prodigal:002006
+			inference	similar to AA sequence:ISfinder:ISCfr1
+			locus_tag	OMDBFACO_00009
+			product	IS1182 family transposase ISCfr1
+>Feature Pae21_526751:528216
+5	1375	CDS
+			inference	ab initio prediction:Prodigal:002006
+			inference	similar to AA sequence:ISfinder:ISCfr1
+			locus_tag	OMDBFACO_00010
+			product	IS1182 family transposase ISCfr1
+>Feature Pae21_659546:664936
+263	1793	rRNA
+			locus_tag	OMDBFACO_00011
+			product	16S ribosomal RNA
+			score	0
+1859	1935	tRNA
+			inference	COORDINATES:profile:Aragorn:001002
+			locus_tag	OMDBFACO_00012
+			product	tRNA-Ile(gat)
+1964	2039	tRNA
+			inference	COORDINATES:profile:Aragorn:001002
+			locus_tag	OMDBFACO_00013
+			product	tRNA-Ala(tgc)
+2267	5154	rRNA
+			locus_tag	OMDBFACO_00014
+			product	23S ribosomal RNA
+			score	0
+5301	5384	rRNA
+			locus_tag	OMDBFACO_00015
+			note	aligned only 70 percent of the 5S ribosomal RNA
+			product	5S ribosomal RNA (partial)
+			score	1.8e-11
+>Feature Pae21_668133:669141
+>Feature Pae21_684757:685158
+>Feature Pae21_733386:738569
+665	21	CDS
+			EC_number	1.4.-.-
+			gene	phzG_1
+			inference	ab initio prediction:Prodigal:002006
+			inference	similar to AA sequence:UniProtKB:Q51793
+			locus_tag	OMDBFACO_00016
+			product	Phenazine biosynthesis protein PhzG
+1527	691	CDS
+			EC_number	5.3.3.17
+			gene	phzF_1
+			inference	ab initio prediction:Prodigal:002006
+			inference	similar to AA sequence:UniProtKB:Q51792
+			locus_tag	OMDBFACO_00017
+			product	Trans-2,3-dihydro-3-hydroxyanthranilate isomerase
+3424	1541	CDS
+			EC_number	5.4.4.2
+			gene	menF_1
+			inference	ab initio prediction:Prodigal:002006
+			inference	protein motif:HAMAP:MF_01935
+			locus_tag	OMDBFACO_00018
+			product	Isochorismate synthase MenF
+4044	3421	CDS
+			EC_number	3.3.2.15
+			gene	phzD2_1
+			inference	ab initio prediction:Prodigal:002006
+			inference	similar to AA sequence:UniProtKB:P0DPC1
+			locus_tag	OMDBFACO_00019
+			product	Phenazine biosynthesis protein PhzD2
+5177	4041	CDS
+			EC_number	2.5.1.54
+			db_xref	COG:COG3200
+			gene	aroH_1
+			inference	ab initio prediction:Prodigal:002006
+			inference	similar to AA sequence:UniProtKB:P80574
+			locus_tag	OMDBFACO_00020
+			product	Phospho-2-dehydro-3-deoxyheptonate aldolase
+>Feature Pae21_739365:739503
+>Feature Pae21_780572:780681
+>Feature Pae21_816147:820525
+1266	316	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	OMDBFACO_00021
+			product	hypothetical protein
+3448	1289	CDS
+			db_xref	COG:COG2274
+			gene	apxIB_1
+			inference	ab initio prediction:Prodigal:002006
+			inference	similar to AA sequence:UniProtKB:P26760
+			locus_tag	OMDBFACO_00022
+			product	Toxin RTX-I translocation ATP-binding protein
+4177	3458	CDS
+			db_xref	COG:COG0845
+			gene	cvaA_1
+			inference	ab initio prediction:Prodigal:002006
+			inference	similar to AA sequence:UniProtKB:P22519
+			locus_tag	OMDBFACO_00023
+			product	Colicin V secretion protein CvaA
+>Feature Pae21_1054975:1056444
+8	1378	CDS
+			inference	ab initio prediction:Prodigal:002006
+			inference	similar to AA sequence:ISfinder:ISCfr1
+			locus_tag	OMDBFACO_00024
+			product	IS1182 family transposase ISCfr1
+>Feature Pae21_1120258:1120981
+>Feature Pae21_1235029:1236497
+1461	91	CDS
+			inference	ab initio prediction:Prodigal:002006
+			inference	similar to AA sequence:ISfinder:ISCfr1
+			locus_tag	OMDBFACO_00025
+			product	IS1182 family transposase ISCfr1
+>Feature Pae21_1239350:1240817
+1459	89	CDS
+			inference	ab initio prediction:Prodigal:002006
+			inference	similar to AA sequence:ISfinder:ISCfr1
+			locus_tag	OMDBFACO_00026
+			product	IS1182 family transposase ISCfr1
+>Feature Pae21_1454072:1455535
+4	1374	CDS
+			inference	ab initio prediction:Prodigal:002006
+			inference	similar to AA sequence:ISfinder:ISCfr1
+			locus_tag	OMDBFACO_00027
+			product	IS1182 family transposase ISCfr1
+>Feature Pae21_1600793:1602018
+2	214	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	OMDBFACO_00028
+			product	hypothetical protein
+1065	199	CDS
+			inference	ab initio prediction:Prodigal:002006
+			inference	similar to AA sequence:ISfinder:ISPa11
+			locus_tag	OMDBFACO_00029
+			product	IS110 family transposase ISPa11
+>Feature Pae21_1699686:1700294
+>Feature Pae21_1998089:1999550
+7	1377	CDS
+			inference	ab initio prediction:Prodigal:002006
+			inference	similar to AA sequence:ISfinder:ISCfr1
+			locus_tag	OMDBFACO_00030
+			product	IS1182 family transposase ISCfr1
+>Feature Pae21_2120965:2122423
+3	1373	CDS
+			inference	ab initio prediction:Prodigal:002006
+			inference	similar to AA sequence:ISfinder:ISCfr1
+			locus_tag	OMDBFACO_00031
+			product	IS1182 family transposase ISCfr1
+>Feature Pae21_2422426:2423893
+1460	90	CDS
+			inference	ab initio prediction:Prodigal:002006
+			inference	similar to AA sequence:ISfinder:ISCfr1
+			locus_tag	OMDBFACO_00032
+			product	IS1182 family transposase ISCfr1
+>Feature Pae21_2448223:2449685
+1458	88	CDS
+			inference	ab initio prediction:Prodigal:002006
+			inference	similar to AA sequence:ISfinder:ISCfr1
+			locus_tag	OMDBFACO_00033
+			product	IS1182 family transposase ISCfr1
+>Feature Pae21_2681816:2683284
+8	1378	CDS
+			inference	ab initio prediction:Prodigal:002006
+			inference	similar to AA sequence:ISfinder:ISCfr1
+			locus_tag	OMDBFACO_00034
+			product	IS1182 family transposase ISCfr1
+>Feature Pae21_2689471:2689872
+>Feature Pae21_2706163:2707626
+1459	89	CDS
+			inference	ab initio prediction:Prodigal:002006
+			inference	similar to AA sequence:ISfinder:ISCfr1
+			locus_tag	OMDBFACO_00035
+			product	IS1182 family transposase ISCfr1
+>Feature Pae21_2882684:2887215
+1263	313	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	OMDBFACO_00036
+			product	hypothetical protein
+3445	1286	CDS
+			db_xref	COG:COG2274
+			gene	apxIB_2
+			inference	ab initio prediction:Prodigal:002006
+			inference	similar to AA sequence:UniProtKB:P26760
+			locus_tag	OMDBFACO_00037
+			product	Toxin RTX-I translocation ATP-binding protein
+4510	3455	CDS
+			db_xref	COG:COG0845
+			gene	cvaA_2
+			inference	ab initio prediction:Prodigal:002006
+			inference	similar to AA sequence:UniProtKB:P22519
+			locus_tag	OMDBFACO_00038
+			product	Colicin V secretion protein CvaA
+>Feature Pae21_2915764:2918739
+366	1565	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	OMDBFACO_00039
+			product	hypothetical protein
+2712	1639	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	OMDBFACO_00040
+			product	hypothetical protein
+>Feature Pae21_2920496:2921225
+>Feature Pae21_2927151:2928878
+>Feature Pae21_2945966:2946488
+>Feature Pae21_2947044:2947717
+>Feature Pae21_2962732:2963128
+>Feature Pae21_2974721:2976190
+9	1379	CDS
+			inference	ab initio prediction:Prodigal:002006
+			inference	similar to AA sequence:ISfinder:ISCfr1
+			locus_tag	OMDBFACO_00041
+			product	IS1182 family transposase ISCfr1
+>Feature Pae21_3033146:3034156
+>Feature Pae21_3039165:3040360
+>Feature Pae21_3147955:3148180
+>Feature Pae21_3182500:3183525
+>Feature Pae21_3267991:3269452
+1458	88	CDS
+			inference	ab initio prediction:Prodigal:002006
+			inference	similar to AA sequence:ISfinder:ISCfr1
+			locus_tag	OMDBFACO_00042
+			product	IS1182 family transposase ISCfr1
+>Feature Pae21_3416279:3417745
+7	1377	CDS
+			inference	ab initio prediction:Prodigal:002006
+			inference	similar to AA sequence:ISfinder:ISCfr1
+			locus_tag	OMDBFACO_00043
+			product	IS1182 family transposase ISCfr1
+>Feature Pae21_3555567:3556803
+159	1025	CDS
+			inference	ab initio prediction:Prodigal:002006
+			inference	similar to AA sequence:ISfinder:ISPa11
+			locus_tag	OMDBFACO_00044
+			product	IS110 family transposase ISPa11
+1222	1010	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	OMDBFACO_00045
+			product	hypothetical protein
+>Feature Pae21_3624268:3625788
+33	587	CDS
+			inference	ab initio prediction:Prodigal:002006
+			inference	similar to AA sequence:ISfinder:ISCfr1
+			locus_tag	OMDBFACO_00046
+			product	IS1182 family transposase ISCfr1
+648	1415	CDS
+			inference	ab initio prediction:Prodigal:002006
+			inference	similar to AA sequence:ISfinder:ISCfr1
+			locus_tag	OMDBFACO_00047
+			product	IS1182 family transposase ISCfr1
+>Feature Pae21_3674035:3678491
+665	21	CDS
+			EC_number	1.4.-.-
+			gene	phzG_2
+			inference	ab initio prediction:Prodigal:002006
+			inference	similar to AA sequence:UniProtKB:Q51793
+			locus_tag	OMDBFACO_00048
+			product	Phenazine biosynthesis protein PhzG
+1527	691	CDS
+			EC_number	5.3.3.17
+			gene	phzF_2
+			inference	ab initio prediction:Prodigal:002006
+			inference	similar to AA sequence:UniProtKB:Q51792
+			locus_tag	OMDBFACO_00049
+			product	Trans-2,3-dihydro-3-hydroxyanthranilate isomerase
+3424	1541	CDS
+			EC_number	5.4.4.2
+			gene	menF_2
+			inference	ab initio prediction:Prodigal:002006
+			inference	protein motif:HAMAP:MF_01935
+			locus_tag	OMDBFACO_00050
+			product	Isochorismate synthase MenF
+4044	3421	CDS
+			EC_number	3.3.2.15
+			gene	phzD2_2
+			inference	ab initio prediction:Prodigal:002006
+			inference	similar to AA sequence:UniProtKB:P0DPC1
+			locus_tag	OMDBFACO_00051
+			product	Phenazine biosynthesis protein PhzD2
+4445	4041	CDS
+			EC_number	2.5.1.54
+			db_xref	COG:COG3200
+			gene	aroH_2
+			inference	ab initio prediction:Prodigal:002006
+			inference	similar to AA sequence:UniProtKB:P80574
+			locus_tag	OMDBFACO_00052
+			product	Phospho-2-dehydro-3-deoxyheptonate aldolase
+>Feature Pae21_3746319:3747774
+1	1371	CDS
+			inference	ab initio prediction:Prodigal:002006
+			inference	similar to AA sequence:ISfinder:ISCfr1
+			locus_tag	OMDBFACO_00053
+			product	IS1182 family transposase ISCfr1
+>Feature Pae21_4157610:4159071
+2	1372	CDS
+			inference	ab initio prediction:Prodigal:002006
+			inference	similar to AA sequence:ISfinder:ISCfr1
+			locus_tag	OMDBFACO_00054
+			product	IS1182 family transposase ISCfr1
+>Feature Pae21_4163066:4164685
+219	91	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	OMDBFACO_00055
+			product	hypothetical protein
+844	173	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	OMDBFACO_00056
+			product	hypothetical protein
+1457	978	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	OMDBFACO_00057
+			product	hypothetical protein
+>Feature Pae21_4251192:4251907
+>Feature Pae21_4718106:4719061
+955	830	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	OMDBFACO_00058
+			product	hypothetical protein
+>Feature Pae21_4725061:4726161
+46	297	CDS
+			inference	ab initio prediction:Prodigal:002006
+			inference	similar to AA sequence:ISfinder:IS222
+			locus_tag	OMDBFACO_00059
+			product	IS3 family transposase IS222
+306	932	CDS
+			inference	ab initio prediction:Prodigal:002006
+			inference	similar to AA sequence:ISfinder:IS222
+			locus_tag	OMDBFACO_00060
+			product	IS3 family transposase IS222
+>Feature Pae21_4795676:4795865
+79	3	tRNA
+			inference	COORDINATES:profile:Aragorn:001002
+			locus_tag	OMDBFACO_00061
+			product	tRNA-Arg(acg)
+>Feature Pae21_4828001:4829237
+159	1025	CDS
+			inference	ab initio prediction:Prodigal:002006
+			inference	similar to AA sequence:ISfinder:ISPa11
+			locus_tag	OMDBFACO_00062
+			product	IS110 family transposase ISPa11
+1222	1010	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	OMDBFACO_00063
+			product	hypothetical protein
+>Feature Pae21_4852182:4853639
+3	1373	CDS
+			inference	ab initio prediction:Prodigal:002006
+			inference	similar to AA sequence:ISfinder:ISCfr1
+			locus_tag	OMDBFACO_00064
+			product	IS1182 family transposase ISCfr1
+>Feature Pae21_4884016:4885070
+22	225	CDS
+			inference	ab initio prediction:Prodigal:002006
+			inference	similar to AA sequence:ISfinder:ISPa32
+			locus_tag	OMDBFACO_00065
+			product	IS3 family transposase ISPa32
+>Feature Pae21_5076338:5083544
+68	4	rRNA
+			locus_tag	OMDBFACO_00066
+			note	aligned only 54 percent of the 5S ribosomal RNA
+			product	5S ribosomal RNA (partial)
+			score	1.9e-08
+2112	215	rRNA
+			locus_tag	OMDBFACO_00067
+			note	aligned only 58 percent of the 23S ribosomal RNA
+			product	23S ribosomal RNA (partial)
+			score	0
+3643	2273	CDS
+			inference	ab initio prediction:Prodigal:002006
+			inference	similar to AA sequence:ISfinder:ISCfr1
+			locus_tag	OMDBFACO_00068
+			product	IS1182 family transposase ISCfr1
+4196	4453	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	OMDBFACO_00069
+			product	hypothetical protein
+4584	4676	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	OMDBFACO_00070
+			product	hypothetical protein
+5016	4941	tRNA
+			inference	COORDINATES:profile:Aragorn:001002
+			locus_tag	OMDBFACO_00071
+			product	tRNA-Ala(tgc)
+5121	5045	tRNA
+			inference	COORDINATES:profile:Aragorn:001002
+			locus_tag	OMDBFACO_00072
+			product	tRNA-Ile(gat)
+6717	5187	rRNA
+			locus_tag	OMDBFACO_00073
+			product	16S ribosomal RNA
+			score	0
+>Feature Pae21_5125842:5126380
+30	506	CDS
+			inference	ab initio prediction:Prodigal:002006
+			inference	similar to AA sequence:ISfinder:ISPsy43
+			locus_tag	OMDBFACO_00074
+			product	IS66 family transposase ISPsy43
+>Feature Pae21_5127698:5128470
+23	640	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	OMDBFACO_00075
+			product	hypothetical protein
+>Feature Pae21_5282877:5284197
+459	920	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	OMDBFACO_00076
+			product	hypothetical protein
+>Feature Pae21_5393129:5393452
+>Feature Pae21_5438792:5439756
+48	173	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	OMDBFACO_00077
+			product	hypothetical protein
+>Feature Pae21_5455698:5457160
+1457	87	CDS
+			inference	ab initio prediction:Prodigal:002006
+			inference	similar to AA sequence:ISfinder:ISCfr1
+			locus_tag	OMDBFACO_00078
+			product	IS1182 family transposase ISCfr1
+>Feature Pae21_5457648:5458372
+>Feature Pae21_5466566:5468036
+9	1379	CDS
+			inference	ab initio prediction:Prodigal:002006
+			inference	similar to AA sequence:ISfinder:ISCfr1
+			locus_tag	OMDBFACO_00079
+			product	IS1182 family transposase ISCfr1
+>Feature Pae21_5572580:5572822
+>Feature Pae21_5572912:5574627
+>Feature Pae21_5645471:5647163
+624	1616	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	OMDBFACO_00080
+			product	hypothetical protein
+>Feature Pae21_5649124:5654751
+97	2	rRNA
+			locus_tag	OMDBFACO_00081
+			product	5S ribosomal RNA
+			score	1.1e-12
+3131	244	rRNA
+			locus_tag	OMDBFACO_00082
+			product	23S ribosomal RNA
+			score	0
+3434	3359	tRNA
+			inference	COORDINATES:profile:Aragorn:001002
+			locus_tag	OMDBFACO_00083
+			product	tRNA-Ala(tgc)
+3539	3463	tRNA
+			inference	COORDINATES:profile:Aragorn:001002
+			locus_tag	OMDBFACO_00084
+			product	tRNA-Ile(gat)
+5135	3605	rRNA
+			locus_tag	OMDBFACO_00085
+			product	16S ribosomal RNA
+			score	0
+>Feature Pae21_5757402:5758628
+161	1027	CDS
+			inference	ab initio prediction:Prodigal:002006
+			inference	similar to AA sequence:ISfinder:ISPa11
+			locus_tag	OMDBFACO_00086
+			product	IS110 family transposase ISPa11
+1224	1012	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	OMDBFACO_00087
+			product	hypothetical protein
+>Feature Pae21_5864947:5866280
+876	415	CDS
+			inference	ab initio prediction:Prodigal:002006
+			locus_tag	OMDBFACO_00088
+			product	hypothetical protein
+>Feature Pae21_6428102:6433473
+71	3	rRNA
+			locus_tag	OMDBFACO_00089
+			note	aligned only 57 percent of the 5S ribosomal RNA
+			product	5S ribosomal RNA (partial)
+			score	8.3e-09
+3105	218	rRNA
+			locus_tag	OMDBFACO_00090
+			product	23S ribosomal RNA
+			score	0
+3408	3333	tRNA
+			inference	COORDINATES:profile:Aragorn:001002
+			locus_tag	OMDBFACO_00091
+			product	tRNA-Ala(tgc)
+3513	3437	tRNA
+			inference	COORDINATES:profile:Aragorn:001002
+			locus_tag	OMDBFACO_00092
+			product	tRNA-Ile(gat)
+5109	3579	rRNA
+			locus_tag	OMDBFACO_00093
+			product	16S ribosomal RNA
+			score	0
+>Feature Pae21_6482669:6483125

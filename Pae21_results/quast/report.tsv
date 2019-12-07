@@ -1,0 +1,44 @@
+Assembly	Pae21_unmappedregions
+# contigs (>= 0 bp)	73
+# contigs (>= 1000 bp)	50
+# contigs (>= 5000 bp)	5
+# contigs (>= 10000 bp)	0
+# contigs (>= 25000 bp)	0
+# contigs (>= 50000 bp)	0
+Total length (>= 0 bp)	119043
+Total length (>= 1000 bp)	107316
+Total length (>= 5000 bp)	28777
+Total length (>= 10000 bp)	0
+Total length (>= 25000 bp)	0
+Total length (>= 50000 bp)	0
+# contigs	62
+Largest contig	7206
+Total length	116027
+Reference length	6654766
+GC (%)	61.48
+Reference GC (%)	66.09
+N50	1692
+N75	1457
+L50	14
+L75	34
+# misassemblies	0
+# misassembled contigs	0
+Misassembled contigs length	0
+# local misassemblies	0
+# scaffold gap ext. mis.	0
+# scaffold gap loc. mis.	0
+# unaligned mis. contigs	0
+# unaligned contigs	0 + 0 part
+Unaligned length	0
+Genome fraction (%)	1.137
+Duplication ratio	1.533
+# N's per 100 kbp	0.00
+# mismatches per 100 kbp	0.00
+# indels per 100 kbp	0.00
+Largest alignment	7206
+Total aligned length	116027
+NA50	1692
+NGA50	-
+NA75	1457
+LA50	14
+LA75	34

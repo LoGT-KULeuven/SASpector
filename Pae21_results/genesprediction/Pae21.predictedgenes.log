@@ -1,0 +1,199 @@
+[14:02:52] This is prokka 1.14.5
+[14:02:52] Written by Torsten Seemann <torsten.seemann@gmail.com>
+[14:02:52] Homepage is https://github.com/tseemann/prokka
+[14:02:52] Local time is Sat Dec  7 14:02:52 2019
+[14:02:52] You are alerojo
+[14:02:52] Operating system is linux
+[14:02:52] You have BioPerl 1.007002
+[14:02:52] System has 4 cores.
+[14:02:52] Option --cpu asked for 8 cores, but system only has 4
+[14:02:52] Will use maximum of 4 cores.
+[14:02:52] Annotating as >>> Bacteria <<<
+[14:02:52] Generating locus_tag from 'Pae21_results/Pae21_unmappedregions.fasta' contents.
+[14:02:52] Setting --locustag OMDBFACO from MD5 86dbfac802166deddec7b758ec9f663f
+[14:02:52] Creating new output folder: Pae21_results/genesprediction
+[14:02:52] Running: mkdir -p Pae21_results\/genesprediction
+[14:02:52] Using filename prefix: Pae21.predictedgenes.XXX
+[14:02:52] Setting HMMER_NCPU=1
+[14:02:52] Writing log to: Pae21_results/genesprediction/Pae21.predictedgenes.log
+[14:02:52] Command: /home/alerojo/anaconda2/envs/Rojo_py37/bin/prokka --outdir Pae21_results/genesprediction --prefix Pae21.predictedgenes Pae21_results/Pae21_unmappedregions.fasta
+[14:02:52] Appending to PATH: /home/alerojo/anaconda2/envs/Rojo_py37/bin
+[14:02:52] Looking for 'aragorn' - found /home/alerojo/anaconda2/envs/Rojo_py37/bin/aragorn
+[14:02:52] Determined aragorn version is 001002 from 'ARAGORN v1.2.38 Dean Laslett'
+[14:02:52] Looking for 'barrnap' - found /home/alerojo/anaconda2/envs/Rojo_py37/bin/barrnap
+[14:02:52] Determined barrnap version is 000008 from 'barrnap 0.8'
+[14:02:52] Looking for 'blastp' - found /home/alerojo/anaconda2/envs/Rojo_py37/bin/blastp
+[14:02:52] Determined blastp version is 002009 from 'blastp: 2.9.0+'
+[14:02:52] Looking for 'cmpress' - found /home/alerojo/anaconda2/envs/Rojo_py37/bin/cmpress
+[14:02:52] Determined cmpress version is 001001 from '# INFERNAL 1.1.2 (July 2016)'
+[14:02:52] Looking for 'cmscan' - found /home/alerojo/anaconda2/envs/Rojo_py37/bin/cmscan
+[14:02:52] Determined cmscan version is 001001 from '# INFERNAL 1.1.2 (July 2016)'
+[14:02:52] Looking for 'egrep' - found /bin/egrep
+[14:02:52] Looking for 'find' - found /usr/bin/find
+[14:02:52] Looking for 'grep' - found /bin/grep
+[14:02:52] Looking for 'hmmpress' - found /home/alerojo/anaconda2/envs/Rojo_py37/bin/hmmpress
+[14:02:52] Determined hmmpress version is 003002 from '# HMMER 3.2.1 (June 2018); http://hmmer.org/'
+[14:02:52] Looking for 'hmmscan' - found /home/alerojo/anaconda2/envs/Rojo_py37/bin/hmmscan
+[14:02:52] Determined hmmscan version is 003002 from '# HMMER 3.2.1 (June 2018); http://hmmer.org/'
+[14:02:52] Looking for 'java' - found /home/alerojo/anaconda2/envs/Rojo_py37/bin/java
+[14:02:52] Looking for 'makeblastdb' - found /home/alerojo/anaconda2/envs/Rojo_py37/bin/makeblastdb
+[14:02:53] Determined makeblastdb version is 002009 from 'makeblastdb: 2.9.0+'
+[14:02:53] Looking for 'minced' - found /home/alerojo/anaconda2/envs/Rojo_py37/bin/minced
+[14:02:53] Determined minced version is 004002 from 'minced 0.4.2'
+[14:02:53] Looking for 'parallel' - found /home/alerojo/anaconda2/envs/Rojo_py37/bin/parallel
+[14:02:53] Determined parallel version is 20190922 from 'GNU parallel 20190922'
+[14:02:53] Looking for 'prodigal' - found /home/alerojo/anaconda2/envs/Rojo_py37/bin/prodigal
+[14:02:53] Determined prodigal version is 002006 from 'Prodigal V2.6.3: February, 2016'
+[14:02:53] Looking for 'prokka-genbank_to_fasta_db' - found /home/alerojo/anaconda2/envs/Rojo_py37/bin/prokka-genbank_to_fasta_db
+[14:02:53] Looking for 'sed' - found /bin/sed
+[14:02:53] Looking for 'tbl2asn' - found /home/alerojo/anaconda2/envs/Rojo_py37/bin/tbl2asn
+[14:02:53] Determined tbl2asn version is 025007 from 'tbl2asn 25.7   arguments:'
+[14:02:53] Using genetic code table 11.
+[14:02:53] Loading and checking input file: Pae21_results/Pae21_unmappedregions.fasta
+[14:02:53] Wrote 73 contigs totalling 119043 bp.
+[14:02:53] Predicting tRNAs and tmRNAs
+[14:02:53] Running: aragorn -l -gc11  -w Pae21_results\/genesprediction\/Pae21\.predictedgenes\.fna
+[14:02:53] 1 tRNA-Ile [1859,1935] 35 (gat)
+[14:02:53] 2 tRNA-Ala [1964,2039] 34 (tgc)
+[14:02:53] 1 tRNA-Arg c[3,79] 35 (acg)
+[14:02:53] 1 tRNA-Ala c[4941,5016] 34 (tgc)
+[14:02:53] 2 tRNA-Ile c[5045,5121] 35 (gat)
+[14:02:53] 1 tRNA-Ala c[3359,3434] 34 (tgc)
+[14:02:53] 2 tRNA-Ile c[3463,3539] 35 (gat)
+[14:02:53] 1 tRNA-Ala c[3333,3408] 34 (tgc)
+[14:02:53] 2 tRNA-Ile c[3437,3513] 35 (gat)
+[14:02:53] Found 9 tRNAs
+[14:02:53] Predicting Ribosomal RNAs
+[14:02:53] Running Barrnap with 4 threads
+[14:02:54] 1 Pae21_5076338:5083544 4 5S ribosomal RNA (partial)
+[14:02:54] 2 Pae21_5076338:5083544 215 23S ribosomal RNA (partial)
+[14:02:54] 3 Pae21_5076338:5083544 5187 16S ribosomal RNA
+[14:02:54] 4 Pae21_5649124:5654751 2 5S ribosomal RNA
+[14:02:54] 5 Pae21_5649124:5654751 244 23S ribosomal RNA
+[14:02:54] 6 Pae21_5649124:5654751 3605 16S ribosomal RNA
+[14:02:54] 7 Pae21_6428102:6433473 3 5S ribosomal RNA (partial)
+[14:02:54] 8 Pae21_6428102:6433473 218 23S ribosomal RNA
+[14:02:54] 9 Pae21_6428102:6433473 3579 16S ribosomal RNA
+[14:02:54] 10 Pae21_659546:664936 263 16S ribosomal RNA
+[14:02:54] 11 Pae21_659546:664936 2267 23S ribosomal RNA
+[14:02:54] 12 Pae21_659546:664936 5301 5S ribosomal RNA (partial)
+[14:02:54] Found 12 rRNAs
+[14:02:54] Skipping ncRNA search, enable with --rfam if desired.
+[14:02:54] Total of 21 tRNA + rRNA features
+[14:02:54] Searching for CRISPR repeats
+[14:02:54] Found 0 CRISPRs
+[14:02:54] Predicting coding sequences
+[14:02:54] Contigs total 119043 bp, so using single mode
+[14:02:54] Running: prodigal -i Pae21_results\/genesprediction\/Pae21\.predictedgenes\.fna -c -m -g 11 -p single -f sco -q
+[14:02:55] Excluding CDS which overlaps existing RNA (rRNA) at Pae21_659546:664936:563..688 on - strand
+[14:02:55] Excluding CDS which overlaps existing RNA (rRNA) at Pae21_659546:664936:1156..1308 on - strand
+[14:02:55] Excluding CDS which overlaps existing RNA (rRNA) at Pae21_659546:664936:1367..1540 on + strand
+[14:02:55] Excluding CDS which overlaps existing RNA (rRNA) at Pae21_659546:664936:1596..1817 on - strand
+[14:02:55] Excluding CDS which overlaps existing RNA (rRNA) at Pae21_659546:664936:2304..2396 on - strand
+[14:02:55] Excluding CDS which overlaps existing RNA (rRNA) at Pae21_659546:664936:2527..2784 on - strand
+[14:02:55] Excluding CDS which overlaps existing RNA (rRNA) at Pae21_659546:664936:3336..3542 on - strand
+[14:02:55] Excluding CDS which overlaps existing RNA (rRNA) at Pae21_659546:664936:3971..4105 on + strand
+[14:02:55] Excluding CDS which overlaps existing RNA (rRNA) at Pae21_659546:664936:4258..4428 on - strand
+[14:02:55] Excluding CDS which overlaps existing RNA (rRNA) at Pae21_659546:664936:4447..4749 on - strand
+[14:02:55] Excluding CDS which overlaps existing RNA (rRNA) at Pae21_659546:664936:5219..5353 on + strand
+[14:02:55] Excluding CDS which overlaps existing RNA (rRNA) at Pae21_5076338:5083544:16..150 on - strand
+[14:02:55] Excluding CDS which overlaps existing RNA (rRNA) at Pae21_5076338:5083544:620..922 on + strand
+[14:02:55] Excluding CDS which overlaps existing RNA (rRNA) at Pae21_5076338:5083544:941..1111 on + strand
+[14:02:55] Excluding CDS which overlaps existing RNA (rRNA) at Pae21_5076338:5083544:1264..1398 on - strand
+[14:02:55] Excluding CDS which overlaps existing RNA (rRNA) at Pae21_5076338:5083544:1827..2033 on + strand
+[14:02:55] Excluding CDS which overlaps existing RNA (rRNA) at Pae21_5076338:5083544:5163..5384 on + strand
+[14:02:55] Excluding CDS which overlaps existing RNA (rRNA) at Pae21_5076338:5083544:5440..5613 on - strand
+[14:02:55] Excluding CDS which overlaps existing RNA (rRNA) at Pae21_5076338:5083544:5672..5824 on + strand
+[14:02:55] Excluding CDS which overlaps existing RNA (rRNA) at Pae21_5076338:5083544:6292..6417 on + strand
+[14:02:55] Excluding CDS which overlaps existing RNA (rRNA) at Pae21_5649124:5654751:45..179 on - strand
+[14:02:55] Excluding CDS which overlaps existing RNA (rRNA) at Pae21_5649124:5654751:649..951 on + strand
+[14:02:55] Excluding CDS which overlaps existing RNA (rRNA) at Pae21_5649124:5654751:970..1140 on + strand
+[14:02:55] Excluding CDS which overlaps existing RNA (rRNA) at Pae21_5649124:5654751:1293..1427 on - strand
+[14:02:55] Excluding CDS which overlaps existing RNA (rRNA) at Pae21_5649124:5654751:1856..2062 on + strand
+[14:02:55] Excluding CDS which overlaps existing RNA (rRNA) at Pae21_5649124:5654751:2614..2871 on + strand
+[14:02:55] Excluding CDS which overlaps existing RNA (rRNA) at Pae21_5649124:5654751:3002..3094 on + strand
+[14:02:55] Excluding CDS which overlaps existing RNA (rRNA) at Pae21_5649124:5654751:3581..3802 on + strand
+[14:02:55] Excluding CDS which overlaps existing RNA (rRNA) at Pae21_5649124:5654751:3858..4031 on - strand
+[14:02:55] Excluding CDS which overlaps existing RNA (rRNA) at Pae21_5649124:5654751:4090..4242 on + strand
+[14:02:55] Excluding CDS which overlaps existing RNA (rRNA) at Pae21_5649124:5654751:4710..4835 on + strand
+[14:02:55] Excluding CDS which overlaps existing RNA (rRNA) at Pae21_6428102:6433473:19..153 on - strand
+[14:02:55] Excluding CDS which overlaps existing RNA (rRNA) at Pae21_6428102:6433473:623..925 on + strand
+[14:02:55] Excluding CDS which overlaps existing RNA (rRNA) at Pae21_6428102:6433473:944..1114 on + strand
+[14:02:55] Excluding CDS which overlaps existing RNA (rRNA) at Pae21_6428102:6433473:1267..1401 on - strand
+[14:02:55] Excluding CDS which overlaps existing RNA (rRNA) at Pae21_6428102:6433473:1830..2036 on + strand
+[14:02:55] Excluding CDS which overlaps existing RNA (rRNA) at Pae21_6428102:6433473:2588..2845 on + strand
+[14:02:55] Excluding CDS which overlaps existing RNA (rRNA) at Pae21_6428102:6433473:2976..3068 on + strand
+[14:02:55] Excluding CDS which overlaps existing RNA (rRNA) at Pae21_6428102:6433473:3555..3776 on + strand
+[14:02:55] Excluding CDS which overlaps existing RNA (rRNA) at Pae21_6428102:6433473:3832..4005 on - strand
+[14:02:55] Excluding CDS which overlaps existing RNA (rRNA) at Pae21_6428102:6433473:4064..4216 on + strand
+[14:02:55] Excluding CDS which overlaps existing RNA (rRNA) at Pae21_6428102:6433473:4684..4809 on + strand
+[14:02:55] Found 72 CDS
+[14:02:55] Connecting features back to sequences
+[14:02:55] Not using genus-specific database. Try --usegenus to enable it.
+[14:02:55] Annotating CDS, please be patient.
+[14:02:55] Will use 4 CPUs for similarity searching.
+[14:02:55] There are still 72 unannotated CDS left (started with 72)
+[14:02:55] Will use blast to search against /home/alerojo/anaconda2/envs/Rojo_py37/db/kingdom/Bacteria/IS with 4 CPUs
+[14:02:55] Running: cat Pae21_results\/genesprediction\/Pae21\.predictedgenes\.IS\.tmp\.25025\.faa | parallel --gnu --plain -j 4 --block 2918 --recstart '>' --pipe blastp -query - -db /home/alerojo/anaconda2/envs/Rojo_py37/db/kingdom/Bacteria/IS -evalue 1e-30 -qcov_hsp_perc 90 -num_threads 1 -num_descriptions 1 -num_alignments 1 -seg no > Pae21_results\/genesprediction\/Pae21\.predictedgenes\.IS\.tmp\.25025\.blast 2> /dev/null
+[14:02:56] Deleting unwanted file: Pae21_results/genesprediction/Pae21.predictedgenes.IS.tmp.25025.faa
+[14:02:56] Deleting unwanted file: Pae21_results/genesprediction/Pae21.predictedgenes.IS.tmp.25025.blast
+[14:02:56] There are still 38 unannotated CDS left (started with 72)
+[14:02:56] Will use blast to search against /home/alerojo/anaconda2/envs/Rojo_py37/db/kingdom/Bacteria/AMR with 4 CPUs
+[14:02:56] Running: cat Pae21_results\/genesprediction\/Pae21\.predictedgenes\.AMR\.tmp\.25025\.faa | parallel --gnu --plain -j 4 --block 1312 --recstart '>' --pipe blastp -query - -db /home/alerojo/anaconda2/envs/Rojo_py37/db/kingdom/Bacteria/AMR -evalue 9.99999999999999e-301 -qcov_hsp_perc 90 -num_threads 1 -num_descriptions 1 -num_alignments 1 -seg no > Pae21_results\/genesprediction\/Pae21\.predictedgenes\.AMR\.tmp\.25025\.blast 2> /dev/null
+[14:02:57] Deleting unwanted file: Pae21_results/genesprediction/Pae21.predictedgenes.AMR.tmp.25025.faa
+[14:02:57] Deleting unwanted file: Pae21_results/genesprediction/Pae21.predictedgenes.AMR.tmp.25025.blast
+[14:02:57] There are still 38 unannotated CDS left (started with 72)
+[14:02:57] Will use blast to search against /home/alerojo/anaconda2/envs/Rojo_py37/db/kingdom/Bacteria/sprot with 4 CPUs
+[14:02:57] Running: cat Pae21_results\/genesprediction\/Pae21\.predictedgenes\.sprot\.tmp\.25025\.faa | parallel --gnu --plain -j 4 --block 1312 --recstart '>' --pipe blastp -query - -db /home/alerojo/anaconda2/envs/Rojo_py37/db/kingdom/Bacteria/sprot -evalue 1e-09 -qcov_hsp_perc 80 -num_threads 1 -num_descriptions 1 -num_alignments 1 -seg no > Pae21_results\/genesprediction\/Pae21\.predictedgenes\.sprot\.tmp\.25025\.blast 2> /dev/null
+[14:02:59] Deleting unwanted file: Pae21_results/genesprediction/Pae21.predictedgenes.sprot.tmp.25025.faa
+[14:02:59] Deleting unwanted file: Pae21_results/genesprediction/Pae21.predictedgenes.sprot.tmp.25025.blast
+[14:02:59] There are still 25 unannotated CDS left (started with 72)
+[14:02:59] Will use hmmer3 to search against /home/alerojo/anaconda2/envs/Rojo_py37/db/hmm/HAMAP.hmm with 4 CPUs
+[14:02:59] Running: cat Pae21_results\/genesprediction\/Pae21\.predictedgenes\.HAMAP\.hmm\.tmp\.25025\.faa | parallel --gnu --plain -j 4 --block 802 --recstart '>' --pipe hmmscan --noali --notextw --acc -E 1e-09 --cpu 1 /home/alerojo/anaconda2/envs/Rojo_py37/db/hmm/HAMAP.hmm /dev/stdin > Pae21_results\/genesprediction\/Pae21\.predictedgenes\.HAMAP\.hmm\.tmp\.25025\.hmmer3 2> /dev/null
+[14:02:59] Deleting unwanted file: Pae21_results/genesprediction/Pae21.predictedgenes.HAMAP.hmm.tmp.25025.faa
+[14:02:59] Deleting unwanted file: Pae21_results/genesprediction/Pae21.predictedgenes.HAMAP.hmm.tmp.25025.hmmer3
+[14:02:59] Labelling remaining 23 proteins as 'hypothetical protein'
+[14:02:59] Possible /pseudo 'IS1182 family transposase ISCfr1' at Pae21_3624268:3625788 position 648
+[14:02:59] Possible /pseudo 'IS3 family transposase IS222' at Pae21_4725061:4726161 position 306
+[14:02:59] Found 8 unique /gene codes.
+[14:02:59] Fixed 2 duplicate /gene - menF_1 menF_2
+[14:02:59] Fixed 2 duplicate /gene - apxIB_1 apxIB_2
+[14:02:59] Fixed 2 duplicate /gene - aroH_1 aroH_2
+[14:02:59] Fixed 2 duplicate /gene - phzF_1 phzF_2
+[14:02:59] Fixed 2 duplicate /gene - cvaA_1 cvaA_2
+[14:02:59] Fixed 2 duplicate /gene - phzD2_1 phzD2_2
+[14:02:59] Fixed 2 duplicate /gene - phzG_1 phzG_2
+[14:02:59] Fixed 7 colliding /gene names.
+[14:02:59] Adding /locus_tag identifiers
+[14:02:59] Assigned 93 locus_tags to CDS and RNA features.
+[14:02:59] Writing outputs to Pae21_results/genesprediction/
+[14:02:59] Generating annotation statistics file
+[14:02:59] Generating Genbank and Sequin files
+[14:02:59] Running: tbl2asn -V b -a r10k -l paired-ends -M n -N 1 -y 'Annotated using prokka 1.14.5 from https://github.com/tseemann/prokka' -Z Pae21_results\/genesprediction\/Pae21\.predictedgenes\.err -i Pae21_results\/genesprediction\/Pae21\.predictedgenes\.fsa 2> /dev/null
+[14:03:00] Deleting unwanted file: Pae21_results/genesprediction/errorsummary.val
+[14:03:00] Deleting unwanted file: Pae21_results/genesprediction/Pae21.predictedgenes.dr
+[14:03:00] Deleting unwanted file: Pae21_results/genesprediction/Pae21.predictedgenes.fixedproducts
+[14:03:00] Deleting unwanted file: Pae21_results/genesprediction/Pae21.predictedgenes.ecn
+[14:03:00] Deleting unwanted file: Pae21_results/genesprediction/Pae21.predictedgenes.val
+[14:03:00] Repairing broken .GBK output that tbl2asn produces...
+[14:03:00] Running: sed 's/COORDINATES: profile/COORDINATES:profile/' < Pae21_results\/genesprediction\/Pae21\.predictedgenes\.gbf > Pae21_results\/genesprediction\/Pae21\.predictedgenes\.gbk
+[14:03:00] Deleting unwanted file: Pae21_results/genesprediction/Pae21.predictedgenes.gbf
+[14:03:00] Output files:
+[14:03:00] Pae21_results/genesprediction/Pae21.predictedgenes.ffn
+[14:03:00] Pae21_results/genesprediction/Pae21.predictedgenes.sqn
+[14:03:00] Pae21_results/genesprediction/Pae21.predictedgenes.gbk
+[14:03:00] Pae21_results/genesprediction/Pae21.predictedgenes.txt
+[14:03:00] Pae21_results/genesprediction/Pae21.predictedgenes.fsa
+[14:03:00] Pae21_results/genesprediction/Pae21.predictedgenes.tsv
+[14:03:00] Pae21_results/genesprediction/Pae21.predictedgenes.fna
+[14:03:00] Pae21_results/genesprediction/Pae21.predictedgenes.tbl
+[14:03:00] Pae21_results/genesprediction/Pae21.predictedgenes.err
+[14:03:00] Pae21_results/genesprediction/Pae21.predictedgenes.log
+[14:03:00] Pae21_results/genesprediction/Pae21.predictedgenes.gff
+[14:03:00] Pae21_results/genesprediction/Pae21.predictedgenes.faa
+[14:03:00] Annotation finished successfully.
+[14:03:00] Walltime used: 0.13 minutes
+[14:03:00] If you use this result please cite the Prokka paper:
+[14:03:00] Seemann T (2014) Prokka: rapid prokaryotic genome annotation. Bioinformatics. 30(14):2068-9.
+[14:03:00] Type 'prokka --citation' for more details.
+[14:03:00] Thank you, come again.
