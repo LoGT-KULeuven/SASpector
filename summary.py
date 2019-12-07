@@ -80,7 +80,7 @@ def regions(prefix, out):
     
     return mappedlocations, unmappedlocations, conflictlocations, reverselocations
     
-# Function to extract the regions from the reference and store them in dictionaries
+# Function to extract the regions (+ flanks) from the reference and store them in dictionaries
 
 def refextract(reference, mappedlocations, unmappedlocations, conflictlocations, prefix, flanking):
     """ Extracts the regions from the reference FASTA file
@@ -178,7 +178,7 @@ def refextract(reference, mappedlocations, unmappedlocations, conflictlocations,
     return mappeddict, unmappeddict, idunmap, conflictdict
 
 def unmapsum(unmappeddict, idunmap):
-    """ Generates summary statistics for the unmapped regions
+    """ Generates summary statistics for the extracted unmapped regions
     
     Parameters
     ----------
@@ -364,7 +364,7 @@ def refstats(reference, mappedlocations, unmappedlocations, conflictlocations, r
                      'Length': len(str(read.seq)),
                      'NumberMappedRegions': mappedlocations.shape[0] + reverselocations.shape[0] + conflictlocations.shape[0],
                      'NumberUnmappedRegions': unmappedlocations.shape[0],
-                     'ExtractedUnmappedRegions': len(unmappeddict),
+                     'FilteredUnmappedRegions': len(unmappeddict),
                      'FractionMapped': (total_map/len(str(read.seq)))*100,
                      'FractionUnmapped': (sum_unmap/len(str(read.seq)))*100}]
     
