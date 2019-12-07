@@ -18,7 +18,7 @@ import matplotlib.pyplot as plt
 
 This script calculates the average coverage of the mapped and unmapped regions. Using SAMtools bedcov, it calculates
 the coverage for both regions and generates a summary table including the coordinates for each region, total read base count
-and coverage defined as average per base depth. Additionally, it generates a barplot of the average per base depth for each mapped and unmapped region.
+and coverage defined as average per base depth. Additionally, it generates a boxplot of the average per base depth for each mapped and unmapped region.
 The input file is a provided alignment (BAM file) of the short reads against the reference genome.
 
 """
@@ -26,7 +26,8 @@ The input file is a provided alignment (BAM file) of the short reads against the
 # bwa mem {inputRef} {input.R1} {input.R2} | samtools view -b -o -- | bwa index-a bwtsw {inputREF}
 
 def make_bed(mappedlocations, conflictlocations, reference, outdir, prefix):
-    """ Generates bed files for the mapped locations, unmapped locations and conflict locations
+    """ Generates bed files for the mapped locations, unmapped locations and conflict locations. 
+        For coverage analysis the unmapped regions are not filtered and flanks are not included.
     
     Parameters
     ----------
