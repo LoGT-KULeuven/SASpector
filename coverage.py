@@ -25,13 +25,11 @@ The input file is a provided alignment (BAM file) of the short reads against the
 
 # bwa mem {inputRef} {input.R1} {input.R2} | samtools view -b -o -- | bwa index-a bwtsw {inputREF}
 
-def make_bed(unmappedlocations, mappedlocations, conflictlocations, reference, outdir, prefix):
+def make_bed(mappedlocations, conflictlocations, reference, outdir, prefix):
     """ Generates bed files for the mapped locations, unmapped locations and conflict locations
     
     Parameters
     ----------
-    unmappedlocations: dataframe
-        Coordinates of the unmapped regions
     mappedlocations: dataframe
         Coordinates of the mapped regions
     conflictlocations: dataframe
@@ -47,12 +45,16 @@ def make_bed(unmappedlocations, mappedlocations, conflictlocations, reference, o
     for seq in SeqIO.parse(reference, "fasta"):
         ID = seq.id.split(' ')[0]
 
-    #Include all unmapped regions from dataframes generated in summary script (also filtered unmapped regions)
-    unmapped = []
-    unmappedlocations.columns = ['start', 'end']
-    for i in unmappedloc.index.values.tolist():
-        dictunmap = {'id': ID, 'start': unmappedloc.loc[i, 'start'], 'end': unmappedloc.loc[i, 'end']}
-        unmapped.append(dictunmap)
+    #Include only the filtered (> 100 bp) unmapped regions from summary file
+    unmap = []
+    unmapsum = '{outdir}/{prefix}_unmapsummary.tsv'.format(outdir = outdir, prefix = prefix)
+    regions = pd.read_csv(unmapsum, sep = '\t')
+    regions = regions['Region'].values.tolist()
+    for region in regions:
+        start = region.split('_')[1].split(':')[0]
+        end = region.split('_')[1].split(':')[1]
+        dictunmap = {'id': ID, 'start': start, 'end': end}
+        unmap.append(dictunmap)
 
     #Mapped regions: from dataframes generated in summary script
     mapped = []
@@ -68,12 +70,12 @@ def make_bed(unmappedlocations, mappedlocations, conflictlocations, reference, o
     bedmap = '{outdir}/coverage/{prefix}_mappedregions.bed'.format(outdir = outdir, prefix = prefix)
 
     with open(bedunmap, "w") as outunmap, open(bedmap, "w") as outmap:
-        writerunmap = csv.DictWriter(outunmap, fieldnames=['id', 'start', 'end'], delimiter='\t')
-        for region in unmapped:
-            writerunmap.writerow(region)
         writermap = csv.DictWriter(outmap, fieldnames=['id', 'start', 'end'], delimiter='\t')
         for region in mapped:
             writermap.writerow(region)
+        writerunmap = csv.DictWriter(outunmap, fieldnames=['id', 'start', 'end'], delimiter='\t')
+        for region in unmap:
+            writerunmap.writerow(region)
 
 
 def sam(bamfile, outdir, prefix): 
@@ -105,7 +107,7 @@ def sam(bamfile, outdir, prefix):
     pipe4.wait()
     
 def output(outdir, prefix): 
-    """Writes the coverage statistics for each mapped and unmapped region to a result tsv file, and generates a barplot (jpg) of the coverage for each region.
+    """Writes the coverage statistics for each mapped and unmapped region to a result tsv file, and generates a boxplot (jpg) of the coverage for each region.
        Coverage is defined as average per base depth over the region.
     
     Parameters
@@ -130,40 +132,25 @@ def output(outdir, prefix):
     cvg=cvgu.append(cvgm, ignore_index = True)
     cvg.columns=['seq','start', 'end', 'total_perbase_depth', 'avg_perbase_depth', 'flag']
    
-    id_region = list()
-    for i in range(0, cvg.shape[0]):
-        start = str(cvg.iloc[i,1])
-        end = str(cvg.iloc[i,2])
-        string = (start, ':', end)
-        id_region.append(' '.join(string))
-    
-    id_region = pd.DataFrame(list(zip(id_region)), columns = ['region'])
-    cov = pd.concat([cvg, id_region], axis = 1)
-    
-    cov = cov.sort_values(by=['start'])
-    cov = cov.drop(['start', 'end'], axis = 1)
+    cvg = cvg.sort_values(by=['start'])
     newpath = '{outdir}/coverage'.format(outdir = outdir)
-    cov.to_csv(os.path.join(newpath,'{prefix}_coverageresults.tsv'.format(prefix = prefix)), sep = '\t', index = False)
+    cvg.to_csv(os.path.join(newpath,'{prefix}_coverageresults.tsv'.format(prefix = prefix)), sep = '\t', index = False)
 
-    #Barplot to compare the perbaseavg
-    plt.figure(figsize = (30,20))
+    #Boxplot to compare the perbaseavg
     sns.set(style = 'white', font_scale = 1.3)
-    ax = sns.barplot(x = 'region', y = 'avg_perbase_depth' , hue = 'flag', data = cov, palette = 'RdBu', saturation = 1)
-    ax.set_xlabel('Region')
+    ax = sns.boxplot(x = 'flag', y = 'avg_perbase_depth', data = cvg, fliersize=2.5)
+    ax.set_xlabel('')
     ax.set_ylabel('Average depth')
-    plt.xticks(rotation = 90)
     sns.despine()
     save = ax.get_figure()
     save.savefig(os.path.join(newpath, 'coverage_stats.jpg'))
 
 
-def cvg_main(unmappedlocations, mappedlocations, conflictlocations, bamfile, reference, outdir, prefix): 
+def cvg_main(mappedlocations, conflictlocations, bamfile, reference, outdir, prefix): 
     """Main function of this script
     
     Parameters
     ----------
-    unmappedlocations: dataframe
-        Coordinates of the unmapped regions in the reference genome
     mappedlocations: dataframe
         Coordinates of the mapped regions in the reference genome
     conflictlocations: dataframe
@@ -182,7 +169,7 @@ def cvg_main(unmappedlocations, mappedlocations, conflictlocations, bamfile, ref
     os.makedirs(os.path.join(outdir,newpath))
     bar = progressbar.ProgressBar(widgets = ['Running SAMtools: ', progressbar.Bar(), '(', progressbar.ETA(),')'])
     for i in bar(range(1)):
-        make_bed(unmappedlocations, mappedlocations, conflictlocations, reference, outdir, prefix)
+        make_bed(mappedlocations, conflictlocations, reference, outdir, prefix)
         sam(bamfile, outdir, prefix)
         output(outdir, prefix)
 
