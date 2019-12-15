@@ -1,0 +1,81 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Thu Nov 14 06:02:38 2019
+
+@author: alerojo
+"""
+
+import subprocess
+
+
+""" SASpectorcheck
+
+This script call all command-line tools for SASpector and checks if are installed in the system
+
+"""
+
+
+def main():
+    """Calls each command-line tool and catch an exception if the tool is not installed
+
+    """
+
+    #Mauve
+    try:
+        subprocess.check_call(['progressiveMauve'])
+    except subprocess.CalledProcessError:
+        pass
+    except OSError:
+        print('Mauve command not found!' + '\n' +
+        'Please install Mauve or progressiveMauve or check the environment path variable' + '\n')
+    print('\n')
+
+    #Prokka
+    try:
+        subprocess.check_call(['prokka'])
+    except subprocess.CalledProcessError:
+        pass
+    except OSError:
+        print('Prokka command not found!' + '\n' +
+        'Please install Prokka from or check the environment path variable' + '\n')
+    print('\n')
+    #BLAST+
+    try:
+        subprocess.check_call(['blastx'])
+    except subprocess.CalledProcessError:
+        pass
+    except OSError:
+        print('BLAST+ command not found!' + '\n' +
+        'Please install BLAST+ or check the environment path variable' + '\n')
+    print('\n')
+    #QUAST
+    try:
+        subprocess.check_call(['quast.py'])
+    except subprocess.CalledProcessError:
+        pass
+    except OSError:
+        print('Quast command not found!' + '\n' +
+        'Please install Quast from bioconda or check environment path variable' + '\n')
+    print('\n')
+    #SAMtools
+    try:
+        subprocess.check_call(['samtools'])
+    except subprocess.CalledProcessError:
+        pass
+    except OSError:
+        print('SAMtools command not found!' + '\n' +
+        'Please install SAMtools from bioconda or check environment path variable' + '\n')
+    print('\n')
+    #TRF
+    try:
+        subprocess.check_call(['trf409.linux64'])
+    except subprocess.CalledProcessError:
+        pass
+    except OSError:
+        print('Tandem Repeat Finder command not found' + '\n' +
+        'Please install TRF or check environment path variable' + '\n')
+    print('\n')
+
+if __name__ == '__main__':
+    main()
