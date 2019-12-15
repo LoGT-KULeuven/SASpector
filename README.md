@@ -135,6 +135,7 @@ SASpector [Reference genome].fasta [Contigs].fasta -p [Genome ID] -dir [Output d
 ## Output
 
 ```
+[Output directory]/
   [Genome ID]_unmappedregions.fasta    FASTA file of the missing regions
   [Genome ID]_mappedregions.fasta      FASTA file of the mapped regions
   [Genome ID]_conflictregions.fasta    FASTA file of regions that did not map correctly
