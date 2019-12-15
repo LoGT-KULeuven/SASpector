@@ -9,9 +9,7 @@ Master of Bioinformatics - KU Leuven, Belgium
 
 ## Tool: SASpector (Short-read Assembly inSpector)
 [![License: MIT](https://img.shields.io/apm/l/vim-mode)](https://mit-license.org/)
-[![PyPI version](https://img.shields.io/pypi/v/SASpector)](https://img.shields.io/pypi/v/SASpector)
-
-
+[![PyPI version](https://img.shields.io/pypi/v/SASpector)](https://pypi.org/project/SASpector/)
 
 ![Image](https://github.com/alejocrojo09/IBP19-20/blob/master/SASPector-final.png?raw=true)
 
@@ -61,7 +59,7 @@ Optionally, some scripts provide additional analysis:
 - BLAST+
 - QUAST (v5.02) (https://github.com/ablab/quast)
 - SAMtools (v1.7) (http://samtools.sourceforge.net/)
-- Tandem Repeats Finder (TRF) (v4.09) Note: SASpector run TRF with the name `trf409.linux64`.
+- Tandem Repeats Finder (https://tandem.bu.edu/trf/trf.download.html) (v4.09) Note: SASpector run TRF with the name `trf409.linux64`.
 
 ### Installation
 
