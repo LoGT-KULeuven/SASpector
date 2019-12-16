@@ -11,7 +11,7 @@ Master of Bioinformatics - KU Leuven, Belgium
 [![License: MIT](https://img.shields.io/apm/l/vim-mode)](https://mit-license.org/)
 [![PyPI version](https://img.shields.io/pypi/v/SASpector)](https://pypi.org/project/SASpector/)
 
-<img src="https://github.com/alejocrojo09/IBP19-20/blob/master/SASPector-final.png?raw=true" class = center width="250" height="250"/>
+<img src="https://github.com/alejocrojo09/IBP19-20/blob/master/SASPector-final.png?raw=true" class = "center" width="250" height="250"/>
 
 A bioinformatics tool to extract and analyze missing regions of short-read assemblies by mapping the contigs to a reference genome.
 
