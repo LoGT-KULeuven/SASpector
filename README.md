@@ -11,7 +11,7 @@ Master of Bioinformatics - KU Leuven, Belgium
 [![License: MIT](https://img.shields.io/apm/l/vim-mode)](https://mit-license.org/)
 [![PyPI version](https://img.shields.io/pypi/v/SASpector)](https://pypi.org/project/SASpector/)
 
-<img src="https://github.com/alejocrojo09/IBP19-20/blob/master/SASPector-final.png?raw=true" width="250" height="250"/>
+<img src="https://github.com/alejocrojo09/IBP19-20/blob/master/SASPector-final.png?raw=true" class = center width="250" height="250"/>
 
 A bioinformatics tool to extract and analyze missing regions of short-read assemblies by mapping the contigs to a reference genome.
 
@@ -195,5 +195,9 @@ For questions or issues, go to this repository Issues tab.
 ## References
 - Altschul, S. F., Gish, W., Miller, W., Myers, E. W., & Lipman, D. J. (1990). Basic local alignment search tool. Journal of Molecular Biology, 215(3), 403–410.
 - Darling, A. C. E. (2004). Mauve: Multiple Alignment of Conserved Genomic Sequence With Rearrangements. Genome Research, 14(7), 1394–1403.
-- Mapleson, D., Garcia Accinelli, G., Kettleborough, G., Wright, J., & Clavijo, B. J. (2016). KAT: a K-mer analysis toolkit to quality control NGS datasets and genome assemblies. Bioinformatics, 33(4).
+- Brown and Irber (2016), sourmash: a library for MinHash sketching of DNA Journal of Open Source Software, 1(5), 27.
+- Pierce NT, Irber L, Reiter T et al. Large-scale sequence comparisons with sourmash [version 1; peer review: 2 approved]. F1000Research 2019, 8:1006
 - Gurevich, A., Saveliev, V., Vyahhi, N., & Tesler, G. (2013). QUAST: Quality assessment tool for genome assemblies. Bioinformatics, 29(8), 1072–1075.
+- Li H.*, Handsaker B.*, Wysoker A., Fennell T., Ruan J., Homer N., Marth G., Abecasis G., Durbin R. and 1000 Genome Project Data Processing Subgroup (2009) The Sequence alignment/map (SAM) format and SAMtools. Bioinformatics, 25, 2078-9. 
+- Torsten Seemann, Prokka: rapid prokaryotic genome annotation, Bioinformatics, Volume 30, Issue 14, 15 July 2014, Pages 2068–2069.
+- Benson G. (1999). Tandem repeats finder: a program to analyze DNA sequences. Nucleic acids research, 27(2), 573–580. 
