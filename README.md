@@ -2,7 +2,7 @@
 
 "SASpector: a tool for analysis of missing regions in (bacterial) draft genomes"
 Alejandro Correa Rojo, 
-Deniz Sinar and 
+Deniz Sinar (https://github.com/dsinar) and 
 Emma Verkinderen (https://github.com/emmaver)
 
 Advisor: Cédric Lood
