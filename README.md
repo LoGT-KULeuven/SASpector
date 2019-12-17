@@ -1,7 +1,9 @@
 # Integrated Bioinformatics Project 19-20
 
 "SASpector: a tool for analysis of missing regions in (bacterial) draft genomes"
-Alejandro Correa Rojo, Deniz Sinar and Emma Verkinderen
+Alejandro Correa Rojo, 
+Deniz Sinar and 
+Emma Verkinderen (https://github.com/emmaver)
 
 Advisor: Cédric Lood
 
