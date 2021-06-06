@@ -1,7 +1,6 @@
 README.md
 setup.py
 SASpector/SASpector
-SASpector/SASpectorcheck
 SASpector/__init__.py
 SASpector/coverage.py
 SASpector/gene_predict.py
