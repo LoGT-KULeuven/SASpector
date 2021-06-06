@@ -9,7 +9,7 @@ import os
 import sys
 from shutil import which
 
-from mapper import mauve
+from mapper import mauve, union
 from summary import extract_main
 from gene_predict import prokka, blast
 from kmer import kmer, trf, clustermap
@@ -58,12 +58,17 @@ def main():
     is_available("blastx")
     is_available("quast.py")
     is_available("samtools")
-    is_available("trf409.linux64")
+    is_available("trf")
     is_available("union")
     
     if not os.path.exists(args.outdir):
         os.makedirs(args.outdir)
 
+    concatenated = union(args.reference, args.prefix, args.outdir)
+
+    if(concatenated):
+        args.reference = "{prefix}_concatenated.fasta".format(prefix=args.prefix)
+        
     mauve(args.reference, args.contigs, args.prefix, args.outdir)
     mappedlocations, unmappedlocations, conflictlocations, reverselocations = extract_main(args.reference, args.prefix, args.flanking, args.outdir)
     prokka(args.prefix, args.outdir)

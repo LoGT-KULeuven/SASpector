@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+"""
+@author: alerojo, 0mician
+"""
 
 import subprocess
 import shlex
@@ -15,7 +18,32 @@ second input file is the Illumina contigs FASTA file.
 
 """
 
+def union(reference, prefix, out):
+    """ Wraps union function from EMBOSS to check if reference is multifasta & combining
+    
+    Parameters
+    ----------
+    reference : str
+        The file location of the reference FASTA file
+    prefix : str
+        Name of the genome
+    out : str
+        Output directory  
+    """
+    fasta_count = len([1 for line in open(reference) if line.startswith(">")])
+    print("Your reference contains %i contigs. We are concatenating them to %s before pursuing" % (fasta_count, "{prefix}_concatenated.fasta".format(prefix=prefix)))
+          
+    if(fasta_count > 1):
+        cmd = 'union -sequence {reference} -outseq {concatenated}'.format(
+            reference = reference, concatenated = "{prefix}_concatenated.fasta".format(prefix=prefix))
+        process = subprocess.Popen(shlex.split(cmd), stdout = subprocess.PIPE)
+        while process.poll() is None:
+            l = process.stdout.readline()
+        return True
+    else:
+        return False
 
+        
 def mauve(reference, contigs, prefix, out):
     """ Wraps progressiveMauve command line and generates the alignment outputs with the backbone file in alignment subdirectory
     
