@@ -6,13 +6,15 @@ with open('README.md', 'r') as fh:
 
 setuptools.setup(
     name = 'SASpector',
-    version = '0.0.1',
-    author = 'KU Leuven - IBP Group',
-    author_email = 'alecorrojo@gmail.com',
+    version = '0.0.2',
+    author = 'KU Leuven',
+    author_email = 'alecorrojo@gmail.com, cedric.lood@kuleuven.be',
+    maintainer = 'Computational systems biology group',
+    maintainer_email = 'vera.vannoort@kuleuven.be',
     description = 'Short-read Assembly inSpector',
     long_description = long_description,
     long_description_content_type = 'text/markdown',
-    url = 'https://github.com/alejocrojo09/IBP19-20',
+    url = 'https://github.com/LoGT-KULeuven/SASpector',
     packages = setuptools.find_packages(),
     keywords = '',
     install_requires = [
@@ -25,7 +27,7 @@ setuptools.setup(
         'numpy'
     ],
     data_files = [('', ['SASpector/saspector_proteindb.fasta'])],
-    scripts = ['SASpector/SASpector', 'SASpector/SASpectorcheck', 'SASpector/coverage.py', 'SASpector/gene_predict.py', 'SASpector/kmer.py', 'SASpector/quastunmap.py', 'SASpector/mapper.py', 'SASpector/summary.py'],
+    scripts = ['SASpector/SASpector', 'SASpector/coverage.py', 'SASpector/gene_predict.py', 'SASpector/kmer.py', 'SASpector/quastunmap.py', 'SASpector/mapper.py', 'SASpector/summary.py'],
     classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
