@@ -1,7 +1,0 @@
-progressbar
-pandas
-seaborn
-matplotlib
-biopython
-sourmash
-numpy
