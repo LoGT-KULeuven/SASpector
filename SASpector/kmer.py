@@ -14,7 +14,6 @@ import logging
 import shlex
 import shutil
 import subprocess
-import glob
 import sourmash
 import pandas as pd
 import numpy as np

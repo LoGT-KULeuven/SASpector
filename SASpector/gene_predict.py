@@ -3,12 +3,12 @@
 """
 Created on Tue Nov 19 11:46:33 2019
 
-@author: alerojo
+@author: alerojo, 0mician
 """       
-
+import logging
 import subprocess
 import shlex
-import progressbar 
+
 from Bio.Blast.Applications import NcbiblastxCommandline as blastx
 
 """ gene_predict
@@ -31,12 +31,11 @@ def prokka(prefix, outdir):
         Output directory
         
     """
-    bar = progressbar.ProgressBar(widgets = ['Predicting genes: ', progressbar.Bar(), '(', progressbar.ETA(),')'])
-    for i in bar(range(1)):
-        cmd = 'prokka --outdir {outdir}/genesprediction --prefix {prefix}.predictedgenes {outdir}/{prefix}_unmappedregions.fasta'.format(prefix = prefix, outdir = outdir)
-        process = subprocess.Popen(shlex.split(cmd), stdout = subprocess.PIPE, stderr = subprocess.STDOUT)
-        while process.poll() is None:
-            l = process.stdout.readline() 
+    logging.info("Starting annotation with prokka")
+    cmd = 'prokka --outdir {outdir}/genesprediction --prefix {prefix}.predictedgenes {outdir}/{prefix}_unmappedregions.fasta'.format(prefix = prefix, outdir = outdir)
+    process = subprocess.Popen(shlex.split(cmd), stdout = subprocess.DEVNULL, stderr = subprocess.STDOUT)
+    process.wait()
+    logging.info("Annotation process completed")
             
 def blast(outdir, prefix, proteindb):
     """ Wraps BLAST+ and performs blastx with output Prokka nucleotide FASTA file and SASpector protein FASTA file
@@ -51,10 +50,10 @@ def blast(outdir, prefix, proteindb):
         The file location of the protein database FASTA file
     
     """
-    bar = progressbar.ProgressBar(widgets = ['BLAST genes: ', progressbar.Bar(), '(', progressbar.ETA(),')'])
-    for i in bar(range(1)):
-        cline = blastx(cmd = 'blastx', out = '{outdir}/{prefix}_blastxresults.tsv'.format(prefix = prefix, outdir = outdir), evalue = 0.001, 
-                   outfmt = '6 qseqid qstart qend sseqid sstartstdout, stderr = cline()stdout, stderr = cline() send pident evalue qcovs', query = '{outdir}/genesprediction/{prefix}.predictedgenes.fsa'.format(outdir = outdir, prefix = prefix), subject = proteindb)
-        stdout, stderr = cline()
+    logging.info("Blasting of genes found in missing regions against protein fasta file provided (or default file if none provided")
+    cline = blastx(cmd = 'blastx', out = '{outdir}/{prefix}_blastxresults.tsv'.format(prefix = prefix, outdir = outdir), evalue = 0.001, 
+                   outfmt = '6 qacc sacc stitle qlen slen qstart qend sstart send sstrand length nident mismatch positive evalue, stderr = cline()stdout, stderr = cline() send pident evalue qcovs', query = '{outdir}/genesprediction/{prefix}.predictedgenes.fsa'.format(outdir = outdir, prefix = prefix), subject = proteindb, max_target_seqs = 5)
+    stdout, stderr = cline()
+    logging.info("Blast completed")
 
     
