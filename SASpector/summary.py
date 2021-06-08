@@ -3,7 +3,7 @@
 """
 Created on Thu Nov 14 07:50:22 2019
 
-@author: alerojo
+@author: alerojo, 0mician
 """
 
 from Bio import SeqUtils, SeqIO, BiopythonWarning
@@ -11,8 +11,9 @@ from Bio.Seq import Seq
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+
+import logging
 import os
-import progressbar 
 import time
 import warnings
 
@@ -501,15 +502,14 @@ def extract_main(reference, prefix, flanking, out):
         Coordinates of the mapped reverse complementary regions
         
     """
+    logging.info("Analysis of the whole genome alignment and extraction of regions of interest")
     warnings.simplefilter('ignore', BiopythonWarning)
-    bar = progressbar.ProgressBar(widgets = ['Extracting: ', progressbar.Bar(), '(', progressbar.ETA(),')'])
-    for i in bar(range(1)):
-        mappedlocations, unmappedlocations, conflictlocations, reverselocations = regions(prefix, out)
-        mappeddict, unmappeddict, idunmap, conflictdict = refextract(reference, mappedlocations, unmappedlocations, conflictlocations, prefix, flanking)
-        unmap_stats = unmapsum(unmappeddict, idunmap)
-        refstats_t = refstats(reference, mappedlocations, unmappedlocations, conflictlocations, reverselocations, unmappeddict)
-        plot(unmappeddict, unmap_stats, out)
-        time.sleep(0.02)
+    mappedlocations, unmappedlocations, conflictlocations, reverselocations = regions(prefix, out)
+    mappeddict, unmappeddict, idunmap, conflictdict = refextract(reference, mappedlocations, unmappedlocations, conflictlocations, prefix, flanking)
+    unmap_stats = unmapsum(unmappeddict, idunmap)
+    refstats_t = refstats(reference, mappedlocations, unmappedlocations, conflictlocations, reverselocations, unmappeddict)
+    plot(unmappeddict, unmap_stats, out)
+    time.sleep(0.02)
     output(mappeddict, unmappeddict, conflictdict, refstats_t, unmap_stats, prefix, out)
     return mappedlocations, unmappedlocations, conflictlocations, reverselocations
 

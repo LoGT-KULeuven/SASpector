@@ -2,15 +2,15 @@
 """
 Created on Sat Nov 23 21:58:29 2019
 
-@author: emmav
+@author: emmav, 0mician
 """
+import logging
 
 import pandas as pd
 import csv
 from Bio import SeqIO
 import subprocess
 import os
-import progressbar
 import seaborn as sns
 import matplotlib.pyplot as plt
 
@@ -43,6 +43,7 @@ def make_bed(mappedlocations, conflictlocations, reference, outdir, prefix):
         Name of the genome
 
     """
+    logging.info("Bed file generation")
     for seq in SeqIO.parse(reference, "fasta"):
         ID = seq.id.split(' ')[0]
 
@@ -93,6 +94,7 @@ def sam(bamfile, outdir, prefix):
         Name of genome
 
     """
+    logging.info("Samtools analysis")
     sort = 'samtools sort -o {outdir}/coverage/{prefix}.sorted.bam {bam}'.format(outdir = outdir, prefix = prefix, bam = bamfile)
     index = 'samtools index {outdir}/coverage/{prefix}.sorted.bam'.format(outdir = outdir, prefix = prefix)
     bedcovu = 'samtools bedcov {outdir}/coverage/{prefix}_unmappedregions.bed {outdir}/coverage/{prefix}.sorted.bam > {outdir}/coverage/{prefix}_unmapcvg.tsv'.format(outdir = outdir, prefix = prefix)
@@ -118,6 +120,7 @@ def output(outdir, prefix):
     prefix: str
         Name of genome
     """
+    logging.info("Saving coverage analysis files")
     bedcovu = '{outdir}/coverage/{prefix}_unmapcvg.tsv'.format(prefix = prefix, outdir = outdir)
     bedcovm = '{outdir}/coverage/{prefix}_mapcvg.tsv'.format(prefix = prefix, outdir = outdir)
 
@@ -172,8 +175,8 @@ def cvg_main(mappedlocations, conflictlocations, bamfile, reference, outdir, pre
     """
     newpath = 'coverage'
     os.makedirs(os.path.join(outdir,newpath))
-    bar = progressbar.ProgressBar(widgets = ['Running SAMtools: ', progressbar.Bar(), '(', progressbar.ETA(),')'])
-    for i in bar(range(1)):
-        make_bed(mappedlocations, conflictlocations, reference, outdir, prefix)
-        sam(bamfile, outdir, prefix)
-        output(outdir, prefix)
+    logging.info("Running coverage analysis (bed file generation, samfile analysis, saving files)")
+    make_bed(mappedlocations, conflictlocations, reference, outdir, prefix)
+    sam(bamfile, outdir, prefix)
+    output(outdir, prefix)
+    logging.info("Coverage analysis completed!")

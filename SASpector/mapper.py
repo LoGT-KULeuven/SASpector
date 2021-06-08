@@ -3,12 +3,12 @@
 """
 @author: alerojo, 0mician
 """
-
+import logging
+import os
 import subprocess
 import shlex
-import os
 import shutil
-import progressbar 
+
 
 """ mapper
 
@@ -31,14 +31,13 @@ def union(reference, prefix, out):
         Output directory  
     """
     fasta_count = len([1 for line in open(reference) if line.startswith(">")])
-    print("Your reference contains %i contigs. We are concatenating them to %s before pursuing" % (fasta_count, "{prefix}_concatenated.fasta".format(prefix=prefix)))
+    logging.info("Your reference contains %i contigs. We are concatenating them into %s before pursuing" % (fasta_count, "{prefix}_concatenated.fasta".format(prefix=prefix)))
           
     if(fasta_count > 1):
         cmd = 'union -sequence {reference} -outseq {concatenated}'.format(
             reference = reference, concatenated = "{prefix}_concatenated.fasta".format(prefix=prefix))
-        process = subprocess.Popen(shlex.split(cmd), stdout = subprocess.PIPE)
-        while process.poll() is None:
-            l = process.stdout.readline()
+        process = subprocess.Popen(shlex.split(cmd), stdout = subprocess.DEVNULL, stderr=subprocess.STDOUT)
+        process.wait()
         return True
     else:
         return False
@@ -59,15 +58,11 @@ def mauve(reference, contigs, prefix, out):
         Output directory
     
     """
-    
-    bar = progressbar.ProgressBar(widgets = ['Aligning: ', progressbar.Bar(), '(', progressbar.ETA(),')'])
-    for i in bar(range(1)):
-        cmd = 'progressiveMauve {reference} {contigs} --output={prefix}.alignment --backbone-output={prefix}.backbone'.format(
-        reference = reference, contigs = contigs, prefix = prefix, out = out)
-        process = subprocess.Popen(shlex.split(cmd), stdout = subprocess.PIPE)
-        while process.poll() is None:
-            l = process.stdout.readline()
-
+    logging.info("Starting whole genome alignment")
+    cmd = 'progressiveMauve {reference} {contigs} --output={prefix}.alignment --backbone-output={prefix}.backbone'.format(
+    reference = reference, contigs = contigs, prefix = prefix, out = out)
+    process = subprocess.Popen(shlex.split(cmd), stdout = subprocess.DEVNULL, stderr=subprocess.STDOUT)
+    process.wait()
     
     newdir = 'alignment'
     os.makedirs(os.path.join(out,newdir))
@@ -77,5 +72,6 @@ def mauve(reference, contigs, prefix, out):
     shutil.move('{reference}.sslist'.format(reference = reference), '{out}/alignment/{reference}.sslist'.format(out = out, reference = reference))
     shutil.move('{contigs}.sslist'.format(contigs = contigs), '{out}/alignment/{contigs}.sslist'.format(out = out, contigs = contigs))
 
-
+    logging.info("Whole genome alignment completed!")
+    
 

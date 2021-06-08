@@ -5,16 +5,19 @@
 """
 
 import argparse
+import logging
 import os
+import shutil
 import sys
-from shutil import which
+
 
 from mapper import mauve, union
 from summary import extract_main
 from gene_predict import prokka, blast
-from kmer import kmer, trf, clustermap
+from kmer import kmer, clustermap
 from quastunmap import quast
 from coverage import cvg_main
+from tandem_repeats import trf
 
 """ SASpector
 
@@ -28,10 +31,10 @@ The tool takes as global inputs the reference genome and a short-read assembly a
 def is_available(program):
     """Verify if program is available on the PATH"""
     
-    if which(program) is not None:
-        print(program + " installed?: OK")
+    if shutil.which(program) is not None:
+        logging.info(program + " installed?: OK")
     else:
-        print(program + " installed?: Not Available on the path.. stopping SASpector.")
+        logging.info(program + " installed?: Not Available on the path.. stopping SASpector.")
         sys.exit()
 
 def main():
@@ -44,14 +47,23 @@ def main():
     parser.add_argument('contigs', type = str, metavar = 'Contigs FASTA file', help = 'Illumina FASTA file as contigs/draft genome')
     parser.add_argument('-p', '--prefix', metavar = 'Prefix', type = str, help = 'Genome ID')
     parser.add_argument('-dir', '--outdir', metavar = 'Output path', help = 'Output directory')
-    parser.add_argument('-f', '--flanking', nargs = '?' , metavar = 'Length', const = 'flanking', type = int, help = 'Add flanking regions [Default = 100]', default = 0)
+    parser.add_argument('--force', help = 'Force output directory overwrite', action = 'store_true')
+    parser.add_argument('-fl', '--flanking', nargs = '?' , metavar = 'Length', const = 'flanking', type = int, help = 'Add flanking regions [Default = 100]', default = 0)
     parser.add_argument('-db', '--proteindb', nargs = '?', metavar = 'Protein FASTA file', const = 'proteindb', type = str, help = 'BLAST protein database FASTA file')
+    parser.add_argument('-trf', '--tandem_repeats', help = 'Run tandem repeat finder within missing regions', action = 'store_true')
     parser.add_argument('-k', '--kmers', nargs = '?' ,const = 'kmers', metavar = 'k size', type = int, help = 'Calculate kmer frequencies', default = 0)
     parser.add_argument('-q','--quast', help = 'Run QUAST for unmapped regions against reference assembly', action = 'store_true')
     parser.add_argument('-c', '--coverage', nargs='?', const='coverage', metavar='BAM file', type = str, help = 'Run SAMtools bedcov to look at short-read coverage in the missing regions. Needs alignment of reads to the reference genome in BAM format')
         
     args = parser.parse_args()
-
+    
+    logging.basicConfig(
+        level = logging.INFO,
+        format = '[%(asctime)s] %(levelname)s: %(message)s',
+        datefmt = '%d/%m %H:%M:%S'
+    )
+    logging.info("welcome to SASpector v0.0.2")
+    
     # checking if all softwares are available
     is_available("progressiveMauve")
     is_available("prokka")
@@ -60,10 +72,15 @@ def main():
     is_available("samtools")
     is_available("trf")
     is_available("union")
-    
-    if not os.path.exists(args.outdir):
-        os.makedirs(args.outdir)
 
+    if os.path.exists(args.outdir):
+        if args.force:
+            shutil.rmtree(args.outdir, ignore_errors=True)
+        else:
+            logging.info("Output folder already exists (user --force if you really want to overwrite it) - SASpector exit")
+            sys.exit()
+    os.makedirs(args.outdir)
+    
     concatenated = union(args.reference, args.prefix, args.outdir)
 
     if(concatenated):
@@ -73,17 +90,21 @@ def main():
     mappedlocations, unmappedlocations, conflictlocations, reverselocations = extract_main(args.reference, args.prefix, args.flanking, args.outdir)
     prokka(args.prefix, args.outdir)
     if args.proteindb:
+        if args.proteindb == "proteindb":
+            logging.info("Please provide a protein database file or using the protein database provided with SASpector")
+            sys.exit()
         blast(args.outdir, args.prefix, args.proteindb)
     if args.kmers:
         kmer(args.kmers, args.prefix, args.outdir)
-        trf(args.prefix, args.outdir)
         clustermap(args.prefix, args.outdir)
+    if args.tandem_repeats is True:
+        trf(args.prefix, args.outdir)
     if args.quast is True:
          quast(args.reference, args.outdir, args.prefix)
     if args.coverage:
         cvg_main(mappedlocations, conflictlocations, args.coverage, args.reference, args.outdir, args.prefix)
 
-    print('Done!')
+    logging.info("SASpector has completed the analysis!")
 
 if __name__ == '__main__':
     main()
