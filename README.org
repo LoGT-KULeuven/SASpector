@@ -10,6 +10,14 @@
 
 Publication: to be added (doi)
 
+#+BEGIN_SRC markdown
+[![License: MIT](https://img.shields.io/apm/l/vim-mode)](https://mit-license.org/)
+[![PyPI version](https://img.shields.io/pypi/v/SASpector)](https://pypi.org/project/SASpector/)
+<p align="center">
+  <img src="https://github.com/alejocrojo09/IBP19-20/blob/master/SASPector-final.png?raw=true" width="250" height="250"/>
+</p>
+#+END_SRC
+
 * Introduction
 
 SASpector is a tool that compares a short-reads assembly with a
