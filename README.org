@@ -1,22 +1,11 @@
 * SASpector: a tool for analysis of missing regions in (bacterial) draft genomes"
 
-[[https://img.shields.io/apm/l/vim-mode]]
-[[https://img.shields.io/pypi/v/SASpector]]
+[[SASPector-logo.png]]
 
- [[SASPector-final.png]]
-
- A bioinformatics tool to extract and analyze missing regions of
- short-read assemblies by mapping the contigs to a reference genome.
+A bioinformatics tool to extract and analyze missing regions of
+short-read assemblies by mapping the contigs to a reference genome.
 
 Publication: to be added (doi)
-
-#+BEGIN_SRC markdown
-[![License: MIT](https://img.shields.io/apm/l/vim-mode)](https://mit-license.org/)
-[![PyPI version](https://img.shields.io/pypi/v/SASpector)](https://pypi.org/project/SASpector/)
-<p align="center">
-  <img src="https://github.com/alejocrojo09/IBP19-20/blob/master/SASPector-final.png?raw=true" width="250" height="250"/>
-</p>
-#+END_SRC
 
 * Introduction
 
