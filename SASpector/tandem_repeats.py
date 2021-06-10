@@ -6,6 +6,7 @@ Created on Sat Nov  9 19:02:15 2019
 @author: alerojo, 0mician
 """
 import glob
+import logging
 import os
 import shlex
 import shutil
