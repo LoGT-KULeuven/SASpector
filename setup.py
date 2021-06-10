@@ -1,12 +1,12 @@
 import os
 import setuptools
 
-with open('README.org', 'r') as fh:
+with open('README.md', 'r') as fh:
     long_description = fh.read()
 
 setuptools.setup(
     name = 'SASpector',
-    version = '0.0.2',
+    version = '0.0.3',
     author = 'KU Leuven',
     author_email = 'alecorrojo@gmail.com, cedric.lood@kuleuven.be',
     maintainer = 'Computational systems biology group',
