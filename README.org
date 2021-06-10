@@ -1,13 +1,12 @@
 * SASpector: a tool for analysis of missing regions in (bacterial) draft genomes"
 
-[![License: MIT](https://img.shields.io/apm/l/vim-mode)](https://mit-license.org/)
-[![PyPI version](https://img.shields.io/pypi/v/SASpector)](https://pypi.org/project/SASpector/)
-<p align="center">
-  <img src="https://github.com/alejocrojo09/IBP19-20/blob/master/SASPector-final.png?raw=true" width="250" height="250"/>
-</p>
+[[https://img.shields.io/apm/l/vim-mode]]
+[[https://img.shields.io/pypi/v/SASpector]]
 
-A bioinformatics tool to extract and analyze missing regions of
-short-read assemblies by mapping the contigs to a reference genome.
+ [[SASPector-final.png]]
+
+ A bioinformatics tool to extract and analyze missing regions of
+ short-read assemblies by mapping the contigs to a reference genome.
 
 Publication: to be added (doi)
 
@@ -70,12 +69,12 @@ Linux 64-bit and OS X are supported.
 
 ** Third-party tools (available on bioconda)
 
-- [[progressiveMauve][https://darlinglab.org/mauve/mauve.html]]
-- [[prokka][https://github.com/tseemann/prokka]]
-- [[BLAST+][https://blast.ncbi.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=Download]]
-- [[QUAST][https://github.com/ablab/quast]]
-- [[SAMtools][http://samtools.sourceforge.net/]]
-- [[Tandem Repeats Finder][https://tandem.bu.edu/trf/trf.download.html]]
+- [[https://darlinglab.org/mauve/mauve.html][progressiveMauve]]
+- [[https://github.com/tseemann/prokka][prokka]]
+- [[https://blast.ncbi.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=Download][BLAST+]]
+- [[https://github.com/ablab/quast][QUAST]]
+- [[http://samtools.sourceforge.net/][SAMtools]]
+- [[https://tandem.bu.edu/trf/trf.download.html][Tandem repeats finder]]
 
 ** Installation
 
@@ -148,7 +147,7 @@ Finally, SASpector will predict genes that are in the missing regions
 using Prokka and if a protein FASTA file database is provided,
 SASpector will BLAST the output sequences from Prokka to the database
 generating a tab-delimited summary with the hits of the sequences. You
-can use our defined database `saspector_proteindb.fasta`.
+can use our defined database /saspector_proteindb.fasta/.
 
 As optional analysis:
 
