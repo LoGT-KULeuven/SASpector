@@ -20,7 +20,7 @@ setuptools.setup(
     install_requires = [
         'progressbar',
         'pandas',
-        'seaborn',
+        'seaborn>=0.10',
         'matplotlib',
         'biopython',
         'sourmash',
