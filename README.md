@@ -1,15 +1,5 @@
-# Integrated Bioinformatics Project 19-20
+# SASpector: a tool for analysis of missing regions in (bacterial) draft genomes"
 
-"SASpector: a tool for analysis of missing regions in (bacterial) draft genomes"
-Alejandro Correa Rojo, 
-Deniz Sinar (https://github.com/dsinar) and 
-Emma Verkinderen (https://github.com/emmaver)
-
-Advisor: Cédric Lood
-
-Master of Bioinformatics - KU Leuven, Belgium
-
-## Tool: SASpector (Short-read Assembly inSpector)
 [![License: MIT](https://img.shields.io/apm/l/vim-mode)](https://mit-license.org/)
 [![PyPI version](https://img.shields.io/pypi/v/SASpector)](https://pypi.org/project/SASpector/)
 <p align="center">
@@ -18,7 +8,9 @@ Master of Bioinformatics - KU Leuven, Belgium
 
 A bioinformatics tool to extract and analyze missing regions of short-read assemblies by mapping the contigs to a reference genome.
 
-## Introduction
+Publication: to be added (doi)
+
+# Introduction
 
 SASpector is a tool that compares a short-reads assembly with a reference bacterial genome (for example obtained via hybrid assembly) by extracting missing (unmapped) regions from the reference and analyzing them to see functional and compositional pattern. The aim of the analysis is to explain why these regions are missed by the short-read assembly and if important parts of the genome are missed when a resolved genome is lacking.
 
@@ -36,9 +28,7 @@ Optionally, some scripts provide additional analysis:
 - `coverage.py`: calculates the average coverage of the missing and mapped regions with a provided BED file.
 - `quastunmap.py`: performs a genome quality assessment for the missing regions to the reference and provides a genome viewer using QUAST and Icarus.
 
-## Getting Started
-
-### System Requirements
+# System Requirements
 
 - Linux 64-bit and OS X are supported.
 
@@ -55,14 +45,14 @@ Optionally, some scripts provide additional analysis:
 - numpy
 - sourmash
 
-#### Third-party tools
+#### Third-party tools (available on bioconda)
 
-- Mauve or pogressiveMauve (v2.4.0) (https://darlinglab.org/mauve/mauve.html)
-- Prokka (v1.14.5) (https://github.com/tseemann/prokka)
-- BLAST+
-- QUAST (v5.02) (https://github.com/ablab/quast)
-- SAMtools (v1.7) (http://samtools.sourceforge.net/)
-- Tandem Repeats Finder (https://tandem.bu.edu/trf/trf.download.html) (v4.09) Note: SASpector run TRF with the name `trf409.linux64`.
+- [[progressiveMauve][https://darlinglab.org/mauve/mauve.html]]
+- [[prokka][https://github.com/tseemann/prokka]]
+- [[BLAST+][https://blast.ncbi.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=Download]]
+- [[QUAST][https://github.com/ablab/quast]]
+- [[SAMtools][http://samtools.sourceforge.net/]]
+- [[Tandem Repeats Finder][https://tandem.bu.edu/trf/trf.download.html]]
 
 ### Installation
 
@@ -125,8 +115,6 @@ As optional analysis:
 - QUAST: SASpector will run QUAST for the missing regions against the reference genome for genome quality assessment and will provide Icarus as genome viewer.
 
 ## Usage
-
-Before running SASpector, be sure to have your reference genome as a single FASTA file not a multi-FASTA file. If your reference genome is a multi-FASTA file (e.g. output from Unicycler), you can concatenate your sequences using Union command by EMBOSS.
 
 ```
 SASpector [Reference genome].fasta [Contigs].fasta -p [Genome ID] -dir [Output directory] -f [Length] -db [Protein database].fasta -k [kmer size] -c [reference genome].bam -q
@@ -191,11 +179,12 @@ SASpector [Reference genome].fasta [Contigs].fasta -p [Genome ID] -dir [Output d
     icarus.html             Icarus genome viewer
 
 ```
-## Support
 
-For questions or issues, go to this repository Issues tab.
+# Contact
 
-## References
+Laboratory of Computational Systems Biology, KU Leuven
+ 
+# References
 - Altschul, S. F., Gish, W., Miller, W., Myers, E. W., & Lipman, D. J. (1990). Basic local alignment search tool. Journal of Molecular Biology, 215(3), 403–410.
 - Darling, A. C. E. (2004). Mauve: Multiple Alignment of Conserved Genomic Sequence With Rearrangements. Genome Research, 14(7), 1394–1403.
 - Brown and Irber (2016), sourmash: a library for MinHash sketching of DNA Journal of Open Source Software, 1(5), 27.
