@@ -56,6 +56,9 @@ def kmer(k, prefix, outdir):
                 kmers[kmer] += 1
             else:
                 kmers[kmer] = 1
+
+        if all(value == 1 for value in kmers.values()): # no need to save/create figure in that case
+            continue
         
         # Write kmers, kmers count and plots
         path = '{outdir}/kmer'.format(outdir = outdir)
