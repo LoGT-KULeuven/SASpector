@@ -31,9 +31,9 @@ def union(reference, prefix, out):
         Output directory  
     """
     fasta_count = len([1 for line in open(reference) if line.startswith(">")])
-    logging.info("Your reference contains %i contigs. We are concatenating them into %s before pursuing" % (fasta_count, "{prefix}_concatenated.fasta".format(prefix=prefix)))
           
     if(fasta_count > 1):
+        logging.info("Your reference contains %i contigs. We are concatenating them into %s before pursuing" % (fasta_count, "{prefix}_concatenated.fasta".format(prefix=prefix)))
         cmd = 'union -sequence {reference} -outseq {concatenated}'.format(
             reference = reference, concatenated = "{prefix}_concatenated.fasta".format(prefix=prefix))
         process = subprocess.Popen(shlex.split(cmd), stdout = subprocess.DEVNULL, stderr=subprocess.STDOUT)
