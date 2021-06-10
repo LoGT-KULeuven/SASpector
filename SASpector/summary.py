@@ -440,14 +440,14 @@ def plot(unmappeddict, unmap_stats, out):
     
     plt.figure(figsize = (10,10))
     sns.set(style = 'white', font_scale = 2)
-    fig_joint = sns.jointplot(regions_length, gc_content, kind = 'hex', height = 7)
+    fig_joint = sns.jointplot(x = regions_length, y = gc_content, kind = 'hex', height = 7)
     fig_joint.set_axis_labels(xlabel = 'Length', ylabel = 'GC Content')
     fig_joint.savefig(os.path.join(out, 'gc_length_joint_missing.jpg'))
     plt.clf()
 
     plt.figure(figsize = (15,10))
     sns.set(style = 'white', font_scale = 1.3)
-    fig_gc = sns.distplot(gc_content, hist = True, rug = False, color = 'red')
+    fig_gc = sns.displot(gc_content, hist = True, rug = False, color = 'red')
     fig_gc.set(xlabel = 'GC Content')
     fig_gc.set_title('Distribution of GC Content')
     sns.despine()
@@ -457,7 +457,7 @@ def plot(unmappeddict, unmap_stats, out):
 
     plt.figure(figsize = (15,10))
     sns.set(style = 'white', font_scale = 1.3)
-    fig_length = sns.distplot(regions_length, hist = True, rug = False, color = 'green')
+    fig_length = sns.displot(regions_length, hist = True, rug = False, color = 'green')
     fig_length.set(xlabel = 'Length')
     fig_length.set_title('Distribution of Length')
     sns.despine()
