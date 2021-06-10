@@ -451,7 +451,6 @@ def plot(unmappeddict, unmap_stats, out):
     fig_gc.set(xlabel = 'GC Content')
     fig_gc.fig.suptitle('Distribution of GC Content')
     sns.despine()
-    #save = fig_gc.get_figure()
     fig_gc.savefig(os.path.join(out, 'gc_content_missing.jpg'))
     plt.clf()
 
@@ -461,7 +460,6 @@ def plot(unmappeddict, unmap_stats, out):
     fig_length.set(xlabel = 'Length')
     fig_length.fig.suptitle('Distribution of Length')
     sns.despine()
-    # save = fig_length.get_figure()
     fig_length.savefig(os.path.join(out, 'length_missing.jpg'))
     plt.clf()
     
@@ -470,7 +468,6 @@ def plot(unmappeddict, unmap_stats, out):
     codons = sns.boxplot(data = unmap_stats.iloc[:, 3:24], palette = 'Spectral')
     codons.set(xlabel = 'Translated Codons', ylabel = 'Mean Percentage per Frame (%)')
     sns.despine()
-    # save = ax.get_figure()
     codons.figure.savefig(os.path.join(out, 'codons_missing.jpg'))
     plt.clf()
 
