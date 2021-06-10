@@ -127,7 +127,11 @@ def clustermap(prefix, outdir):
     
     plt.figure(figsize = (15, 10))
     sns.set(style = 'white', font_scale = 1.2, palette = 'Spectral')
+    
+    import warnings # locally deactivating warning about the use of fastcluster (not applicable)
+    warnings.simplefilter("ignore")
     ax = sns.clustermap(X)
+
     sns.despine()
     ax.savefig(os.path.join(sour_path,'sourmash_clustermap.jpg'))
     plt.clf()
