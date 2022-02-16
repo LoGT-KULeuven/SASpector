@@ -26,7 +26,7 @@ setuptools.setup(
         'sourmash',
         'numpy'
     ],
-    data_files = [('', ['SASpector/saspector_proteindb.fasta'])],
+    data_files = [('', ['SASpector/assets/saspector_proteindb.fasta'])],
     scripts = ['SASpector/SASpector', 'SASpector/coverage.py', 'SASpector/gene_predict.py', 'SASpector/kmer.py', 'SASpector/quastunmap.py', 'SASpector/mapper.py', 'SASpector/summary.py', 'SASpector/tandem_repeats.py'],
     classifiers = [
     "Programming Language :: Python :: 3",
