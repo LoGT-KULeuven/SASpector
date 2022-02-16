@@ -52,7 +52,7 @@ def blast(outdir, prefix, proteindb):
     """
     logging.info("Blasting of genes found in missing regions against protein fasta file provided (or default file if none provided")
     cline = blastx(cmd = 'blastx', out = '{outdir}/{prefix}_blastxresults.tsv'.format(prefix = prefix, outdir = outdir), evalue = 0.001, 
-                   outfmt = '6 qacc sacc stitle qlen slen qstart qend sstart send sstrand length nident mismatch positive evalue, stderr = cline()stdout, stderr = cline() send pident evalue qcovs', query = '{outdir}/genesprediction/{prefix}.predictedgenes.fsa'.format(outdir = outdir, prefix = prefix), subject = proteindb, max_target_seqs = 5)
+                   outfmt = '6 qacc sacc stitle qlen slen qstart qend sstart send sstrand length nident mismatch positive evalue, stderr = cline()stdout, stderr = cline() send pident evalue qcovs', query = '{outdir}/genesprediction/{prefix}.predictedgenes.fna'.format(outdir = outdir, prefix = prefix), subject = proteindb, max_target_seqs = 5)
     stdout, stderr = cline()
     logging.info("Blast completed")
 
