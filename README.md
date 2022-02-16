@@ -84,7 +84,6 @@ Linux 64-bit and OS X are supported.
 -   shlex
 -   Seaborn
 -   BioPython
--   progressbar
 -   matplotlib
 -   Pandas
 -   numpy
@@ -101,7 +100,7 @@ Linux 64-bit and OS X are supported.
 -   [QUAST](https://github.com/ablab/quast)
 -   [SAMtools](http://samtools.sourceforge.net/)
 -   [Tandem repeats finder](https://tandem.bu.edu/trf/trf.download.html)
-
+-   [refseq\_masher](https://github.com/phac-nml/refseq_masher)
 
 <a id="org51dbcec"></a>
 
