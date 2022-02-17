@@ -55,5 +55,3 @@ def blast(outdir, prefix, proteindb):
                    outfmt = '6 qacc sacc stitle qlen slen qstart qend sstart send sstrand length nident mismatch positive evalue, stderr = cline()stdout, stderr = cline() send pident evalue qcovs', query = '{outdir}/genesprediction/{prefix}.predictedgenes.fna'.format(outdir = outdir, prefix = prefix), subject = proteindb, max_target_seqs = 5)
     stdout, stderr = cline()
     logging.info("Blast completed")
-
-    
