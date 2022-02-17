@@ -7,6 +7,7 @@
 import argparse
 import logging
 import os
+import pkg_resources
 import shutil
 import sys
 
@@ -72,6 +73,8 @@ def main():
     is_available("samtools")
     is_available("trf")
     is_available("union")
+    is_available("mash")
+
 
     if os.path.exists(args.outdir):
         if args.force:
@@ -91,9 +94,11 @@ def main():
     prokka(args.prefix, args.outdir)
     if args.proteindb:
         if args.proteindb == "proteindb":
-            logging.info("Please provide a protein database file or using the protein database provided with SASpector")
-            sys.exit()
-        blast(args.outdir, args.prefix, args.proteindb)
+            logging.info("No custom protein database provided, will be using the protein database of SASpector")
+            stream = pkg_resources.resource_filename('SASpector', 'assets/saspector_proteindb.fasta')
+            blast(args.outdir, args.prefix, stream)
+        else:
+            blast(args.outdir, args.prefix, args.proteindb)
     if args.kmers:
         kmer(args.kmers, args.prefix, args.outdir)
         clustermap(args.prefix, args.outdir)
