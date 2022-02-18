@@ -5,8 +5,8 @@ with open('README.md', 'r') as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name = 'SASpector',
-    version = '0.0.3',
+    name = 'SASpector-test',
+    version = '0.0.4',
     author = 'KU Leuven',
     author_email = 'alecorrojo@gmail.com, cedric.lood@kuleuven.be',
     maintainer = 'Computational systems biology group',
@@ -27,13 +27,26 @@ setuptools.setup(
         'numpy'
     ],
     include_package_data = True,
-    data_files = [('assets', ['SASpector/assets/saspector_proteindb.fasta', 'SASpector/assets/refseq_complete_bact_archaea.msh'])],
-    scripts = ['SASpector/SASpector', 'SASpector/coverage.py', 'SASpector/gene_predict.py', 'SASpector/kmer.py', 'SASpector/quastunmap.py', 'SASpector/mapper.py', 'SASpector/summary.py', 'SASpector/tandem_repeats.py'],
+    data_files = [('assets',
+                   ['SASpector/assets/saspector_proteindb.fasta',
+                    'SASpector/assets/refseq_complete_bact_archaea.msh']
+                   )],
+    scripts = [
+        'SASpector/SASpector',
+        'SASpector/coverage.py',
+        'SASpector/gene_predict.py',
+        'SASpector/kmer.py',
+        'SASpector/quastunmap.py',
+        'SASpector/mapper.py',
+        'SASpector/summary.py',
+        'SASpector/tandem_repeats.py',
+        'SASpector/select_mash.py'
+    ],
     classifiers = [
-    "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License",
-    "Operating System :: Unix",
-    "Operating System :: MacOS :: MacOS X"
+        "Programming Language :: Python :: 3",
+        "License :: OSI Approved :: MIT License",
+        "Operating System :: Unix",
+        "Operating System :: MacOS :: MacOS X"
     ],
     zip_safe = False,
     python_requires='>=3.4'
