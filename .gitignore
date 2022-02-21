@@ -2,3 +2,11 @@ build/
 dist/
 SASpector.egg-info/
 __pycache__/
+psae_results/
+test_data/Psae.sorted.bam
+SASpector/assets/refseq_complete_bact_archaea.msh
+SASpector/assets/RefSeqSketches.msh
+SASpector/executables/
+psae_saspector/
+SASpector_test.egg-info/
+test_prokka/
