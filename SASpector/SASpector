@@ -44,18 +44,30 @@ def main():
     """
     
     parser = argparse.ArgumentParser(prog = 'SASpector - Short-read Assembly inSpector', description = '')
-    parser.add_argument('-ref', '--reference', type = str, metavar = 'Reference FASTA file', help = 'Hybrid assembly FASTA file as reference genome')
-    parser.add_argument('-draft', '--draft', type = str, metavar = 'Contigs FASTA file', help = 'Illumina FASTA file as contigs/draft genome')
-    parser.add_argument('-p', '--prefix', metavar = 'Prefix', type = str, help = 'Genome ID')
-    parser.add_argument('-dir', '--outdir', metavar = 'Output path', help = 'Output directory')
-    parser.add_argument('--force', help = 'Force output directory overwrite', action = 'store_true')
-    parser.add_argument('-fl', '--flanking', nargs = '?' , metavar = 'Length', const = 'flanking', type = int, help = 'Add flanking regions [Default = 100]', default = 0)
-    parser.add_argument('-db', '--proteindb', nargs = '?', metavar = 'Protein FASTA file', const = 'proteindb', type = str, help = 'BLAST protein database FASTA file')
-    parser.add_argument('-trf', '--tandem_repeats', help = 'Run tandem repeat finder within missing regions', action = 'store_true')
-    parser.add_argument('-msh', '--mash_selection', help='Automatic selection of genome amongst RefSeq 202 database (complete genomes) /!\ Experimental feature!', action = 'store_true')
-    parser.add_argument('-k', '--kmers', nargs = '?' ,const = 'kmers', metavar = 'k size', type = int, help = 'Calculate kmer frequencies', default = 0)
-    parser.add_argument('-q','--quast', help = 'Run QUAST for unmapped regions against reference assembly', action = 'store_true')
-    parser.add_argument('-c', '--coverage', nargs='?', const='coverage', metavar='BAM file', type = str, help = 'Run SAMtools bedcov to look at short-read coverage in the missing regions. Needs alignment of reads to the reference genome in BAM format')
+    parser.add_argument('-ref', '--reference', type = str, metavar = 'Reference FASTA file', \
+                        help = 'Hybrid assembly FASTA file as reference genome')
+    parser.add_argument('-draft', '--draft', type = str, metavar = 'Contigs FASTA file', \
+                        help = 'Illumina FASTA file as contigs/draft genome')
+    parser.add_argument('-p', '--prefix', metavar = 'Prefix', type = str, \
+                        help = 'Genome ID')
+    parser.add_argument('-dir', '--outdir', metavar = 'Output path', \
+                        help = 'Output directory')
+    parser.add_argument('--force', \
+                        help = 'Force output directory overwrite', action = 'store_true')
+    parser.add_argument('-fl', '--flanking', nargs = '?' , metavar = 'Length', const = 'flanking', type = int, \
+                        help = 'Add flanking regions [Default = 100]', default = 0)
+    parser.add_argument('-db', '--proteindb', nargs = '?', metavar = 'Protein FASTA file', const = 'proteindb', type = str, \
+                        help = 'BLAST protein database FASTA file')
+    parser.add_argument('-trf', '--tandem_repeats', \
+                        help = 'Run tandem repeat finder within missing regions', action = 'store_true')
+    parser.add_argument('-msh', '--mash_selection', action = 'store_true', \
+                        help='Automatic selection of genome amongst RefSeq 202 database (complete genomes) /!\ Experimental feature!')
+    parser.add_argument('-k', '--kmers', nargs = '?' ,const = 'kmers', metavar = 'k size', type = int, \
+                        help = 'Calculate kmer frequencies', default = 0)
+    parser.add_argument('-q','--quast', \
+                        help = 'Run QUAST for unmapped regions against reference assembly', action = 'store_true')
+    parser.add_argument('-c', '--coverage', nargs='?', const='coverage', metavar='BAM file', type = str, \
+                        help = 'Run SAMtools bedcov to look at short-read coverage in the missing regions. Needs alignment of reads to the reference genome in BAM format')
         
     args = parser.parse_args()
     
@@ -70,12 +82,16 @@ def main():
     is_available("progressiveMauve")
     is_available("prokka")
     is_available("blastx")
-    is_available("quast.py")
-    is_available("samtools")
-    is_available("trf")
     is_available("union")
-    is_available("mash")
-    is_available("average_nucleotide_identity.py")
+    if args.coverage:
+        is_available("samtools")        
+    if args.tandem_repeats is True:
+        is_available("trf")
+    if args.quast is True:
+        is_available("quast.py")
+    if args.mash_selection is True:
+        is_available("mash")
+        is_available("average_nucleotide_identity.py")
 
     if os.path.exists(args.outdir):
         if args.force:
@@ -112,9 +128,11 @@ def main():
          quast(args.reference, args.outdir, args.prefix)
     if args.coverage:
         if args.mash_selection:
-            logging.info("Incompatible options: automated selection of reference and sequence alignment file (bam)")
-            logging.info("You may want to run the automated selection without this option to 1) download a reference")
-            logging.info("2) align your reads to it, and 3) run again specifying the downloaded reference and bam file")
+            logging.error("Incompatible options: automated selection of reference and sequence alignment file (bam)")
+            logging.error("You may want to run the automated selection without this option to 1) download a reference")
+            logging.error("2) align your reads to it, and 3) run again specifying the downloaded reference and bam file")
+            logging.error("Exiting SASpector")
+            sys.exit()
         else:
             cvg_main(mappedlocations, conflictlocations, args.coverage, args.reference, args.outdir, args.prefix)
 

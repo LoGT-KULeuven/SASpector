@@ -50,14 +50,20 @@ def calculate_anib(draft, reference_selected, prefix, outdir):
     logging.info("Let's assess the similarity of the reference selected using the ANI metrics")
     logging.info("SASpector will now run pyani using the blast method")
 
-    os.makedirs(os.path.join(outdir, "ANI/ANIb_input"))
-    shutil.copy(draft, '{outdir}/ANI/ANIb_input/'.format(outdir = outdir))
-    shutil.copy(reference_selected, '{outdir}/ANI/ANIb_input/'.format(outdir = outdir))
+    try:
+        os.makedirs(os.path.join(outdir, "ANI/ANIb_input"))
+        shutil.copy(draft, '{outdir}/ANI/ANIb_input/'.format(outdir = outdir))
+        shutil.copy(reference_selected, '{outdir}/ANI/ANIb_input/'.format(outdir = outdir))
 
-    cmd = 'average_nucleotide_identity.py -m ANIb -i {outdir}/ANI/ANIb_input -o {outdir}/ANI/ANIb_results'.format(outdir = outdir)
-    process = subprocess.run(shlex.split(cmd), stderr = subprocess.DEVNULL)
-    logging.info("ANIb process completed, now parsing the results")
+        cmd = 'average_nucleotide_identity.py -m ANIb -i {outdir}/ANI/ANIb_input -o {outdir}/ANI/ANIb_results'.format(outdir = outdir)
+        process = subprocess.run(shlex.split(cmd), stderr = subprocess.DEVNULL)
+        logging.info("ANIb process completed, now parsing the results")
 
+    except:
+        logging.error("BLAST error, maybe disable the --proteindb option?)")
+        logging.error("Exiting SASpector")
+        sys.exit()
+    
     identity_perc_file = os.path.join(outdir, "ANI/ANIb_results/ANIb_percentage_identity.tab")
     df = pd.read_table(identity_perc_file)
     avg_anib = ((df.iloc[1,1] + df.iloc[0, 2])/2.0)*100
