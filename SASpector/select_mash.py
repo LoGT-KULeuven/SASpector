@@ -59,8 +59,8 @@ def calculate_anib(draft, reference_selected, prefix, outdir):
         process = subprocess.run(shlex.split(cmd), stderr = subprocess.DEVNULL)
         logging.info("ANIb process completed, now parsing the results")
 
-    except:
-        logging.error("BLAST error, maybe disable the --proteindb option?)")
+    except IOError:
+        logging.error("There was an issue during the ANI analysis")
         logging.error("Exiting SASpector")
         sys.exit()
     

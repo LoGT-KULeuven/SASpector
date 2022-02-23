@@ -22,10 +22,17 @@ from select_mash import sgmash
 
 """ SASpector
 
-SASpector is a tool that compares a short-read assembly with a reference bacterial genome (for example obtained via hybrid assembly) by extracting missing (unmapped) regions from the reference and analyzing them to see functional and compositional pattern.
-The aim of the analysis is to explain why these regions are missed by the short-read assembly and if important parts of the genome are missed when a resolved genome is lacking.
+SASpector is a tool that compares a short-read assembly with a
+reference bacterial genome (for example obtained via hybrid assembly)
+by extracting missing (unmapped) regions from the reference and
+analyzing them to see functional and compositional pattern.  
 
-The tool takes as global inputs the reference genome and a short-read assembly as contigs/draft genome, both in FASTA format.
+The aim of the analysis is to explain why these regions are missed by
+the short-read assembly and if important parts of the genome are
+missed when a resolved genome is lacking.
+
+The tool takes as global inputs the reference genome and a short-read
+assembly as contigs/draft genome, both in FASTA format.
 
 """
 
@@ -35,7 +42,7 @@ def is_available(program):
     if shutil.which(program) is not None:
         logging.info(program + " installed?: OK")
     else:
-        logging.info(program + " installed?: Not Available on the path.. stopping SASpector.")
+        logging.error(program + " installed?: Not Available on the path.. stopping SASpector.")
         sys.exit()
 
 def main():

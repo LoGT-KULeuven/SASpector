@@ -89,7 +89,6 @@ Linux 64-bit and OS X are supported.
 -   numpy
 -   sourmash
 
-
 <a id="org88d3159"></a>
 
 ## Third-party tools (available on bioconda)
@@ -105,11 +104,16 @@ Linux 64-bit and OS X are supported.
 <a id="org51dbcec"></a>
 
 ## Installation
+First you need to ensure that the above tools are available in your
+environment. This can be achieved by means of conda virtual
+environments as follows: 
+
+	$ conda install mamba -n base -c conda-forge
+	$ mamba create -n SASpector -c conda-forge -c bioconda -c defaults blast emboss progressivemauve prokka quast samtools sourmash trf refseq_masher pyani
 
 We recommend to install SASpector using pip:
 
-    pip install SASpector
-
+	$ pip install SASpector --user
 
 <a id="org9550907"></a>
 
@@ -120,17 +124,15 @@ For basic functionalities, run \`SASpector\`:
     usage: SASpector - Short-read Assembly inSpector [-h] [-p PREFIX]
     						 [-dir OUTDIR] [-f [LENGTH]]
     						 [-db [PROTEIN-DB]] [-k [K]]
-    						 [-q] [-c [BAMFILE]]
-    						 reference contigs
-    
-    positional arguments:
-      reference             Reference genome FASTA file, e.g. from hybrid
-    			assembly. If the file contains multiple seqences, only
-    			the first one is used, so make sure to concatenate if
-    			needed.
-      contigs               Short-read assembly FASTA file as contigs/draft genome.
-    
+    						 [-q] [-msh] [-c [BAMFILE]]
+    						 -draft draft_assembly.fasta
+                             -ref reference_assembly.fasta
+    Required arguments:
+      -draft, --draft        Short-read assembly FASTA file as contigs/draft genome.
+
     optional arguments:
+	  -ref, --reference      Reference assembly FASTA file. If this is not provided, you can
+	            try to use the -msh option to automatically serach refseq
       -h, --help            show this help message and exit
       -p PREFIX, --prefix PREFIX
     			Genome ID
@@ -150,27 +152,28 @@ For basic functionalities, run \`SASpector\`:
     			the missing regions. Needs alignment of reads to the
     			reference genome in BAM format
 
+
 First, Mauve performs an alignment of both genomes with the
-progressiveMauve algorithm. It will generate a subdirectory
-prefix.alignment with several output files but most importantly the
+progressiveMauve algorithm. This generates the subdirectory
+*prefix.alignment* with several output files and importantly the
 backbone file with coordinates of the mapped and unmapped regions in
 the reference genome.
 
-Afterwards, this script will parse the backbone file and extract the
-sequences that are not covered in the short-read assembly from the
-reference genome. They are written to a multi-fasta file with the
-prefix and coordinates in the headers, which is done equally for the
-mapped and conflict regions (regions that didn't map correctly due to
-gaps or indels). Two tab-delimited summary files are generated in a
-subdirectory called summary. One for the reference, with the amount of
-gapped and ungapped regions, the fraction of the reference genome that
-they represent, the GC content and the length. The other one for the
-unmapped regions, with for each region the GC content and length and
-then for each amino acid the occurence frequency averaged over all 6
-reading frames. As an optional input, the user can add flanking
-regions to the extracted missing regions.
+This backbone file is parsed and we extract the sequences that are not
+covered in the short-read assembly from the reference genome. They are
+written to a multi-fasta file with the prefix and coordinates in the
+headers, which is done equally for the mapped and conflict regions
+(regions that didn't map correctly due to gaps or indels). Two
+tab-delimited summary files are generated in a subdirectory called
+summary. One for the reference, with the amount of gapped and ungapped
+regions, the fraction of the reference genome that they represent, the
+GC content and the length. The other one for the unmapped regions,
+with for each region the GC content and length and then for each amino
+acid the occurence frequency averaged over all 6 reading frames. As an
+optional input, the user can add flanking regions to the extracted
+missing regions.
 
-Finally, SASpector will predict genes that are in the missing regions
+Finally, SASpector predicts genes that are in the missing regions
 using Prokka and if a protein FASTA file database is provided,
 SASpector will BLAST the output sequences from Prokka to the database
 generating a tab-delimited summary with the hits of the sequences. You
@@ -178,14 +181,11 @@ can use our defined database *saspector_proteindb.fasta*.
 
 As optional analysis:
 
--   kmer analysis and tandem repeats: if a kmer size is provided,
-    SASpector will calculate the frequency of the kmers per missing
-    regions and will generate summary tables and barplots for those
-    kmers. Additionally, it will run Tandem Repeats Finder and will
-    generate HTML reports for the missing regions with tandem
-    repeats. Finally, SASpector will perform a pairwise comparison
-    between kmers of missing regions and mapped regions (k-size = 31)
-    for comparative studies, using sourmash.
+-   kmer analysis and tandem repeats: SASpector runs Tandem Repeats
+    Finder and will generate HTML reports for the missing regions with
+    tandem repeats. Finally, SASpector will perform a pairwise
+    comparison between kmers of missing regions and mapped regions
+    (k-size = 31) for comparative studies, using sourmash.
 
 -   Coverage analysis: if a BAM file is provided, SASpector will
     calculate the average coverage of the missing and the mapped
@@ -282,4 +282,3 @@ Laboratory of Computational Systems Biology, KU Leuven
 -   Li H.\*, Handsaker B.\*, Wysoker A., Fennell T., Ruan J., Homer N., Marth G., Abecasis G., Durbin R. and 1000 Genome Project Data Processing Subgroup (2009) The Sequence alignment/map (SAM) format and SAMtools. Bioinformatics, 25, 2078-9.
 -   Torsten Seemann, Prokka: rapid prokaryotic genome annotation, Bioinformatics, Volume 30, Issue 14, 15 July 2014, Pages 2068-2069.
 -   Benson G. (1999). Tandem repeats finder: a program to analyze DNA sequences. Nucleic acids research, 27(2), 573-580.
-
