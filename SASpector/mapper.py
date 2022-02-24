@@ -59,19 +59,21 @@ def mauve(reference, contigs, prefix, out):
     
     """
     logging.info("Starting whole genome alignment")
-    cmd = 'progressiveMauve {reference} {contigs} --output={prefix}.alignment --backbone-output={prefix}.backbone'.format(
-    reference = reference, contigs = contigs, prefix = prefix, out = out)
+    newdir = 'alignment'
+    os.makedirs(os.path.join(out,newdir))
+    shutil.copy(reference, '{out}/alignment/'.format(out = out))
+    shutil.copy(contigs, '{out}/alignment/'.format(out = out))
+
+    reference_file = os.path.join(out, newdir, os.path.basename(reference))
+    contigs_file = os.path.join(out, newdir, os.path.basename(contigs))
+    alignment_file = os.path.join(out, newdir, '{prefix}.alignment'.format(prefix=prefix))
+    backbone_file = os.path.join(out, newdir, '{prefix}.backbone'.format(prefix=prefix))
+
+    cmd = 'progressiveMauve {reference_file} {contigs_file} --output={alignment_file} --backbone-output={backbone_file}'.format(
+        reference_file = reference_file, contigs_file = contigs_file, alignment_file=alignment_file, backbone_file=backbone_file)
     process = subprocess.Popen(shlex.split(cmd), stdout = subprocess.DEVNULL, stderr=subprocess.STDOUT)
     process.wait()
     
-    newdir = 'alignment'
-    os.makedirs(os.path.join(out,newdir))
-    shutil.move('{prefix}.alignment'.format(prefix = prefix), '{out}/alignment/{prefix}.alignment'.format(prefix = prefix, out = out))
-    shutil.move('{prefix}.alignment.bbcols'.format(prefix = prefix), '{out}/alignment/{prefix}.alignment.bbcols'.format(out = out, prefix = prefix))
-    shutil.move('{prefix}.backbone'.format(prefix = prefix), '{out}/alignment/{prefix}.backbone'.format(out = out, prefix = prefix))
-    shutil.move('{reference}.sslist'.format(reference = reference), '{out}/alignment/{reference}.sslist'.format(out = out, reference = reference))
-    shutil.move('{contigs}.sslist'.format(contigs = contigs), '{out}/alignment/{contigs}.sslist'.format(out = out, contigs = contigs))
-
     logging.info("Whole genome alignment completed!")
     
 
