@@ -26,11 +26,6 @@ setuptools.setup(
         'sourmash',
         'numpy'
     ],
-    include_package_data = True,
-    data_files = [('assets',
-                   ['SASpector/assets/saspector_proteindb.fasta',
-                    'SASpector/assets/refseq_complete_bact_archaea.msh']
-                   )],
     scripts = [
         'SASpector/SASpector',
         'SASpector/coverage.py',

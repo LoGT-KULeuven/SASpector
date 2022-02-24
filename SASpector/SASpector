@@ -67,7 +67,7 @@ def main():
                         help = 'BLAST protein database FASTA file')
     parser.add_argument('-trf', '--tandem_repeats', \
                         help = 'Run tandem repeat finder within missing regions', action = 'store_true')
-    parser.add_argument('-msh', '--mash_selection', action = 'store_true', \
+    parser.add_argument('-msh', '--mash_selection', nargs = '?', metavar = 'Protein FASTA file', const = 'mash', type = str, \
                         help='Automatic selection of genome amongst RefSeq 202 database (complete genomes) /!\ Experimental feature!')
     parser.add_argument('-k', '--kmers', nargs = '?' ,const = 'kmers', metavar = 'k size', type = int, \
                         help = 'Calculate kmer frequencies', default = 0)
@@ -109,8 +109,11 @@ def main():
     os.makedirs(args.outdir)
     
     # no complete genome provided? Then the user can try to obtain it from refseq (experimental)
-    if args.mash_selection is True:
-        msh_file = pkg_resources.resource_filename('SASpector', 'assets/refseq_complete_bact_archaea.msh')
+    if args.mash_selection:
+        if args.mash_selection == "mash":
+            logging.error("No mash sketch file provided, SASpector will exit")
+            sys.exit()
+        msh_file = ""
         args.reference = sgmash(args.draft, msh_file, args.prefix, args.outdir)
     else:
         concatenated = union(args.reference, args.prefix, args.outdir)
@@ -122,9 +125,8 @@ def main():
     prokka(args.prefix, args.outdir)
     if args.proteindb:
         if args.proteindb == "proteindb":
-            logging.info("No custom protein database provided, will be using the protein database of SASpector")
-            stream = pkg_resources.resource_filename('SASpector', 'assets/saspector_proteindb.fasta')
-            blast(args.outdir, args.prefix, stream)
+            logging.error("No custom protein database provided, SASpector will exit")
+            sys.exit()
         else:
             blast(args.outdir, args.prefix, args.proteindb)
     if args.kmers:
