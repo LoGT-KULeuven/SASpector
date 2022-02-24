@@ -5,7 +5,7 @@ with open('README.md', 'r') as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name = 'SASpector-test',
+    name = 'SASpector',
     version = '0.0.4',
     author = 'KU Leuven',
     author_email = 'alecorrojo@gmail.com, cedric.lood@kuleuven.be',

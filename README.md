@@ -58,9 +58,9 @@ missing regions:
 
 Optionally, some scripts provide additional analysis:
 
--   *kmer.py*: extraction of kmers and tandem repeats in the missing
-    regions. Additionally, performs a pairwise comparison between kmers
-    of missing and mapped regions using Sourmash.
+-   *kmer.py*: tandem repeats in the missing regions and pairwise
+    comparison between kmers of missing and mapped regions using
+    Sourmash.
 -   *coverage.py*: calculates the average coverage of the missing and
     mapped regions with a provided BAM file.
 -   *quastunmap.py*: performs a genome quality assessment for the
@@ -237,8 +237,6 @@ As optional analysis:
         [Genome ID].predictedgenes.tsv                    tab-delimited report of all features
         [Genome ID]_blastxresults.tsv      tab-delimited report of BLASTX
       kmer/
-        *.tsv                   tab-delimited reports of the frequency of kmer per missing region
-        *.jpg                   Barplots of the frequency of kmer per missing region
         [Genome ID]_sourmash               tab-delimited output of pairwise comparison between missing regions and mapped regions
         _distances.tsv
         sourmash                Clustermap of pairwise comparison
