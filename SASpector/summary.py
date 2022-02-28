@@ -409,8 +409,10 @@ def output(mappeddict, unmappeddict, conflictdict, refstats, unmap_stats, prefix
     
     # Write unmapped regions FASTA file
     with open(os.path.join(out,'{prefix}_unmappedregions.fasta'.format(prefix = prefix)), 'w+') as fasta:
+        i = 1
         for key, value in unmappeddict.items():
-            fasta.write('>' + key + '\n' + value + '\n')
+            fasta.write('>contig%i' % i + " " + key + '\n' + value + '\n')
+            i = i + 1
     
     # Write mapped regions FASTA file
     with open(os.path.join(out,'{prefix}_conflictregions.fasta'.format(prefix = prefix)), 'w+') as fasta:
