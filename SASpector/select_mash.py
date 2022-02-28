@@ -67,7 +67,7 @@ def calculate_anib(draft, reference_selected, prefix, outdir):
     identity_perc_file = os.path.join(outdir, "ANI/ANIb_results/ANIb_percentage_identity.tab")
     df = pd.read_table(identity_perc_file)
     avg_anib = ((df.iloc[1,1] + df.iloc[0, 2])/2.0)*100
-    df.sort_values(0, ascending=False, inplace=True)
+    #df.sort_values(0, ascending=False, inplace=True)
     logging.info("ANI value: {avg_anib}".format(avg_anib = avg_anib))
     
 def sgmash(draft, refseq_msh, prefix, outdir):
