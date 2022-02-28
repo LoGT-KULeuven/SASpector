@@ -10,6 +10,7 @@ import os
 import pkg_resources
 import shutil
 import sys
+import time
 
 from mapper import mauve, union
 from summary import extract_main
@@ -42,7 +43,7 @@ def is_available(program):
     if shutil.which(program) is not None:
         logging.info(program + " installed?: OK")
     else:
-        logging.error(program + " installed?: Not Available on the path.. stopping SASpector.")
+        logging.error(program + " installed?: Not Available on the path.. exiting SASpector.")
         sys.exit()
 
 def main():
@@ -51,30 +52,32 @@ def main():
     """
     
     parser = argparse.ArgumentParser(prog = 'SASpector - Short-read Assembly inSpector', description = '')
-    parser.add_argument('-ref', '--reference', type = str, metavar = 'Reference FASTA file', \
-                        help = 'Hybrid assembly FASTA file as reference genome')
-    parser.add_argument('-draft', '--draft', type = str, metavar = 'Contigs FASTA file', \
+    parser.add_argument('-draft', '--draft', type = str, metavar = 'Contigs FASTA', required=True, \
                         help = 'Illumina FASTA file as contigs/draft genome')
-    parser.add_argument('-p', '--prefix', metavar = 'Prefix', type = str, \
-                        help = 'Genome ID')
-    parser.add_argument('-dir', '--outdir', metavar = 'Output path', \
+    parser.add_argument('-ref', '--reference', type = str, metavar = 'Reference FASTA', nargs = '?', default = 'noreference', \
+                        help = 'Completed assembly FASTA file as reference genome')
+    parser.add_argument('-p', '--prefix', metavar = 'Prefix', type = str, nargs = '?', default = 'noprefix',\
+                        help = 'Set the prefix of the files, use for example the strain name')
+    parser.add_argument('-dir', '--outdir', metavar = 'Output path', required=True, \
                         help = 'Output directory')
     parser.add_argument('--force', \
                         help = 'Force output directory overwrite', action = 'store_true')
-    parser.add_argument('-fl', '--flanking', nargs = '?' , metavar = 'Length', const = 'flanking', type = int, \
-                        help = 'Add flanking regions [Default = 100]', default = 0)
+    parser.add_argument('-fl', '--flanking', nargs = '?' , metavar = 'Length flanks (bp)', const = 'flanking', type = int, \
+                        help = 'Add flanking regions [Default = 100 bp]', default = 100)
     parser.add_argument('-db', '--proteindb', nargs = '?', metavar = 'Protein FASTA file', const = 'proteindb', type = str, \
                         help = 'BLAST protein database FASTA file')
     parser.add_argument('-trf', '--tandem_repeats', \
                         help = 'Run tandem repeat finder within missing regions', action = 'store_true')
-    parser.add_argument('-msh', '--mash_selection', nargs = '?', metavar = 'Protein FASTA file', const = 'mash', type = str, \
-                        help='Automatic selection of genome amongst RefSeq 202 database (complete genomes) /!\ Experimental feature!')
+    parser.add_argument('-msh', '--mash_selection', type = str, metavar = 'mash sketch file', nargs = '?', default = 'nomsh', \
+                        help='Automatic selection of genome amongst RefSeq 202 database (complete genomes) '\
+                        '/!\ Experimental feature!')
     parser.add_argument('-k', '--kmers', nargs = '?' ,const = 'kmers', metavar = 'k size', type = int, \
-                        help = 'Calculate kmer frequencies', default = 0)
+                        help = 'Sourmash analysis', default = 0)
     parser.add_argument('-q','--quast', \
                         help = 'Run QUAST for unmapped regions against reference assembly', action = 'store_true')
     parser.add_argument('-c', '--coverage', nargs='?', const='coverage', metavar='BAM file', type = str, \
-                        help = 'Run SAMtools bedcov to look at short-read coverage in the missing regions. Needs alignment of reads to the reference genome in BAM format')
+                        help = 'Run SAMtools bedcov to look at short-read coverage in the missing regions.' \
+                        'Needs alignment of reads to the reference genome in BAM format')
         
     args = parser.parse_args()
     
@@ -83,7 +86,7 @@ def main():
         format = '[%(asctime)s] %(levelname)s: %(message)s',
         datefmt = '%d/%m %H:%M:%S'
     )
-    logging.info("welcome to SASpector v0.0.4")
+    logging.info("welcome to SASpector v0.0.5")
     
     # checking if all softwares are available
     is_available("progressiveMauve")
@@ -104,39 +107,61 @@ def main():
         if args.force:
             shutil.rmtree(args.outdir, ignore_errors=True)
         else:
-            logging.info("Output folder already exists (user --force if you really want to overwrite it) - SASpector exit")
+            logging.error("Output folder already exists (user --force if you really want to overwrite it)")
+            logging.error("SASpector will now exit")
             sys.exit()
     os.makedirs(args.outdir)
-    
-    # no complete genome provided? Then the user can try to obtain it from refseq (experimental)
-    if args.mash_selection:
-        if args.mash_selection == "mash":
-            logging.error("No mash sketch file provided, SASpector will exit")
-            sys.exit()
-        msh_file = ""
-        args.reference = sgmash(args.draft, msh_file, args.prefix, args.outdir)
-    else:
-        concatenated = union(args.reference, args.prefix, args.outdir)
-        if(concatenated):
-            args.reference = "{prefix}_concatenated.fasta".format(prefix=args.prefix)
+
+    # prefix
+    if args.prefix == "noprefix":
+        args.prefix = time.strftime("%Y%m%d")
         
+    # no complete genome provided? Then the user can try to obtain it from refseq (experimental)
+    if args.reference == "noreference":
+        if args.mash_selection == "nomsh":
+            logging.error("You did not provide a reference genome. If you wish to try to automatically select one "\
+                          "you may set the -msh (--mash_selection) [PATH_TO_MSH_FILE] option.")
+            logging.error("SASpector will now exit")
+            sys.exit()
+        else:
+            if args.mash_selection == "nomsh":
+                logging.error("Please provide the mash sketch file for the selection")
+                logging.error("The file is available at: https://github.com/0mician/SASpector/raw/dev/SASpector/assets/refseq_complete_bact_archaea.msh")
+                logging.error("SASpector will now exit")
+            args.reference = sgmash(args.draft, args.mash_selection, args.prefix, args.outdir)
+    else:
+        if args.mash_selection != "nomsh":
+            logging.error("--reference and --mash_selection are incompatible options")
+            logging.error("SASpector will now exit")
+            sys.exit()
+            
+    # checking if the reference consists of multiple contigs/plasmids
+    concatenated = union(args.reference, args.prefix, args.outdir)
+    if(concatenated):
+        args.reference = "{prefix}_concatenated.fasta".format(prefix=args.prefix)
+
     mauve(args.reference, args.draft, args.prefix, args.outdir)
     mappedlocations, unmappedlocations, conflictlocations, reverselocations = extract_main(args.reference, args.prefix, args.flanking, args.outdir)
     prokka(args.prefix, args.outdir)
+    
     if args.proteindb:
         if args.proteindb == "proteindb":
             logging.error("No custom protein database provided, SASpector will exit")
             sys.exit()
         else:
             blast(args.outdir, args.prefix, args.proteindb)
+            
     if args.kmers:
         clustermap(args.prefix, args.outdir)
+        
     if args.tandem_repeats is True:
         trf(args.prefix, args.outdir)
+        
     if args.quast is True:
          quast(args.reference, args.outdir, args.prefix)
+         
     if args.coverage:
-        if args.mash_selection:
+        if args.mash_selection != "nomsh":
             logging.error("Incompatible options: automated selection of reference and sequence alignment file (bam)")
             logging.error("You may want to run the automated selection without this option to 1) download a reference")
             logging.error("2) align your reads to it, and 3) run again specifying the downloaded reference and bam file")
@@ -145,7 +170,7 @@ def main():
         else:
             cvg_main(mappedlocations, conflictlocations, args.coverage, args.reference, args.outdir, args.prefix)
 
-    logging.info("SASpector has completed the analysis!")
+    logging.info("SASpector has completed the analysis and will now exit!")
 
 if __name__ == '__main__':
     main()
