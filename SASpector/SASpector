@@ -117,6 +117,7 @@ def main():
         args.prefix = time.strftime("%Y%m%d")
         
     # no complete genome provided? Then the user can try to obtain it from refseq (experimental)
+<<<<<<< HEAD
     if args.reference == "noreference":
         if args.mash_selection == "nomsh":
             logging.error("You did not provide a reference genome. If you wish to try to automatically select one "\
@@ -130,6 +131,18 @@ def main():
     concatenated = union(args.reference, args.prefix, args.outdir)
     if(concatenated):
         args.reference = "{prefix}_concatenated.fasta".format(prefix=args.prefix)
+=======
+    if args.mash_selection:
+        if args.mash_selection == "mash":
+            logging.error("No mash sketch file provided, SASpector will exit")
+            sys.exit()
+        msh_file = ""
+        args.reference = sgmash(args.draft, msh_file, args.prefix, args.outdir)
+    else:
+        concatenated = union(args.reference, args.prefix, args.outdir)
+        if(concatenated):
+            args.reference = "{prefix}_concatenated.fasta".format(prefix=args.prefix)
+>>>>>>> b8bcfcead2aa33a2cb0b258e9126a14f46580c7e
         
     mauve(args.reference, args.draft, args.prefix, args.outdir)
     mappedlocations, unmappedlocations, conflictlocations, reverselocations = extract_main(args.reference, args.prefix, args.flanking, args.outdir)
@@ -137,9 +150,8 @@ def main():
     
     if args.proteindb:
         if args.proteindb == "proteindb":
-            logging.info("No custom protein database provided, will be using the protein database of SASpector")
-            stream = pkg_resources.resource_filename('SASpector', 'assets/saspector_proteindb.fasta')
-            blast(args.outdir, args.prefix, stream)
+            logging.error("No custom protein database provided, SASpector will exit")
+            sys.exit()
         else:
             blast(args.outdir, args.prefix, args.proteindb)
             
