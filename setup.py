@@ -6,7 +6,7 @@ with open('README.md', 'r') as fh:
 
 setuptools.setup(
     name = 'SASpector',
-    version = '0.0.4',
+    version = '0.0.5',
     author = 'KU Leuven',
     author_email = 'alecorrojo@gmail.com, cedric.lood@kuleuven.be',
     maintainer = 'Computational systems biology group',

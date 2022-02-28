@@ -86,7 +86,7 @@ def main():
         format = '[%(asctime)s] %(levelname)s: %(message)s',
         datefmt = '%d/%m %H:%M:%S'
     )
-    logging.info("welcome to SASpector v0.0.4")
+    logging.info("welcome to SASpector v0.0.5")
     
     # checking if all softwares are available
     is_available("progressiveMauve")
@@ -117,7 +117,6 @@ def main():
         args.prefix = time.strftime("%Y%m%d")
         
     # no complete genome provided? Then the user can try to obtain it from refseq (experimental)
-<<<<<<< HEAD
     if args.reference == "noreference":
         if args.mash_selection == "nomsh":
             logging.error("You did not provide a reference genome. If you wish to try to automatically select one "\
@@ -125,25 +124,22 @@ def main():
             logging.error("SASpector will now exit")
             sys.exit()
         else:
+            if args.mash_selection == "nomsh":
+                logging.error("Please provide the mash sketch file for the selection")
+                logging.error("The file is available at: https://github.com/0mician/SASpector/raw/dev/SASpector/assets/refseq_complete_bact_archaea.msh")
+                logging.error("SASpector will now exit")
             args.reference = sgmash(args.draft, args.mash_selection, args.prefix, args.outdir)
-
+    else:
+        if args.mash_selection != "nomsh":
+            logging.error("--reference and --mash_selection are incompatible options")
+            logging.error("SASpector will now exit")
+            sys.exit()
+            
     # checking if the reference consists of multiple contigs/plasmids
     concatenated = union(args.reference, args.prefix, args.outdir)
     if(concatenated):
         args.reference = "{prefix}_concatenated.fasta".format(prefix=args.prefix)
-=======
-    if args.mash_selection:
-        if args.mash_selection == "mash":
-            logging.error("No mash sketch file provided, SASpector will exit")
-            sys.exit()
-        msh_file = ""
-        args.reference = sgmash(args.draft, msh_file, args.prefix, args.outdir)
-    else:
-        concatenated = union(args.reference, args.prefix, args.outdir)
-        if(concatenated):
-            args.reference = "{prefix}_concatenated.fasta".format(prefix=args.prefix)
->>>>>>> b8bcfcead2aa33a2cb0b258e9126a14f46580c7e
-        
+
     mauve(args.reference, args.draft, args.prefix, args.outdir)
     mappedlocations, unmappedlocations, conflictlocations, reverselocations = extract_main(args.reference, args.prefix, args.flanking, args.outdir)
     prokka(args.prefix, args.outdir)
@@ -165,7 +161,7 @@ def main():
          quast(args.reference, args.outdir, args.prefix)
          
     if args.coverage:
-        if args.mash_selection:
+        if args.mash_selection != "nomsh":
             logging.error("Incompatible options: automated selection of reference and sequence alignment file (bam)")
             logging.error("You may want to run the automated selection without this option to 1) download a reference")
             logging.error("2) align your reads to it, and 3) run again specifying the downloaded reference and bam file")
@@ -174,7 +170,7 @@ def main():
         else:
             cvg_main(mappedlocations, conflictlocations, args.coverage, args.reference, args.outdir, args.prefix)
 
-    logging.info("SASpector has completed the analysis!")
+    logging.info("SASpector has completed the analysis and will now exit!")
 
 if __name__ == '__main__':
     main()
