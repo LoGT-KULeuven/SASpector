@@ -109,11 +109,15 @@ environment. This can be achieved by means of conda virtual
 environments as follows: 
 
 	$ conda install mamba -n base -c conda-forge
-	$ mamba create -n SASpector -c conda-forge -c bioconda -c defaults blast emboss progressivemauve prokka quast samtools sourmash trf refseq_masher pyani
+	$ mamba create -n SASpector 
+	$ mamba activate SASpector
+	$ mamba install -c conda-forge -c bioconda -c defaults blast emboss progressivemauve prokka quast samtools sourmash trf mash pyani
 
 We recommend to install SASpector using pip:
 
-	$ pip install SASpector --user
+	$ git clone https://github.com/LoGT-KULeuven/SASpector
+	$ cd SASpector
+	$ python setup.py install --user
 
 <a id="org9550907"></a>
 
@@ -125,8 +129,8 @@ For basic functionalities, run \`SASpector\`:
     						 [-dir OUTDIR] [-f [LENGTH]]
     						 [-db [PROTEIN-DB]] [-k [K]]
     						 [-q] [-msh] [-c [BAMFILE]]
-    						 -draft draft_assembly.fasta
-                             -ref reference_assembly.fasta
+    						 --draft draft_assembly.fasta
+                             --reference reference_assembly.fasta
     Required arguments:
       -draft, --draft        Short-read assembly FASTA file as contigs/draft genome.
 
@@ -151,6 +155,9 @@ For basic functionalities, run \`SASpector\`:
     			Run SAMtools bedcov to look at short-read coverage in
     			the missing regions. Needs alignment of reads to the
     			reference genome in BAM format
+      -msh [PATH], --mash_selection [PATH]
+		        run automated reference selection (experimental feature)
+				needs a sketch file (provided in SASpector/assets)
 
 
 First, Mauve performs an alignment of both genomes with the
