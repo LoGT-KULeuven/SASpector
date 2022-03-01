@@ -113,13 +113,24 @@ environments as follows:
 	$ mamba activate SASpector
 	$ mamba install -c conda-forge -c bioconda -c defaults blast emboss progressivemauve prokka quast samtools sourmash trf mash pyani
 
-We recommend to install SASpector using pip:
+We recommend to install SASpector as follows:
 
 	$ git clone https://github.com/LoGT-KULeuven/SASpector
 	$ cd SASpector
 	$ python setup.py install --user
 
 <a id="org9550907"></a>
+
+## Docker image
+The tool is available as a docker image:
+
+	$ docker pull 0mician/saspector:latest
+	
+Interactive session (assuming your input files are in $FOLDER) can be started with:
+
+    $ docker run -it -v $FOLDER:/opt/saspector/ 0mician/saspector /bin/bash
+
+The sketch file for the --mash_selection option is located in /opt/sketch
 
 ## Command line options
 
