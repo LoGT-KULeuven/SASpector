@@ -175,7 +175,8 @@ First, Mauve performs an alignment of both genomes with the
 progressiveMauve algorithm. This generates the subdirectory
 *prefix.alignment* with several output files and importantly the
 backbone file with coordinates of the mapped and unmapped regions in
-the reference genome.
+the reference genome. Note that if the reference genome contains 
+multiple contigs, they will be concatenated at this stage.
 
 This backbone file is parsed and we extract the sequences that are not
 covered in the short-read assembly from the reference genome. They are
